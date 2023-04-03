@@ -1,0 +1,39 @@
+import { Component } from '@angular/core';
+import { DBService } from 'src/app/services/db.service';
+
+@Component({
+  selector: 'app-analytics',
+  templateUrl: './analytics.component.html',
+  styleUrls: ['./analytics.component.css']
+})
+export class AnalyticsComponent {
+
+  public TotalUser = 0;
+  public TotalBlockeduser = 0;
+  public TotalAdmin = 0;
+  public TotalBlockedadmin = 0;
+
+  constructor(private dbservice:DBService){
+
+    dbservice.GetAllUserData().subscribe((data)=>{
+
+      for(let dbvalue of Object.values(data)){
+
+        if(dbvalue.role=="admin" && dbvalue.block==false){
+          this.TotalAdmin++;
+        }
+        else if(dbvalue.role=="admin" && dbvalue.block==true){
+          this.TotalBlockedadmin++;
+        }
+        else if(dbvalue.role=="user" && dbvalue.block==false){
+          this.TotalUser++;
+        }
+        else if(dbvalue.role=="user" && dbvalue.block==true){
+          this.TotalBlockeduser++;
+        }
+      }
+
+    });
+  }
+
+}

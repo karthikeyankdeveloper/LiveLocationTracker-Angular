@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+.admin-header {
+  font-family: 'Josefin Sans', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  border-bottom: 1px solid rgb(183, 181, 181);
+}
+
+
+.admin-header a {
+  display: inline-block;
+  margin: 10px 5px;
+  text-decoration: none;
+  color: black;
+  /* border: 2px solid red; */
+}
+
+.admin-header a:hover{
+  text-decoration: underline;
+}
+
+@media screen and (min-width:700px) {
+
+  .admin-header a {
+    margin: 15px 10px;
+
+  }
+
+}

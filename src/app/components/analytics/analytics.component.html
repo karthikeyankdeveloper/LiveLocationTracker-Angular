@@ -1,0 +1,74 @@
+
+<h2 class="h2">Analytics</h2>
+
+
+<div class="analytics">
+
+
+  <div class="analytics-content">
+
+    <h2><i class="fa-solid fa-calendar-check"></i>Today Orders</h2>
+
+    <h3>1341</h3>
+
+    <button>View</button>
+
+  </div>
+
+  <div class="analytics-content">
+    <h2><i class="fa-solid fa-cart-arrow-down"></i>Total Orders</h2>
+    <h3>1341</h3>
+    <button>View</button>
+
+  </div>
+  <div class="analytics-content">
+    <h2><i class="fa-solid fa-users"></i>Active Users</h2>
+    <h3>{{TotalUser}}</h3>
+    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'true',isactive:'true'}">
+      <button>Manage</button>
+    </a>
+
+  </div>
+
+
+  <div class="analytics-content">
+
+    <h2><i class="fa-solid fa-users-slash"></i>Blocked Users</h2>
+
+    <h3>{{TotalBlockeduser}}</h3>
+
+    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'true',isactive:'false'}">
+      <button>Manage</button>
+    </a>
+
+  </div>
+
+  <div class="analytics-content">
+
+    <h2><i class="fa-solid fa-users-gear"></i>Active Admins</h2>
+
+    <h3>{{TotalAdmin}}</h3>
+
+    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'false',isactive:'true'}">
+      <button>Manage</button>
+    </a>
+
+
+
+    <button>Invite</button>
+
+  </div>
+  <div class="analytics-content">
+
+    <h2><i class="fa-solid fa-user-lock"></i>Blocked Admins</h2>
+
+    <h3>{{TotalBlockedadmin}}</h3>
+
+    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'false',isactive:'false'}">
+      <button>Manage</button>
+    </a>
+
+  </div>
+
+
+</div>

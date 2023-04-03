@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+
+.manageuser{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.topbar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.topbar-second,.topbar-first{
+  width: 49%;
+}
+
+.topbar-first h3{
+  margin: 10px 5px;
+}
+
+.topbar-second{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.topbar-second input{
+    margin: 0px 6px;
+    padding: 6px 14px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+
+.table_content{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.table_content table{
+    width: 98%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table_content table th{
+    padding: 7px 0px;
+    text-transform: uppercase;
+    border: 1px solid rgb(159, 151, 151);
+}
+
+.table_content table tbody tr:hover{
+    background-color: rgb(239, 237, 237);
+}
+
+.table_content table td{
+    padding: 7px 1px;
+    font-size: .8rem;
+    color: rgb(62, 59, 59);
+    border: 1px solid rgb(159, 151, 151);
+}
+
+.table_content table td input{
+    text-transform: lowercase;
+    padding: 3px 8px;
+    font-size: .8rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+@media screen and (min-width:1000px) {
+
+    .table_content table th{
+        font-size: 1.2rem;
+    }
+
+    .table_content table td{
+        padding: 8px 1px;
+        font-size: 1rem;
+        color: rgb(62, 59, 59);
+    }
+
+    .table_content table td input{
+        font-size: .9rem;
+    }
+
+
+}

@@ -1,0 +1,48 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "UserList": {
+    "2k1@ocin": {
+      "block": false,
+      "email": "2k1@ocin",
+      "name": "Karthikeyan",
+      "password": "123",
+      "role": "admin"
+    },
+    "kart@gmailcom": {
+      "block": false,
+      "email": "kart@gmail.com",
+      "name": "Karthikeyan",
+      "password": "1212",
+      "role": "user"
+    }
+  },
+  "User": [
+    {
+      "name": "aspire",
+      "email": "suppor@aspire.com",
+      "password": "1234"
+    },
+    {
+      "name": "sars",
+      "email": "saras@aspire.com",
+      "password": "123"
+    }
+  ]
+}

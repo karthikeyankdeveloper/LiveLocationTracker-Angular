@@ -1,0 +1,48 @@
+<div class="manageuser">
+
+  <div class="topbar">
+
+    <div class="topbar-first">
+
+      <h3>UserList</h3>
+
+    </div>
+
+    <div class="topbar-second">
+      <input type="button" [value]="isuser?'user':'admin'" (click)="ToggleUser()" [style]="isuser?'background-color:purple;':'background-color:#008B8B;'">
+      <input type="button" [value]="isactive?'active':'blocked'" (click)="ToggleStatus()" [style]="isactive?'background-color:green;':'background-color:red;'">
+    </div>
+
+
+  </div>
+
+  <div class="table_content">
+
+    <table>
+      <thead>
+        <tr>
+          <th>name</th>
+          <th>email</th>
+          <th>role</th>
+          <th>status</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let data of FinalTable">
+          <td>{{data.name}}</td>
+          <td>{{data.email}}</td>
+          <td>{{data.role|uppercase}}</td>
+          <td><input type="button" (click)="Block(data.email)" [value]="data.block?'blocked':'active'" [style]="data.block?'background-color:red;':'background-color:green;'"></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+
+  </div>
+  <h2 style="text-align: center;" *ngIf="FinalTable==null || FinalTable==''">No Data Found !</h2>
+
+</div>

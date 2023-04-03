@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+
+@media screen and (max-width:900px) {
+
+    .wildcard {
+        font-family: 'Josefin Sans', sans-serif;
+        /* border: 2px solid red; */
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+
+
+    .first {
+        display: flex;
+        justify-content: center;
+        /* border: 2px solid green; */
+    }
+
+    .first-inside {
+        /* border: 2px solid green; */
+        width: 75%;
+    }
+
+    .first-inside h1 {
+        font-size: 2rem;
+    }
+
+    .first-inside p {
+        font-size: .9rem;
+    }
+
+    .first-inside div a {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+
+    .first-inside div a button {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+
+    .second img {
+        /* border: 2px solid green; */
+        width: 55%;
+        height: auto;
+    }
+}
+
+@media screen and (min-width:901px) {
+
+    .wildcard {
+      margin-top: 30px;
+        font-family: 'Josefin Sans', sans-serif;
+        /* border: 2px solid red; */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .first {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        /* border: 2px solid green; */
+    }
+
+    .first-inside {
+        /* border: 2px solid green; */
+        width: 75%;
+        margin-right: 10px
+    }
+
+    .first-inside h1 {
+        font-size: 2.5rem;
+    }
+
+    .first-inside p {
+        font-size: 1.1rem;
+    }
+
+    .first-inside div a {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+    }
+
+    .first-inside div a button {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+    }
+
+    .second {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        /* border: 2px solid green; */
+    }
+
+    .second img {
+        margin-top: 50px;
+        /* border: 2px solid green; */
+        width: 80%;
+        height: auto;
+    }
+
+}
+

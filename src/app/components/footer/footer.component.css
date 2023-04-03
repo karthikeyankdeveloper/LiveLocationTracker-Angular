@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+footer{
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: rgb(62, 59, 59);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.footer-logo{
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo img{
+    width: 55px;
+    height: auto;
+    margin: 5px 5px;
+}
+
+.footer-navigation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-navigation ul{
+    display: flex;
+    list-style: none;
+    padding: 0px;
+}
+.footer-navigation ul li{
+    margin: 0px 15px;
+}
+
+.footer-navigation ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-media{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+}
+
+.footer-media a{
+    text-decoration: none;
+    color: white;
+    margin: 0px 15px;
+}
+
+.footer-media a i{
+    font-size: 1.5rem;
+}
+
+.footer-year{
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
