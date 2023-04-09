@@ -1,0 +1,45 @@
+<div>
+
+  <div class="login-total">
+    <div class="login-left">
+      <img src="assets/invite.jpg" alt="img">
+    </div>
+
+    <div class="login-right">
+
+      <div class="right-content">
+        <h1>INVITE ADMIN</h1>
+        <p style="margin: 25px 13%;">Manage your task in easy way.</p>
+        <form [formGroup]="InviteForm" (ngSubmit)="AddAdmin()">
+
+          <div class="key">
+            <input [type]="'name'" placeholder="Name"  formControlName="name" name="name">
+
+            <small *ngIf="InviteForm.controls['name'].errors?.['required'] && InviteForm.controls['name'].touched">Enter Name</small>
+            <small *ngIf="InviteForm.controls['name'].errors?.['nameAlphabetError'] && InviteForm.controls['name'].dirty">Name only contain Alphabet</small>
+            <small *ngIf="InviteForm.controls['name'].errors?.['nameLengthError'] && InviteForm.controls['name'].dirty">Name Min length 2</small>
+          </div>
+
+
+          <div class="key">
+            <input [type]="'email'" placeholder="Email"  formControlName="email" name="email">
+
+            <small *ngIf="InviteForm.controls['email'].errors?.['required'] && InviteForm.controls['email'].touched">Enter Email Address</small>
+            <small *ngIf="(InviteForm.controls['email'].errors?.['email'] || InviteForm.controls['email'].errors?.['pattern']) && InviteForm.controls['email'].dirty">Enter Valid Email Address</small>
+          </div>
+
+
+          <div class="btn">
+            <button [disabled]="InviteForm.invalid || disable_button" type="submit">INVITE</button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+

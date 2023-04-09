@@ -27,6 +27,19 @@ export class AppComponent {
       }
     }
 
+    console.log(typeof access_service.GetData());
+
+
+    // var date = new Date().getDate().toString().padStart(2,"0");
+    // var month = new Date().getMonth().toString().padStart(2,"0");
+    // var year = new Date().getFullYear().toString();
+
+    // var finaldata = year+month+date;
+
+
+    // console.log(typeof finaldata);
+    // console.log(finaldata);
+
   }
 
 }

@@ -24,6 +24,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
     FooterComponent,
     ManageUserComponent,
     AnalyticsComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    InviteAdminComponent
   ],
   imports: [
     BrowserModule,

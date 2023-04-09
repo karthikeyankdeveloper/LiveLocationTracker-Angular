@@ -15,6 +15,7 @@ import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsLoginGuard } from './guards/is-login.guard';
 import { IsUserGuard } from './guards/is-user.guard';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
 
 const routes: Routes = [
   {
@@ -40,7 +41,8 @@ const routes: Routes = [
       {
         path:'forgot',
         component:UpdatePasswordComponent,
-        title:'Tracker | Update Password'
+        title:'Tracker | Update Password',
+        canActivate:[IsLoginGuard]
       },
       {
         path:'signup',
@@ -51,6 +53,7 @@ const routes: Routes = [
       {
         path:'user',
         component:UserDashboardComponent,
+        title:'User | Dashboard',
         canActivate:[IsUserGuard]
       },
       {
@@ -60,11 +63,18 @@ const routes: Routes = [
         children:[
           {
             path:'',
-            component:AnalyticsComponent
+            component:AnalyticsComponent,
+            title:'Admin | Analytics'
           },
           {
             path:'manageuser',
-            component:ManageUserComponent
+            component:ManageUserComponent,
+            title:'Admin | ManageUser'
+          },
+          {
+            path:'invite',
+            component:InviteAdminComponent,
+            title:'Admin | Invite'
           }
         ]
       },
