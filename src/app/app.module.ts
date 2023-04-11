@@ -25,6 +25,7 @@ import { ManageUserComponent } from './components/manage-user/manage-user.compon
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { InviteAdminComponent } from './components/invite-admin/invite-admin.com
     ManageUserComponent,
     AnalyticsComponent,
     UpdatePasswordComponent,
-    InviteAdminComponent
+    InviteAdminComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,8 @@ export class AnalyticsComponent {
   public TotalBlockeduser = 0;
   public TotalAdmin = 0;
   public TotalBlockedadmin = 0;
+  public TodayOrder = 0;
+  public TotalOrder = 0;
 
   constructor(private dbservice:DBService){
 
@@ -34,6 +36,32 @@ export class AnalyticsComponent {
       }
 
     });
+
+
+
+    var dateinstance = new Date();
+    var year = dateinstance.getFullYear().toString();
+    var month = (dateinstance.getMonth()+1).toString().padStart(2,"0");
+    var date = dateinstance.getDate().toString().padStart(2,"0");
+    var ref = date+month+year;
+
+    dbservice.GetAllOrder().subscribe((data)=>{
+
+      var values = Object.values(data);
+
+      this.TotalOrder = values.length;
+
+      for(let dbval of values){
+        if(dbval?.["ref"]==ref){
+          this.TodayOrder++;
+        }
+      }
+
+    });
+
+
+
+
   }
 
 }
