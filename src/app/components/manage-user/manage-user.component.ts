@@ -109,10 +109,10 @@ export class ManageUserComponent implements OnInit{
     }
   }
 
-  public Block(email:any){
+  public Block(email:any,booleancondition:any){
     if(confirm("Confirm Your Action")){
 
-      this.dbService.Block(email,this.isactive).subscribe((data)=>{
+      this.dbService.Block(email,!booleancondition).subscribe((data)=>{
         location.replace("/admin/manageuser?isuser="+this.isuser+"&isactive="+this.isactive);
       });
 

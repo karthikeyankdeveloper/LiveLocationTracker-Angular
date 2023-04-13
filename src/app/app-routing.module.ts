@@ -16,6 +16,7 @@ import { IsLoginGuard } from './guards/is-login.guard';
 import { IsUserGuard } from './guards/is-user.guard';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,11 @@ const routes: Routes = [
             path:'invite',
             component:InviteAdminComponent,
             title:'Admin | Invite'
+          },
+          {
+            path:'order',
+            component:OrderComponent,
+            title:'Admin | Order'
           }
         ]
       },

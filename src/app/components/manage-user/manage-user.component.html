@@ -35,7 +35,7 @@
           <td>{{data.name}}</td>
           <td>{{data.email}}</td>
           <td>{{data.role|uppercase}}</td>
-          <td><input type="button" (click)="Block(data.email)" [value]="data.block?'blocked':'active'" [style]="data.block?'background-color:red;':'background-color:green;'"></td>
+          <td><input type="button" (click)="Block(data.email,data.block)" [value]="data.block?'blocked':'active'" [style]="data.block?'background-color:red;':'background-color:green;'"></td>
         </tr>
 
       </tbody>

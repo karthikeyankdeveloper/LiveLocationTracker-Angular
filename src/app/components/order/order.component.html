@@ -1,1 +1,49 @@
-<p>order works!</p>
+<div class="manageorder">
+
+  <div class="topbar">
+
+    <div class="topbar-first">
+      <h3>Orders</h3>
+    </div>
+
+    <div class="topbar-second">
+      <input type="button" [value]="text" (click)="togglestatus()">
+    </div>
+
+  </div>
+
+  <div class="table_content">
+
+    <table>
+      <thead>
+        <tr>
+          <th>order id</th>
+          <th>payment id</th>
+          <th>customer</th>
+          <th>date</th>
+          <th>status</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let data of Values">
+          <td>{{data.orderid}}</td>
+          <td>#{{data.paymentid}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.fulldate}}</td>
+          <td>
+            <input type="button" [value]="data.status?'done':'pending'" [style]="data.status?'background-color:green':'background-color:#747406'">
+            <input type="button" (click)="View(data.orderid)" value="view" [style]="'background-color:purple'">
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+
+  </div>
+  <h2 style="text-align: center;" *ngIf="(Values==null || Values=='') && NoDataPrevent">No Data Found !</h2>
+
+</div>
