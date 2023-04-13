@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DBService } from 'src/app/services/db.service';
 
@@ -7,7 +7,7 @@ import { DBService } from 'src/app/services/db.service';
   templateUrl: './manage-user.component.html',
   styleUrls: ['./manage-user.component.css']
 })
-export class ManageUserComponent implements OnInit{
+export class ManageUserComponent implements OnInit,OnDestroy{
 
   public isuser = true;
   public isactive = true;
@@ -18,6 +18,7 @@ export class ManageUserComponent implements OnInit{
   public BlockUser:any;
   public ActiveAdmin:any;
   public BlockAdmin:any;
+  
 
   ngOnInit(){
     this.routes.queryParamMap.subscribe((querdata)=>{
@@ -41,13 +42,20 @@ export class ManageUserComponent implements OnInit{
 
       this.FetchData();
 
-    })
+    });
   }
 
 
   constructor(private routes:ActivatedRoute,private dbService:DBService){
 
-    dbService.GetAllUserData().subscribe((data)=>{
+    this.GetAllUser();
+
+  }
+
+
+  private GetAllUser(){
+
+    this.dbService.GetAllUserData().subscribe((data)=>{
 
       var activeuser = [];
       var blockuser = [];
@@ -89,10 +97,12 @@ export class ManageUserComponent implements OnInit{
     this.FetchData();
   }
 
+
   public ToggleStatus(){
     this.isactive = !this.isactive;
     this.FetchData();
   }
+
 
   private FetchData(){
     if(this.isuser==true && this.isactive==true){
@@ -109,14 +119,17 @@ export class ManageUserComponent implements OnInit{
     }
   }
 
+
+
   public Block(email:any,booleancondition:any){
     if(confirm("Confirm Your Action")){
-
       this.dbService.Block(email,!booleancondition).subscribe((data)=>{
-        location.replace("/admin/manageuser?isuser="+this.isuser+"&isactive="+this.isactive);
+        this.GetAllUser();
       });
-
     }
+  }
+
+  ngOnDestroy(): void {
 
   }
 

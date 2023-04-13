@@ -3,9 +3,13 @@
 .admin-header {
   font-family: 'Josefin Sans', sans-serif;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  overflow: auto;
   background-color: white;
   border-bottom: 1px solid rgb(183, 181, 181);
+  position: sticky;
+  top: 61px;
+  z-index: 0;
 }
 
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DBService } from 'src/app/services/db.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -7,13 +7,16 @@ import { LoaderService } from 'src/app/services/loader.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent {
+export class OrderComponent implements OnDestroy {
 
   public Values: any;
 
   public all:any;
   public pending:any;
   public done:any;
+
+
+  private httpsservide:any;
 
   public NoDataPrevent = false;
 
@@ -89,4 +92,12 @@ export class OrderComponent {
     console.log(ddd);
   }
 
+
+  ngOnDestroy(): void {
+
+    if(this.httpsservide){
+      this.httpsservide.unsubscribe();
+    }
+
+  }
 }

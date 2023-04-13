@@ -19,7 +19,7 @@
           <li *ngIf="access_service.IsAdmin()"> <a routerLink="admin" (click)="this.onResize()">Dashboard(Admin)</a> </li>
           <li *ngIf="!access_service.IsAdmin()"> <a routerLink="support" (click)="this.onResize()">Support</a> </li>
           <li *ngIf="!access_service.IsLoggedIn()"> <a routerLink="about" (click)="this.onResize()">About</a> </li>
-          <li *ngIf="access_service.IsLoggedIn()"> <a (click)="this.onResize()" (click)="Logout()" style="cursor: pointer;">Logout</a> </li>
+          <li *ngIf="access_service.IsLoggedIn()"> <a  (click)="Logout()"  style="cursor: pointer;">Logout</a> </li>
         </ul>
       </div>
     </nav>
