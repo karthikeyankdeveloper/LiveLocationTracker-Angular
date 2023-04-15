@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DBService } from 'src/app/services/db.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-analytics',
@@ -15,9 +16,13 @@ export class AnalyticsComponent {
   public TodayOrder = 0;
   public TotalOrder = 0;
 
-  constructor(private dbservice:DBService){
+  constructor(private dbservice:DBService,private loader:LoaderService){
+
+    loader.SetSampleLoader(true);
 
     dbservice.GetAllUserData().subscribe((data)=>{
+
+      loader.SetSampleLoader(false);
 
       for(let dbvalue of Object.values(data)){
 

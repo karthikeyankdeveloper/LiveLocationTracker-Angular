@@ -18,7 +18,9 @@ export class ManageUserComponent implements OnInit,OnDestroy{
   public BlockUser:any;
   public ActiveAdmin:any;
   public BlockAdmin:any;
-  
+
+  public NoDataPrevent = false;
+
 
   ngOnInit(){
     this.routes.queryParamMap.subscribe((querdata)=>{
@@ -55,7 +57,11 @@ export class ManageUserComponent implements OnInit,OnDestroy{
 
   private GetAllUser(){
 
+    this.NoDataPrevent = false;
+
     this.dbService.GetAllUserData().subscribe((data)=>{
+
+      this.NoDataPrevent = true;
 
       var activeuser = [];
       var blockuser = [];
@@ -122,7 +128,9 @@ export class ManageUserComponent implements OnInit,OnDestroy{
 
 
   public Block(email:any,booleancondition:any){
+
     if(confirm("Confirm Your Action")){
+      this.NoDataPrevent = false;
       this.dbService.Block(email,!booleancondition).subscribe((data)=>{
         this.GetAllUser();
       });

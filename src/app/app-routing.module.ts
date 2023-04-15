@@ -42,8 +42,7 @@ const routes: Routes = [
       {
         path:'forgot',
         component:UpdatePasswordComponent,
-        title:'Tracker | Update Password',
-        canActivate:[IsLoginGuard]
+        title:'Tracker | Update Password'
       },
       {
         path:'signup',

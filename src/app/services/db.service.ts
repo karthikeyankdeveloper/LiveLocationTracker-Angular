@@ -67,6 +67,18 @@ export class DBService {
   }
 
 
+  public GetOrder(key:string){
+    return this.httpclient.get(this.url+"Orders/"+key+".json");
+  }
+
+  public ToggleOrder(key:string,condition:boolean){
+    var data = {
+      status:condition
+    }
+    return this.httpclient.patch(this.url+"Orders/"+key+".json",data);
+  }
+
+
 
   private KeyMail(email: string) {
     var keymail = "";

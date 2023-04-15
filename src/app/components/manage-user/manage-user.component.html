@@ -4,7 +4,8 @@
 
     <div class="topbar-first">
 
-      <h3>UserList</h3>
+      <h3 *ngIf="isuser">User</h3>
+      <h3 *ngIf="!isuser">Admin</h3>
 
     </div>
 
@@ -43,6 +44,9 @@
 
 
   </div>
-  <h2 style="text-align: center;" *ngIf="FinalTable==null || FinalTable==''">No Data Found !</h2>
+  <div class="loading" *ngIf="!NoDataPrevent">
+    <img src="/assets/load.svg" alt="loading">
+  </div>
+  <h2 style="text-align: center;" *ngIf="(FinalTable==null || FinalTable=='') && NoDataPrevent">No Data Found !</h2>
 
 </div>
