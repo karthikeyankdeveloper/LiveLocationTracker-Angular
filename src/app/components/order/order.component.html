@@ -32,7 +32,7 @@
           <td>{{data.orderid | slice:0:10}}...</td>
           <td>#{{data.paymentid}}</td>
           <td>{{data.name}}</td>
-          <td>{{data.fulldate}}</td>
+          <td>{{data.date | date:'MMM d, yyyy,  h:mm a'}}</td>
           <td>
             <input type="button" [value]="data.status?'done':'pending'"
               [style]="data.status?'background-color:green':'background-color:#747406'" (click)="ToggleOrderStatus(data.orderid,data.status)">
@@ -75,7 +75,7 @@
       <h4>Email : <span>{{FinalViewData?.email}}</span></h4>
       <h4>Address : <span>{{FinalViewData?.fulladdress}}</span></h4>
       <h4>Mobile : <span>{{FinalViewData?.mobile}}</span></h4>
-      <h4>Date : <span>{{FinalViewData?.fulldate}}</span></h4>
+      <h4>Date : <span>{{FinalViewData?.date|date:'EEEE, MMMM d, y, h:mm:ss a zzzz'}}</span></h4>
       <h4>Order Kit Id : <span>{{FinalViewData?.kitid}}</span></h4>
       <h4>Payment Id : <span>{{FinalViewData?.paymentid}}</span></h4>
       <h4>Status : <span *ngIf="FinalViewData?.status" style="color: green;">DONE</span> <span *ngIf="!FinalViewData?.status" style="color: #747406;">PENDING</span></h4>

@@ -88,7 +88,10 @@ export class OrderComponent {
 
     for (let k of values) {
       var kk = JSON.parse(JSON.stringify(k));
-      Object.assign(kk, { "orderid": keys[i++] });
+
+      var date = new Date(kk.timestamp);
+
+      Object.assign(kk, { "orderid": keys[i++],"date":date });
       finaldata.push(kk);
     }
 
@@ -107,7 +110,7 @@ export class OrderComponent {
   public Falseview(){
     this.viewmodel = false;
   }
-  
+
 
   public View(key:any){
 
@@ -123,7 +126,8 @@ export class OrderComponent {
 
 
       var temp = JSON.parse(JSON.stringify(data));
-      Object.assign(temp,{"orderid":key});
+      var date = new Date(temp.timestamp);
+      Object.assign(temp,{"orderid":key,"date":date});
 
       this.FinalViewData = temp;
     });

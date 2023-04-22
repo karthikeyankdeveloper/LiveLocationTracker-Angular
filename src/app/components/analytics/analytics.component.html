@@ -7,18 +7,38 @@
 
   <div class="analytics-content">
 
-    <h2><i class="fa-solid fa-calendar-check"></i>Today Orders</h2>
+    <h2><i class="fa-solid fa-calendar-day"></i>Today Orders</h2>
 
     <h3>{{TodayOrder}}</h3>
 
-    <button>View</button>
+    <a routerLink="/admin/order">
+      <button>View</button>
+    </a>
 
   </div>
 
   <div class="analytics-content">
+    <h2><i class="fa-regular fa-hourglass-half"></i>Total Pending Orders</h2>
+    <h3>{{TotalPendingOrder}}</h3>
+    <a routerLink="/admin/order">
+      <button>View</button>
+    </a>
+
+  </div>
+  <div class="analytics-content">
+    <h2><i class="fa-regular fa-calendar-check"></i>Total Done Orders</h2>
+    <h3>{{TotalDoneOrder}}</h3>
+    <a routerLink="/admin/order">
+      <button>View</button>
+    </a>
+
+  </div>
+  <div class="analytics-content">
     <h2><i class="fa-solid fa-cart-arrow-down"></i>Total Orders</h2>
     <h3>{{TotalOrder}}</h3>
-    <button>View</button>
+    <a routerLink="/admin/order">
+      <button>View</button>
+    </a>
 
   </div>
   <div class="analytics-content">

@@ -47,17 +47,8 @@ export class DBService {
 
 
   public AddOrder(){
+    var insert = {"name":"Karthikeyan","email":"kk@gmail.com","status":false,"kitid":"1","fulladdress":"","mobile":"1212","paymentid":"as1212dsd","timestamp":{".sv":"timestamp"}};
 
-    var dateinstance = new Date();
-    var year = dateinstance.getFullYear().toString();
-    var month = (dateinstance.getMonth()+1).toString().padStart(2,"0");
-    var date = dateinstance.getDate().toString().padStart(2,"0");
-
-    var ref = date+month+year;
-    var fulldate = date+"-"+month+"-"+year;
-
-    var insert = {"name":"Karthikeyan","email":"kk@gmail.com","status":"pending","kitid":"1","fulladdress":"","mobile":"1212","paymentid":"as1212dsd"};
-    Object.assign(insert,{"ref":ref,"fulldate":fulldate})
     return this.httpclient.post(this.url+"Orders.json",insert);
   }
 

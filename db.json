@@ -11,46 +11,30 @@
       "id": 1,
       "body": "some comment",
       "postId": 1,
-      "key":[
-        {
-
-        },
-        {
-          
-        }
+      "key": [
+        {},
+        {}
       ]
     }
   ],
   "profile": {
-    "key1": "value1",
-    "key2": "value2"
-  },
-  "UserList": {
-    "2k1@ocin": {
-      "block": false,
-      "email": "2k1@ocin",
-      "name": "Karthikeyan",
-      "password": "123",
-      "role": "admin"
+    "key1": {
+      "kk":"ll"
     },
-    "kart@gmailcom": {
-      "block": false,
-      "email": "kart@gmail.com",
-      "name": "Karthikeyan",
-      "password": "1212",
-      "role": "user"
-    }
+    "key2": "value2"
   },
   "User": [
     {
       "name": "aspire",
       "email": "suppor@aspire.com",
-      "password": "1234"
-    },
-    {
-      "name": "sars",
-      "email": "saras@aspire.com",
-      "password": "123"
+      "password": "1234",
+      "KK": [
+        {
+          "id":1,
+          "name":"values"
+        }
+      ],
+      "id": 1
     }
   ]
 }
