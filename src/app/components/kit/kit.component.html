@@ -1,0 +1,90 @@
+<div class="loading" *ngIf="!NoDataPrevent">
+  <img src="/assets/load.svg" alt="loading">
+</div>
+
+<div class="create_new">
+  <div>
+    <h3>Manage Kit</h3>
+  </div>
+  <div class="righ">
+    <a (click)="ToggleView()">+Add New Kit</a>
+  </div>
+</div>
+
+
+<div class="kit">
+
+  <div class="list" *ngFor="let data of FinalKitList" routerLink="viewkit" [queryParams]="{id:data.id}">
+    <div class="img">
+      <img [src]="data.img" alt="">
+    </div>
+    <div class="content">
+      <h4>{{data.name}} ({{data.id}})</h4>
+      <h5>{{data.desc}}</h5>
+      <h4>{{data.price|currency:'INR'}} <span style="color: green;" *ngIf="data.available">Available</span> <span style="color: red;" *ngIf="!data.available">Not Available</span></h4>
+
+    </div>
+  </div>
+
+</div>
+
+<h2 style="text-align: center; font-family: 'Josefin Sans', sans-serif;"
+  *ngIf="FinalKitList==''||FinalKitList==null && NoDataPrevent">No Data Available !</h2>
+
+
+<div class="sidebar" *ngIf="ViewModel">
+
+  <div class="sidebar_top">
+    <div class="left">
+      <button (click)="ToggleView()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div>
+      <h3>Add New Kit </h3>
+    </div>
+  </div>
+
+
+  <div class="sidebar_content">
+
+    <form [formGroup]="AddKitForm" (ngSubmit)="AddNewKit()">
+      <div class="input">
+        <input type="number" placeholder="Kit id" formControlName="id">
+        <div *ngIf="AddKitForm.controls['id'].errors?.['required'] && AddKitForm.controls['id'].touched">
+          <small>Enter Kit ID</small>
+        </div>
+      </div>
+      <div class="input">
+        <input type="text" placeholder="Name" formControlName="name">
+        <div *ngIf="AddKitForm.controls['name'].errors?.['required'] && AddKitForm.controls['name'].touched">
+          <small>Enter Kit Name</small>
+        </div>
+      </div>
+      <div class="input">
+        <input type="text" placeholder="Description" formControlName="desc">
+        <div *ngIf="AddKitForm.controls['desc'].errors?.['required'] && AddKitForm.controls['desc'].touched">
+          <small>Enter Kit Description</small>
+        </div>
+      </div>
+      <div class="input">
+        <input type="number" placeholder="Price" formControlName="price">
+        <div *ngIf="AddKitForm.controls['price'].errors?.['required'] && AddKitForm.controls['price'].touched">
+          <small>Enter Kit Price</small>
+        </div>
+      </div>
+      <div class="input">
+        <input type="text" placeholder="Image url" formControlName="img">
+        <div *ngIf="AddKitForm.controls['img'].errors?.['required'] && AddKitForm.controls['img'].touched">
+          <small>Enter Image URL</small>
+        </div>
+      </div>
+      <div class="input">
+        <button type="submit" [disabled]="AddKitForm.invalid">ADD KIT</button>
+      </div>
+    </form>
+
+
+  </div>
+
+</div>

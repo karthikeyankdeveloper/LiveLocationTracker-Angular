@@ -70,6 +70,15 @@ export class DBService {
   }
 
 
+  public GetAllKit(){
+    return this.httpclient.get(this.url+"Kits.json",{responseType:'json'});
+  }
+
+  public AddNewKit(data:any){
+    return this.httpclient.patch(this.url+"Kits.json",data);
+  }
+
+
 
   private KeyMail(email: string) {
     var keymail = "";

@@ -26,6 +26,7 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
 import { OrderComponent } from './components/order/order.component';
+import { KitComponent } from './components/kit/kit.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { OrderComponent } from './components/order/order.component';
     AnalyticsComponent,
     UpdatePasswordComponent,
     InviteAdminComponent,
-    OrderComponent
+    OrderComponent,
+    KitComponent
   ],
   imports: [
     BrowserModule,

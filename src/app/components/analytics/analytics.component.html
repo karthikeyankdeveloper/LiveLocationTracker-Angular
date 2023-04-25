@@ -11,7 +11,7 @@
 
     <h3>{{TodayOrder}}</h3>
 
-    <a routerLink="/admin/order">
+    <a routerLink="order">
       <button>View</button>
     </a>
 
@@ -20,7 +20,7 @@
   <div class="analytics-content">
     <h2><i class="fa-regular fa-hourglass-half"></i>Total Pending Orders</h2>
     <h3>{{TotalPendingOrder}}</h3>
-    <a routerLink="/admin/order">
+    <a routerLink="order">
       <button>View</button>
     </a>
 
@@ -28,7 +28,7 @@
   <div class="analytics-content">
     <h2><i class="fa-regular fa-calendar-check"></i>Total Done Orders</h2>
     <h3>{{TotalDoneOrder}}</h3>
-    <a routerLink="/admin/order">
+    <a routerLink="order">
       <button>View</button>
     </a>
 
@@ -36,7 +36,7 @@
   <div class="analytics-content">
     <h2><i class="fa-solid fa-cart-arrow-down"></i>Total Orders</h2>
     <h3>{{TotalOrder}}</h3>
-    <a routerLink="/admin/order">
+    <a routerLink="order">
       <button>View</button>
     </a>
 
@@ -44,7 +44,7 @@
   <div class="analytics-content">
     <h2><i class="fa-solid fa-users"></i>Active Users</h2>
     <h3>{{TotalUser}}</h3>
-    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'true',isactive:'true'}">
+    <a routerLink="manageuser" [queryParams]="{isuser:'true',isactive:'true'}">
       <button>Manage</button>
     </a>
 
@@ -57,7 +57,7 @@
 
     <h3>{{TotalBlockeduser}}</h3>
 
-    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'true',isactive:'false'}">
+    <a routerLink="manageuser" [queryParams]="{isuser:'true',isactive:'false'}">
       <button>Manage</button>
     </a>
 
@@ -69,13 +69,13 @@
 
     <h3>{{TotalAdmin}}</h3>
 
-    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'false',isactive:'true'}">
+    <a routerLink="manageuser" [queryParams]="{isuser:'false',isactive:'true'}">
       <button>Manage</button>
     </a>
 
 
 
-    <a routerLink="/admin/invite">
+    <a routerLink="invite">
       <button>Invite</button>
     </a>
 
@@ -86,7 +86,7 @@
 
     <h3>{{TotalBlockedadmin}}</h3>
 
-    <a routerLink="/admin/manageuser" [queryParams]="{isuser:'false',isactive:'false'}">
+    <a routerLink="manageuser" [queryParams]="{isuser:'false',isactive:'false'}">
       <button>Manage</button>
     </a>
 
