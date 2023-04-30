@@ -14,7 +14,7 @@
 
 <div class="kit">
 
-  <div class="list" *ngFor="let data of FinalKitList" routerLink="viewkit" [queryParams]="{id:data.id}">
+  <div class="list" *ngFor="let data of FinalKitList" routerLink="/admin/viewkit" [queryParams]="{id:data.id}">
     <div class="img">
       <img [src]="data.img" alt="">
     </div>
@@ -49,37 +49,47 @@
   <div class="sidebar_content">
 
     <form [formGroup]="AddKitForm" (ngSubmit)="AddNewKit()">
-      <div class="input">
-        <input type="number" placeholder="Kit id" formControlName="id">
-        <div *ngIf="AddKitForm.controls['id'].errors?.['required'] && AddKitForm.controls['id'].touched">
-          <small>Enter Kit ID</small>
-        </div>
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['id'].errors?.['required'] && AddKitForm.controls['id'].touched?'red':'black'}">
+        <label for="id">Kit id</label>
       </div>
       <div class="input">
-        <input type="text" placeholder="Name" formControlName="name">
-        <div *ngIf="AddKitForm.controls['name'].errors?.['required'] && AddKitForm.controls['name'].touched">
-          <small>Enter Kit Name</small>
-        </div>
+        <input type="number" placeholder="Kit id" formControlName="id" id="id">
+      </div>
+
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['name'].errors?.['required'] && AddKitForm.controls['name'].touched?'red':'black'}">
+        <label for="name">Kit Name</label>
       </div>
       <div class="input">
-        <input type="text" placeholder="Description" formControlName="desc">
-        <div *ngIf="AddKitForm.controls['desc'].errors?.['required'] && AddKitForm.controls['desc'].touched">
-          <small>Enter Kit Description</small>
-        </div>
+        <input type="text" placeholder="Name" formControlName="name" id="name">
+      </div>
+
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['desc'].errors?.['required'] && AddKitForm.controls['desc'].touched?'red':'black'}">
+        <label for="desc">Description</label>
       </div>
       <div class="input">
-        <input type="number" placeholder="Price" formControlName="price">
-        <div *ngIf="AddKitForm.controls['price'].errors?.['required'] && AddKitForm.controls['price'].touched">
-          <small>Enter Kit Price</small>
-        </div>
+        <input type="text" placeholder="Description" formControlName="desc" id="desc">
+      </div>
+
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['price'].errors?.['required'] && AddKitForm.controls['price'].touched?'red':'black'}">
+        <label for="price">Price</label>
       </div>
       <div class="input">
-        <input type="text" placeholder="Image url" formControlName="img">
-        <div *ngIf="AddKitForm.controls['img'].errors?.['required'] && AddKitForm.controls['img'].touched">
-          <small>Enter Image URL</small>
-        </div>
+        <input type="number" placeholder="Price" formControlName="price" id="price">
+      </div>
+
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['img'].errors?.['required'] && AddKitForm.controls['img'].touched?'red':'black'}">
+        <label for="url">Image url</label>
       </div>
       <div class="input">
+        <input type="text" placeholder="Image url" formControlName="img" id="url">
+      </div>
+
+      <div class="btn">
         <button type="submit" [disabled]="AddKitForm.invalid">ADD KIT</button>
       </div>
     </form>

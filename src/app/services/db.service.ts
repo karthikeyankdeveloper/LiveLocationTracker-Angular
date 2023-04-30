@@ -70,12 +70,25 @@ export class DBService {
   }
 
 
+  public GetKit(id:any){
+    return this.httpclient.get(this.url+"Kits/"+id+".json");
+  }
+
+
   public GetAllKit(){
     return this.httpclient.get(this.url+"Kits.json",{responseType:'json'});
   }
 
   public AddNewKit(data:any){
     return this.httpclient.patch(this.url+"Kits.json",data);
+  }
+
+  public UpdateKit(id:any,data:any){
+    return this.httpclient.patch(this.url+"Kits/"+id+".json",data);
+  }
+
+  public DeleteKit(id:any){
+    return this.httpclient.delete(this.url+"Kits/"+id+".json");
   }
 
 

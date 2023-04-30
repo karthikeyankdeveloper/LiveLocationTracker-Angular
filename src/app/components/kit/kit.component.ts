@@ -9,18 +9,18 @@ import { DBService } from 'src/app/services/db.service';
 })
 export class KitComponent {
 
-  public FinalKitList:any;
+  public FinalKitList: any;
   public NoDataPrevent = false;
   public ViewModel = false;
 
-  constructor(private dbservice:DBService,private builder:FormBuilder){
+  constructor(private dbservice: DBService, private builder: FormBuilder) {
     this.GetAllKit();
   }
 
-  public GetAllKit(){
+  public GetAllKit() {
     this.NoDataPrevent = false;
 
-    this.dbservice.GetAllKit().subscribe((data)=>{
+    this.dbservice.GetAllKit().subscribe((data) => {
 
       this.NoDataPrevent = true;
 
@@ -30,22 +30,22 @@ export class KitComponent {
 
   }
 
-  public ToggleView(){
+  public ToggleView() {
     this.ViewModel = !this.ViewModel;
   }
 
 
   AddKitForm = this.builder.group({
-    id:[,[Validators.required]],
-    name:[,[Validators.required]],
-    desc:[,[Validators.required]],
-    price:[,[Validators.required]],
-    img:[,[Validators.required]]
+    id: [, [Validators.required]],
+    name: [, [Validators.required]],
+    desc: [, [Validators.required]],
+    price: [, [Validators.required]],
+    img: [, [Validators.required]]
   });
 
 
 
-  public AddNewKit(){
+  public AddNewKit() {
 
     var id = this.AddKitForm.controls["id"].value;
     var name = this.AddKitForm.controls["name"].value;
@@ -55,28 +55,33 @@ export class KitComponent {
 
     var values = this.AddKitForm.value;
 
-    if(id==null||id==""||name==null||name==""||desc==null||desc==""||price==null||price==""||img==null||img==""){
+    if (id == null || id == "" || name == null || name == "" || desc == null || desc == "" || price == null || price == "" || img == null || img == "") {
       alert("Invalid Data");
-    }else{
+    } else {
 
       this.ToggleView();
 
       this.NoDataPrevent = false;
 
-      Object.assign(values,{available:true});
+      this.dbservice.GetKit(id).subscribe((tt) => {
 
-      var data = {
-        [values.id+""]:values
-      };
+        if (tt == null) {
 
+          Object.assign(values, { available: true });
+          var data = {
+            [values.id + ""]: values
+          };
 
-      this.dbservice.AddNewKit(data).subscribe((dat)=>{
+          this.dbservice.AddNewKit(data).subscribe((dat) => {
+            this.GetAllKit();
+          });
 
-        this.GetAllKit();
+        } else {
+          alert("Kit id already exists");
+          this.NoDataPrevent = true;
+        }
+      });
 
-      })
-
-      console.log(data)
     }
 
   }

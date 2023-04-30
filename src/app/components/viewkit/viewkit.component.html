@@ -1,0 +1,57 @@
+<div class="loading" *ngIf="!Preventload">
+  <img src="/assets/load.svg" alt="loading">
+</div>
+
+<h3 style="font-family: 'Josefin Sans', sans-serif; margin-left: 10px;">View Kit/Update</h3>
+
+<div class="viewkit">
+
+  <div class="preview">
+    <h3>Live View</h3>
+    <div class="list">
+      <div class="img">
+        <img [src]="Finaldata?.img" alt="">
+      </div>
+      <div class="content">
+        <h4>{{Finaldata?.name}} ({{Finaldata?.id}})</h4>
+        <h5>{{Finaldata?.desc}}</h5>
+        <h4>{{Finaldata?.price|currency:'INR'}} <span style="color: green;" *ngIf="Finaldata?.available">Available</span> <span style="color: red;" *ngIf="!Finaldata?.available">Not Available</span></h4>
+      </div>
+    </div>
+    <button (click)="DeleteKit()">Delete</button>
+  </div>
+
+  <div class="edit">
+    <h3>Update</h3>
+
+    <form (ngSubmit)="Update()" [formGroup]="UpdateForm">
+
+      <div class="input">
+        <label for="name">Name</label>
+        <input type="text" type="text" placeholder="Name" id="name"  formControlName="name">
+      </div>
+      <div class="input">
+        <label for="Description">Description</label>
+        <input type="text" type="text" placeholder="Description" id="Description" formControlName="desc">
+      </div>
+      <div class="input">
+        <label for="Price">Price</label>
+        <input type="number" placeholder="Price" id="Price" formControlName="price">
+      </div>
+      <div class="input">
+        <label for="url">Image Url</label>
+        <input type="text" type="text" placeholder="Image Url" id="url" formControlName="img">
+      </div>
+
+      <div>
+        <input type="radio" name="available" id="status" value="true" formControlName="available"> <label for="status">Available</label>
+        <input type="radio" name="available" id="status1" value="false" formControlName="available"> <label for="status1">Not Available</label>
+      </div>
+
+      <div>
+        <button type="submit">Update</button>
+      </div>
+    </form>
+
+  </div>
+</div>

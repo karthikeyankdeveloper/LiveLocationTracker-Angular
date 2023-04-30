@@ -27,6 +27,7 @@ import { UpdatePasswordComponent } from './components/update-password/update-pas
 import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
 import { OrderComponent } from './components/order/order.component';
 import { KitComponent } from './components/kit/kit.component';
+import { ViewkitComponent } from './components/viewkit/viewkit.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { KitComponent } from './components/kit/kit.component';
     UpdatePasswordComponent,
     InviteAdminComponent,
     OrderComponent,
-    KitComponent
+    KitComponent,
+    ViewkitComponent
   ],
   imports: [
     BrowserModule,

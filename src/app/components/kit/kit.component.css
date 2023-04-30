@@ -39,7 +39,7 @@
   text-align: left;
 }
 
-.create_new .righ{
+.create_new .righ {
   display: flex;
   justify-content: right;
 }
@@ -56,7 +56,8 @@
 
 }
 
-.kit .list h4,h5 {
+.kit .list h4,
+h5 {
   margin: 0px;
   padding: 7px 0px;
 }
@@ -125,127 +126,132 @@
 
 /* For SideBar */
 
-.sidebar{
+.sidebar {
   background-color: rgb(251, 251, 251);
-    font-family: 'Josefin Sans', sans-serif;
-    /* border: 2px solid red; */
-    border-top-left-radius: 10px;
-    position: fixed;
-    top: 115px;
-    right: 0px;
-    height: 100%;
-    width: 50%;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  font-family: 'Josefin Sans', sans-serif;
+  /* border: 2px solid red; */
+  border-top-left-radius: 10px;
+  position: fixed;
+  top: 115px;
+  right: 0px;
+  height: 100%;
+  width: 50%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-.sidebar_top{
-    display: flex;
-    border-bottom: 1px solid rgb(155, 155, 155);
+.sidebar_top {
+  display: flex;
+  border-bottom: 1px solid rgb(155, 155, 155);
 }
 
-.sidebar_top div{
-    /* border: 2px solid red; */
-    width: 50%;
+.sidebar_top div {
+  /* border: 2px solid red; */
+  width: 50%;
 }
 
-.sidebar_top .left{
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
+.sidebar_top .left {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
 }
 
-.sidebar_top .left button{
-    border: none;
-    cursor: pointer;
+.sidebar_top .left button {
+  border: none;
+  cursor: pointer;
 }
 
-.sidebar_top .left i{
-    font-size: 1.5rem;
+.sidebar_top .left i {
+  font-size: 1.5rem;
 }
 
-.sidebar_top h3{
-    text-align: right;
-    margin-right: 15px;
+.sidebar_top h3 {
+  text-align: right;
+  margin-right: 15px;
 }
 
 
-.sidebar_content{
-    margin-top: 10px;
-    height: 80%;
-    color: black;
-    overflow-y: scroll;
+.sidebar_content {
+  margin-top: 10px;
+  height: 80%;
+  color: black;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
 }
 
-.input{
-    text-align: center;
-    /* border: 2px solid red; */
-    margin: 10px 20px;
-    height: 65px;
-}
-.input input{
-    width: 70%;
-    padding: 13px 5px;
-    font-size: 1rem;
-    text-align: center;
-    border: none;
-    border: 2px solid rgb(193, 190, 190);
-    border-radius: 8px;
-    outline: none;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    /* cursor: pointer; */
+.sidebar_content form{
+  /* border: 2px solid red; */
+  width: 80%;
 }
 
-.input input:hover{
-    border: 2px solid rgb(18, 187, 239);
+.label{
+  margin-left: 20px;
+}
+
+.input {
+  /* text-align: center; */
+  /* border: 2px solid red; */
+  margin: 5px 20px;
+  padding-bottom: 8px;
+}
+
+.input input {
+  width: 90%;
+  padding: 10px 5px;
+  padding-left: 10px;
+  font-size: .9rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-weight: 700;
+}
+
+.input input:hover {
+  border: 2px solid rgb(30, 97, 3);
 
 }
 
-.input input:focus{
-    border: 2px solid blue;
+.input input:focus {
+  border: 2px solid blue;
 }
 
-.input div{
-    /* border: 2px solid red; */
-    padding-top: 5px;
-    font-size: 1.1rem;
-}
-.input button{
-    cursor: pointer;
-    padding: 12px 28px;
-    border-radius: 5px;
-    border: none;
-    background-color: green;
-    color: white;
+
+.btn{
+  text-align: center;
 }
 
-.input button:hover{
+.btn button {
+  margin-top: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: green;
+  color: white;
+}
+
+.btn button:hover {
   background-color: rgb(3, 71, 3);
 }
 
 
-.input button:disabled{
-
+.btn button:disabled {
   background-color: rgba(0, 128, 0, 0.705);
-
 }
 
 
 @media screen and (max-width:630px) {
-    .sidebar{
-        width: 100%;
-    }
+  .sidebar {
+    width: 100%;
+  }
 }
 
-@media screen and (min-width:1000px){
+@media screen and (min-width:1000px) {
 
-    .sidebar{
-        width: 35%;
-    }
+  .sidebar {
+    width: 35%;
+  }
 
-}
-
-
-small{
-  color: red;
 }
 
