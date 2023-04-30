@@ -11,7 +11,7 @@ export class DBService {
   constructor(private httpclient: HttpClient) { }
 
   public DBcheck() {
-    return this.httpclient.get(this.url + "check.json");
+    return this.httpclient.get(this.url + "update.json");
   }
 
   public GetUser(email: string) {

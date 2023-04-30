@@ -81,7 +81,13 @@ export class LoginComponent implements OnInit{
 
               this.access_service.LoadData(final_getdata);
 
-              localStorage.setItem("llt-userdata",JSON.stringify(final_getdata));
+              var stringify_data = {
+                name:final_getdata.name,
+                email:final_getdata.email,
+                role:final_getdata.role
+              };
+
+              localStorage.setItem("llt-userdata",JSON.stringify(stringify_data));
 
               localStorage.setItem("llt-date",(new Date()).getDate()+"");
 

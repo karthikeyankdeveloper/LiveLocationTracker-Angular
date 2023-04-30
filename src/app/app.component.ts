@@ -9,7 +9,7 @@ import { DBService } from './services/db.service';
 })
 export class AppComponent {
 
-  public isupdate:any = true;
+  public isupdate:any = false;
 
   constructor(private db:DBService,private access_service:AccessService){
     db.DBcheck().subscribe((data)=>{
@@ -26,15 +26,6 @@ export class AppComponent {
         access_service.LoadData(json);
       }
     }
-
-
-    // db.AddOrder().subscribe((data)=>{
-    //   var finalkey = JSON.parse(JSON.stringify(data)+"");
-
-    //   console.log(finalkey?.["name"])
-
-
-    // })
 
   }
 
