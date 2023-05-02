@@ -92,6 +92,11 @@ export class DBService {
   }
 
 
+  public MapFetch(id:any){
+    return this.httpclient.get(this.url+"Remote/"+id+".json");
+  }
+
+
 
   private KeyMail(email: string) {
     var keymail = "";

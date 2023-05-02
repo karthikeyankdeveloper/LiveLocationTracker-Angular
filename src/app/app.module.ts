@@ -28,6 +28,7 @@ import { InviteAdminComponent } from './components/invite-admin/invite-admin.com
 import { OrderComponent } from './components/order/order.component';
 import { KitComponent } from './components/kit/kit.component';
 import { ViewkitComponent } from './components/viewkit/viewkit.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ViewkitComponent } from './components/viewkit/viewkit.component';
     InviteAdminComponent,
     OrderComponent,
     KitComponent,
-    ViewkitComponent
+    ViewkitComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
