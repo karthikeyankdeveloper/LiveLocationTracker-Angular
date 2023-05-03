@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DBService } from 'src/app/services/db.service';
 
 @Component({
-  selector: 'app-manage-user',
-  templateUrl: './manage-user.component.html',
-  styleUrls: ['./manage-user.component.css']
+  selector: 'app-admin-manage-all',
+  templateUrl: './admin-manage-all.component.html',
+  styleUrls: ['./admin-manage-all.component.css']
 })
-export class ManageUserComponent implements OnInit,OnDestroy{
+export class AdminManageAllComponent implements OnInit{
 
   public isuser = true;
   public isactive = true;
@@ -136,10 +136,5 @@ export class ManageUserComponent implements OnInit,OnDestroy{
       });
     }
   }
-
-  ngOnDestroy(): void {
-
-  }
-
 
 }

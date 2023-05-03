@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DBService } from 'src/app/services/db.service';
 
 @Component({
-  selector: 'app-kit',
-  templateUrl: './kit.component.html',
-  styleUrls: ['./kit.component.css']
+  selector: 'app-admin-kit',
+  templateUrl: './admin-kit.component.html',
+  styleUrls: ['./admin-kit.component.css']
 })
-export class KitComponent {
+export class AdminKitComponent {
 
   public FinalKitList: any;
   public NoDataPrevent = false;
@@ -85,7 +85,5 @@ export class KitComponent {
     }
 
   }
-
-
 
 }

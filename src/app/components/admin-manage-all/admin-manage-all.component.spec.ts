@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InviteAdminComponent } from './invite-admin.component';
+import { AdminManageAllComponent } from './admin-manage-all.component';
 
-describe('InviteAdminComponent', () => {
-  let component: InviteAdminComponent;
-  let fixture: ComponentFixture<InviteAdminComponent>;
+describe('AdminManageAllComponent', () => {
+  let component: AdminManageAllComponent;
+  let fixture: ComponentFixture<AdminManageAllComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InviteAdminComponent ]
+      declarations: [ AdminManageAllComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InviteAdminComponent);
+    fixture = TestBed.createComponent(AdminManageAllComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

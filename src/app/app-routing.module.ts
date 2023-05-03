@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { HeaderComponent } from './components/Header/Header.component';
 import { LandingComponent } from './components/Landing/Landing.component';
 import { LoginComponent } from './components/login/login.component';
-import { ManageUserComponent } from './components/manage-user/manage-user.component';
 import { NotFoundComponent } from './components/NotFound/NotFound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SupportComponent } from './components/support/support.component';
@@ -15,11 +13,15 @@ import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsLoginGuard } from './guards/is-login.guard';
 import { IsUserGuard } from './guards/is-user.guard';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
-import { InviteAdminComponent } from './components/invite-admin/invite-admin.component';
-import { OrderComponent } from './components/order/order.component';
-import { KitComponent } from './components/kit/kit.component';
-import { ViewkitComponent } from './components/viewkit/viewkit.component';
 import { MapComponent } from './components/map/map.component';
+import { MykitComponent } from './components/mykit/mykit.component';
+import { MyprofileComponent } from './components/myprofile/myprofile.component';
+import { AdminAnalyticsComponent } from './components/admin-analytics/admin-analytics.component';
+import { AdminKitComponent } from './components/admin-kit/admin-kit.component';
+import { AdminManageAllComponent } from './components/admin-manage-all/admin-manage-all.component';
+import { AdminOrderComponent } from './components/admin-order/admin-order.component';
+import { AdminInviteComponent } from './components/admin-invite/admin-invite.component';
+import { AdminViewkitComponent } from './components/admin-viewkit/admin-viewkit.component';
 
 const routes: Routes = [
   {
@@ -57,7 +59,19 @@ const routes: Routes = [
         path:'user',
         component:UserDashboardComponent,
         title:'User | Dashboard',
-        canActivate:[IsUserGuard]
+        canActivate:[IsUserGuard],
+        children:[
+          {
+            path:'',
+            component:MykitComponent,
+            title:'User | MyKit'
+          },
+          {
+            path:'profile',
+            component:MyprofileComponent,
+            title:'User | Profile'
+          }
+        ]
       },
       {
         path:'admin',
@@ -66,32 +80,32 @@ const routes: Routes = [
         children:[
           {
             path:'',
-            component:AnalyticsComponent,
+            component:AdminAnalyticsComponent,
             title:'Admin | Analytics'
           },
           {
             path:'manageuser',
-            component:ManageUserComponent,
+            component:AdminManageAllComponent,
             title:'Admin | ManageUser'
           },
           {
             path:'invite',
-            component:InviteAdminComponent,
+            component:AdminInviteComponent,
             title:'Admin | Invite'
           },
           {
             path:'order',
-            component:OrderComponent,
+            component:AdminOrderComponent,
             title:'Admin | Order'
           },
           {
             path:'kit',
-            component:KitComponent,
+            component:AdminKitComponent,
             title:'Admin | Kit'
           },
           {
             path:'viewkit',
-            component:ViewkitComponent,
+            component:AdminViewkitComponent,
             title:'Admin | ViewKit'
           }
         ]

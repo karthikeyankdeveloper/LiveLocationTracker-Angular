@@ -1,12 +1,12 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { DBService } from 'src/app/services/db.service';
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  selector: 'app-admin-order',
+  templateUrl: './admin-order.component.html',
+  styleUrls: ['./admin-order.component.css']
 })
-export class OrderComponent {
+export class AdminOrderComponent {
 
   public FinalTable: any;
 
@@ -149,6 +149,5 @@ export class OrderComponent {
     }
 
   }
-
 
 }

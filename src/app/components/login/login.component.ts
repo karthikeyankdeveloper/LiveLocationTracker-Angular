@@ -74,12 +74,7 @@ export class LoginComponent implements OnInit{
 
           }else{
 
-            if(this.crypto.Decryption(final_getdata.password)!=this.password){
-              alert("Email or Password Incorrect");
-
-            }else{
-
-              this.access_service.LoadData(final_getdata);
+            if(this.crypto.Decryption(final_getdata.password)==this.password){
 
               var stringify_data = {
                 name:final_getdata.name,
@@ -87,12 +82,23 @@ export class LoginComponent implements OnInit{
                 role:final_getdata.role
               };
 
+              this.access_service.LoadData(stringify_data);
+
               localStorage.setItem("llt-userdata",JSON.stringify(stringify_data));
 
               localStorage.setItem("llt-date",(new Date()).getDate()+"");
 
-              this.router.navigate([''],{replaceUrl:true});
+              if(final_getdata.role=="user"){
+                this.router.navigate(['/user'],{replaceUrl:true});
+              }else if(final_getdata.role=="admin"){
+                this.router.navigate(['/admin'],{replaceUrl:true});
+              }else{
+                this.router.navigate([''],{replaceUrl:true});
+              }
 
+
+            }else{
+              alert("Email or Password Incorrect");
             }
 
           }

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DBService } from 'src/app/services/db.service';
 
 @Component({
-  selector: 'app-viewkit',
-  templateUrl: './viewkit.component.html',
-  styleUrls: ['./viewkit.component.css']
+  selector: 'app-admin-viewkit',
+  templateUrl: './admin-viewkit.component.html',
+  styleUrls: ['./admin-viewkit.component.css']
 })
-export class ViewkitComponent implements OnInit{
+export class AdminViewkitComponent {
 
   private KitId:any;
   public Finaldata:any;

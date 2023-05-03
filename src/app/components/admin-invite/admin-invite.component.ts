@@ -5,11 +5,11 @@ import { DBService } from 'src/app/services/db.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
-  selector: 'app-invite-admin',
-  templateUrl: './invite-admin.component.html',
-  styleUrls: ['./invite-admin.component.css']
+  selector: 'app-admin-invite',
+  templateUrl: './admin-invite.component.html',
+  styleUrls: ['./admin-invite.component.css']
 })
-export class InviteAdminComponent {
+export class AdminInviteComponent {
 
   public disable_button = false;
 
@@ -87,10 +87,6 @@ export class InviteAdminComponent {
       })
 
     }
-
-
-
-
   }
 
 }

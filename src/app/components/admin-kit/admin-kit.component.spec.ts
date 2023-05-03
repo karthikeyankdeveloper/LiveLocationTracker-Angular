@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KitComponent } from './kit.component';
+import { AdminKitComponent } from './admin-kit.component';
 
-describe('KitComponent', () => {
-  let component: KitComponent;
-  let fixture: ComponentFixture<KitComponent>;
+describe('AdminKitComponent', () => {
+  let component: AdminKitComponent;
+  let fixture: ComponentFixture<AdminKitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KitComponent ]
+      declarations: [ AdminKitComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(KitComponent);
+    fixture = TestBed.createComponent(AdminKitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

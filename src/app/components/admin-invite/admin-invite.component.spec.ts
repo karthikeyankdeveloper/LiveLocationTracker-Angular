@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewkitComponent } from './viewkit.component';
+import { AdminInviteComponent } from './admin-invite.component';
 
-describe('ViewkitComponent', () => {
-  let component: ViewkitComponent;
-  let fixture: ComponentFixture<ViewkitComponent>;
+describe('AdminInviteComponent', () => {
+  let component: AdminInviteComponent;
+  let fixture: ComponentFixture<AdminInviteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewkitComponent ]
+      declarations: [ AdminInviteComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewkitComponent);
+    fixture = TestBed.createComponent(AdminInviteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

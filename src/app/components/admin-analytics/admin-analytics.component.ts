@@ -3,11 +3,11 @@ import { DBService } from 'src/app/services/db.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
-  selector: 'app-analytics',
-  templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.css']
+  selector: 'app-admin-analytics',
+  templateUrl: './admin-analytics.component.html',
+  styleUrls: ['./admin-analytics.component.css']
 })
-export class AnalyticsComponent {
+export class AdminAnalyticsComponent {
 
   public TotalUser = 0;
   public TotalBlockeduser = 0;
