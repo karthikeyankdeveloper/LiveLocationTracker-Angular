@@ -51,6 +51,10 @@ export class AccessService {
     return false;
   }
 
+  public GetEmail(){
+    return (this.UserDatas.email+"");
+  }
+
 
   public Logout(){
     console.log("session logout");

@@ -1,0 +1,37 @@
+<div class="mykit">
+  <div class="loading" *ngIf="!NoDataPrevent">
+    <img src="assets/load.svg" alt="loading">
+  </div>
+
+  <div class="create_new">
+    <div>
+      <h3>My Kit</h3>
+    </div>
+    <div class="righ">
+      <a>+Buy New Kit</a>
+    </div>
+  </div>
+</div>
+
+<div class="kit">
+
+  <div class="list" *ngFor="let ref of FinalKitList">
+    <div class="img">
+      <img src="assets/mykit.jpg" alt="">
+    </div>
+    <div class="content">
+      <h4>Kit Id: {{ref?.id}}</h4>
+      <h5 *ngIf="!ref.date">Last Response : <span style="color: red;">Kit Not Activated</span></h5>
+      <h5 *ngIf="!ref.date">Your kit is currently not activated, but it will automatically activate once it is connected to a power source.</h5>
+      <h5 *ngIf="ref.date">Last Response : {{ref.date}}</h5>
+      <h5 *ngIf="ref.date">Lat: {{ref.lat}} & Log: {{ref.lon}}</h5>
+    </div>
+  </div>
+
+</div>
+
+<h2 style="text-align: center; font-family: 'Josefin Sans', sans-serif;"
+  *ngIf="(FinalKitList==''||FinalKitList==null) && NoDataPrevent">No Data Available !</h2>
+
+
+

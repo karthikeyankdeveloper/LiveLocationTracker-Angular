@@ -14,14 +14,14 @@ import { IsLoginGuard } from './guards/is-login.guard';
 import { IsUserGuard } from './guards/is-user.guard';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { MapComponent } from './components/map/map.component';
-import { MykitComponent } from './components/mykit/mykit.component';
-import { MyprofileComponent } from './components/myprofile/myprofile.component';
 import { AdminAnalyticsComponent } from './components/admin-analytics/admin-analytics.component';
 import { AdminKitComponent } from './components/admin-kit/admin-kit.component';
 import { AdminManageAllComponent } from './components/admin-manage-all/admin-manage-all.component';
 import { AdminOrderComponent } from './components/admin-order/admin-order.component';
 import { AdminInviteComponent } from './components/admin-invite/admin-invite.component';
 import { AdminViewkitComponent } from './components/admin-viewkit/admin-viewkit.component';
+import { UserKitComponent } from './components/user-kit/user-kit.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -63,12 +63,12 @@ const routes: Routes = [
         children:[
           {
             path:'',
-            component:MykitComponent,
+            component:UserKitComponent,
             title:'User | MyKit'
           },
           {
             path:'profile',
-            component:MyprofileComponent,
+            component:UserProfileComponent,
             title:'User | Profile'
           }
         ]

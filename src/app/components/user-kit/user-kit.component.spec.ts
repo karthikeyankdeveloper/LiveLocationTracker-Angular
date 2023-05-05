@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MykitComponent } from './mykit.component';
+import { UserKitComponent } from './user-kit.component';
 
-describe('MykitComponent', () => {
-  let component: MykitComponent;
-  let fixture: ComponentFixture<MykitComponent>;
+describe('UserKitComponent', () => {
+  let component: UserKitComponent;
+  let fixture: ComponentFixture<UserKitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MykitComponent ]
+      declarations: [ UserKitComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MykitComponent);
+    fixture = TestBed.createComponent(UserKitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
