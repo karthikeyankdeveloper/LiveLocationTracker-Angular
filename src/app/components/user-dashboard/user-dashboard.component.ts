@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccessService } from 'src/app/services/access.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-dashboard.component.css']
 })
 export class UserDashboardComponent {
+
+  public constructor(public accessService:AccessService){
+
+  }
 
 }

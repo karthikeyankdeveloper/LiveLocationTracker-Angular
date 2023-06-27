@@ -12,6 +12,7 @@
 
   header {
     background-color: white;
+    /* border: 2px solid red; */
     padding: 10px 10px;
   }
 
@@ -95,11 +96,13 @@
     border-bottom: 1px solid rgb(183, 181, 181);
     position: sticky;
     top: 0px;
+    z-index: 10;
   }
 
   header {
     background-color: white;
     padding: 10px 10px;
+    /* border: 2px solid red; */
   }
 
   header nav {
@@ -137,7 +140,7 @@
 
   .header_content {
     position: absolute;
-    right: 0px;
+    /* right: 0px; */
     top: 15px;
     right: 5px;
   }

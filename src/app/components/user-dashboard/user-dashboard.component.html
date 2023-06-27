@@ -1,10 +1,95 @@
-<div class="user-header" >
-  <a routerLink="/user">My Kit></a>
-  <a routerLink="/user/profile">My Profile></a>
-  <a routerLink="/admin/manageuser">Buy Kit></a>
-  <a routerLink="/admin/manageuser">My Order></a>
+<div class="dashboard">
+  <div class="profilepic">
+    <div class="centerit">
+      <i class="fa-solid fa-user"></i>
+    </div>
+  </div>
 
+  <div class="welcome">
+    <h2>Welcome, {{accessService.GetName()}}</h2>
+    <p>Manage your info, security, and more .</p>
+  </div>
+
+  <div class="shortinfo">
+    <div class="child">
+      <h3>Last Order</h3>
+      <div class="shortcontent">
+        <div class="bref">
+          <p>See the last order status and date of order. you can also visit the order history or tracking section.</p>
+          <p style="white-space: nowrap">Order Id : -NTNVi5NiYPBY</p>
+          <p>Date : 12/12/2022</p>
+          <p>Status : Done</p>
+        </div>
+        <img src="assets/user-lastorder.png" alt="images">
+      </div>
+      <a href="">view all order</a>
+    </div>
+
+    <div class="child">
+      <h3>Device</h3>
+      <div class="shortcontent">
+        <div class="bref">
+          <li>You have 0 device available.</li>
+          <li>Manage your device details in the tracking section.</li>
+          <li>We recommend you to continously change your device password for security purpose.</li>
+          <li>Use below navigation to manage or buy kit.</li>
+        </div>
+        <img src="assets/user-processor.png" alt="images">
+      </div>
+      <a href="">see details</a> | <a href="">buy device</a>
+    </div>
+  </div>
+
+  <div class="security">
+    <div class="sec_main">
+      <h3>Security</h3>
+      <div class="sec_content">
+        <div class="bref">
+          <li>Settings and recommendations to help you keep your account secure.</li>
+          <li>Your password last changed .</li>
+          <li>We recommend you to continously change your account password for security purpose.</li>
+          <li>Use below navigation to manage or buy kit.</li>
+        </div>
+        <img src="assets/user-server.png" alt="images">
+      </div>
+
+    </div>
+
+  </div>
+
+  <h3 style="text-align: center;">Frequently Asked Questions (FAQ)</h3>
+
+  <div class="faq" style="text-align: center;">
+
+    <div class="faq_main">
+      <details>
+        <summary>Can I customize the live location tracker app?</summary>
+        <p>Explore the possibilities of customizing the live location tracker app to meet specific requirements, such as
+          adding additional features, integrating with other services, or modifying the user interface.</p>
+      </details>
+      <details>
+        <summary> Is my location data secure and private?</summary>
+        <p>Understand the security measures in place to protect your location data, such as encryption protocols and
+          user authentication, ensuring the privacy and confidentiality of the tracked information.</p>
+      </details>
+      <details>
+        <summary>Can I track multiple objects or individuals simultaneously?</summary>
+        <p>Learn about the capability of the live location tracker app to track multiple objects or individuals in real
+          time, allowing you to monitor their locations simultaneously.</p>
+      </details>
+
+      <details>
+        <summary> What hardware components are needed for the live location tracker?</summary>
+        <p>Explore the necessary hardware components, such as NodeMCU (ESP8266), GPS module, and other peripherals,
+          required to build and deploy the live location tracker system.</p>
+      </details>
+      <details>
+        <summary>How do I configure NodeMCU for the live location tracker?</summary>
+        <p>Find step-by-step instructions on setting up and configuring NodeMCU for the live location tracker app,
+          including connecting the GPS module and configuring the Wi-Fi credentials.</p>
+      </details>
+
+    </div>
+
+  </div>
 </div>
-
-<router-outlet></router-outlet>
-

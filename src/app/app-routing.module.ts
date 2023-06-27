@@ -8,7 +8,6 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/NotFound/NotFound.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SupportComponent } from './components/support/support.component';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsLoginGuard } from './guards/is-login.guard';
 import { IsUserGuard } from './guards/is-user.guard';
@@ -20,8 +19,10 @@ import { AdminManageAllComponent } from './components/admin-manage-all/admin-man
 import { AdminOrderComponent } from './components/admin-order/admin-order.component';
 import { AdminInviteComponent } from './components/admin-invite/admin-invite.component';
 import { AdminViewkitComponent } from './components/admin-viewkit/admin-viewkit.component';
-import { UserKitComponent } from './components/user-kit/user-kit.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserNavigationComponent } from './components/user-navigation/user-navigation.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+
 
 const routes: Routes = [
   {
@@ -54,24 +55,6 @@ const routes: Routes = [
         component:SignupComponent,
         title:'Tracker | Create Account',
         canActivate:[IsLoginGuard]
-      },
-      {
-        path:'user',
-        component:UserDashboardComponent,
-        title:'User | Dashboard',
-        canActivate:[IsUserGuard],
-        children:[
-          {
-            path:'',
-            component:UserKitComponent,
-            title:'User | MyKit'
-          },
-          {
-            path:'profile',
-            component:UserProfileComponent,
-            title:'User | Profile'
-          }
-        ]
       },
       {
         path:'admin',
@@ -121,6 +104,31 @@ const routes: Routes = [
         title:'Tracker | About'
       }
     ]
+  },
+  {
+    path:'user',
+    component:UserNavigationComponent,
+    canActivate:[IsUserGuard],
+    children:[
+      {
+        path:'',
+        redirectTo:'dash',
+        pathMatch:'full'
+      },
+      {
+        path:'dash',
+        component:UserDashboardComponent,
+        title:'User | DashBoard'
+      },
+      {
+        path:'info',
+        component:UserInfoComponent,
+        title:'User | Personal Info'
+      }
+
+    ]
+
+
   },
   {
     path:'map',

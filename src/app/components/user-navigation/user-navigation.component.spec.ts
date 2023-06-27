@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserKitComponent } from './user-kit.component';
+import { UserNavigationComponent } from './user-navigation.component';
 
-describe('UserKitComponent', () => {
-  let component: UserKitComponent;
-  let fixture: ComponentFixture<UserKitComponent>;
+describe('UserNavigationComponent', () => {
+  let component: UserNavigationComponent;
+  let fixture: ComponentFixture<UserNavigationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserKitComponent ]
+      declarations: [ UserNavigationComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserKitComponent);
+    fixture = TestBed.createComponent(UserNavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

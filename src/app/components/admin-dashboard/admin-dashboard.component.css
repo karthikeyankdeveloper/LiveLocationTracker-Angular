@@ -14,6 +14,7 @@
 
 
 .admin-header a {
+  white-space: nowrap;
   display: inline-block;
   margin: 10px 5px;
   text-decoration: none;

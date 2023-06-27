@@ -17,7 +17,6 @@ import { AccessService } from './services/access.service';
 import { DBService } from './services/db.service';
 import { LoaderService } from './services/loader.service';
 import { IsLoginGuard } from './guards/is-login.guard';
-import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
@@ -28,8 +27,9 @@ import { AdminManageAllComponent } from './components/admin-manage-all/admin-man
 import { AdminOrderComponent } from './components/admin-order/admin-order.component';
 import { AdminInviteComponent } from './components/admin-invite/admin-invite.component';
 import { AdminViewkitComponent } from './components/admin-viewkit/admin-viewkit.component';
-import { UserKitComponent } from './components/user-kit/user-kit.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserNavigationComponent } from './components/user-navigation/user-navigation.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SupportComponent,
     AboutComponent,
     UpdatingServiceAlertComponent,
-    UserDashboardComponent,
     AdminDashboardComponent,
     FooterComponent,
     UpdatePasswordComponent,
@@ -53,8 +52,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AdminOrderComponent,
     AdminInviteComponent,
     AdminViewkitComponent,
-    UserKitComponent,
-    UserProfileComponent
+    UserNavigationComponent,
+    UserDashboardComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,
