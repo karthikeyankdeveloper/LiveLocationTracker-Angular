@@ -7,7 +7,7 @@ import { Credential } from '../properties';
 })
 export class DBService extends Credential{
 
-  private url = DBService.url();
+  private url = DBService.getUrl();
 
   constructor(private httpclient: HttpClient) {super();}
 
