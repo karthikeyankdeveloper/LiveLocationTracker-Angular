@@ -63,7 +63,10 @@ export class SignupComponent implements OnInit{
         email:this.email,
         password: this.crypto.Encryption(this.password),
         role:"user",
-        block:false
+        block:false,
+        timestamp:{
+          ".sv":"timestamp"
+        }
       }
 
       this.dbservice.GetUser(this.email).subscribe((getdata)=>{

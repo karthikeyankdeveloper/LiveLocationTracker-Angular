@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+
+
+.buy {
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 30px;
+  /* border: 2px solid red; */
+  padding-bottom: 80px;
+  padding-left: 40px;
+  /* width: 80%; */
+  /* width: max-content; */
+}
+
+
+.buy_logo {
+  /* border: 2px solid green; */
+  display: flex;
+  align-items: center;
+}
+
+.buy_logo i {
+  font-size: 2.2rem;
+}
+
+.buy_logo h3 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.buy_main {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  /* border: 2px solid red; */
+}
+
+.item {
+  width: 270px;
+  height: 350px;
+  border: 1px solid rgb(127, 124, 124);
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.item:hover .item_img img {
+  transition: .3s;
+  height: 70%;
+}
+
+.item:hover {
+  border: 1px solid black;
+}
+
+.item:hover .hidden {
+  visibility: visible;
+}
+
+
+.item_img {
+  border-bottom: 1px solid rgb(168, 165, 165);
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item_img img {
+  /* border: 2px solid red; */
+  height: 60%;
+  width: auto;
+}
+
+.hidden {
+  display: flex;
+  justify-content: right;
+  position: absolute;
+  margin-top: 187px;
+  width: 267px;
+  visibility: hidden;
+}
+
+.hidden p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.item_content {
+  /* border: 2px solid green; */
+  margin-left: 10px;
+  height: 35%;
+}
+
+.item_content h3 {
+  letter-spacing: 1px;
+  color: #091f57;
+}
+
+.item_content p {
+  font-size: .9rem;
+  color: rgb(60, 58, 58);
+}
+
+
+.price {
+  margin-top: 15px;
+  display: flex;
+  align-items: flex-end;
+  /* border: 2px solid red; */
+
+}
+
+.price h4,
+.price strike,
+.price p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.price h4 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+
+.price strike {
+  color: rgb(60, 58, 58);
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+
+.price p {
+  color: green;
+}
+
+
+
+@media screen and (max-width:750px) {
+  .buy {
+    padding-left: 15px;
+  }
+
+  .p {
+    padding-left: 10px;
+  }
+
+  .buy_main {
+    justify-content: center;
+  }
+
+  .hidden {
+    visibility: visible;
+  }
+
+}
+
+.fewleft{
+  /* border: 2px solid red; */
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.fewleft small{
+  color: red;
+}
+
+

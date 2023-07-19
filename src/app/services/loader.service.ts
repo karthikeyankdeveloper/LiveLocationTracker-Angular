@@ -16,4 +16,19 @@ export class LoaderService {
   public SetSampleLoader(load:any){
     this.sampleloader = load;
   }
+
+
+  // ----------For User-----------
+  private userloading:boolean = false;
+
+  public GetUserLoading(){
+    return this.userloading;
+  }
+
+  public SetUserLoading(load:any){
+    this.userloading = load;
+  }
+
+
+
 }

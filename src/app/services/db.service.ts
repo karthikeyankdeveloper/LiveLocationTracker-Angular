@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Credential } from '../properties';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DBService {
+export class DBService extends Credential{
 
-  private url = "https://check-firebase-b36c8-default-rtdb.firebaseio.com/";
+  private url = DBService.url();
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient) {super();}
 
   public DBcheck() {
     return this.httpclient.get(this.url + "update.json");
+  }
+
+  public GetTimestamp(){
+    return this.httpclient.put(this.url+"time.json",{".sv":"timestamp"});
   }
 
   public GetUser(email: string) {
@@ -23,6 +28,17 @@ export class DBService {
       [this.KeyMail(insertdata.email)]: insertdata
     }
     return this.httpclient.patch(this.url + "UserList.json", finaldata);
+  }
+
+  public UpdateProfile(email:any,data:any){
+    return this.httpclient.patch(this.url+"UserList/"+this.KeyMail(email)+".json",data);
+  }
+
+  public UserAddOrder(email:string,data:any){
+    return this.httpclient.patch(this.url+"UserList/"+this.KeyMail(email)+"/order.json",data);
+  }
+  public UserAddDevice(email:string,data:any){
+    return this.httpclient.patch(this.url+"UserList/"+this.KeyMail(email)+"/device.json",data);
   }
 
   public GetAllUserData(){
@@ -39,17 +55,18 @@ export class DBService {
   public UpdatePassword(email:string,password:string){
 
     var data = {
-      "password":password
+      "password":password,
+      "timestamp":{
+        ".sv":"timestamp"
+      }
     }
 
     return this.httpclient.patch(this.url+"UserList/"+this.KeyMail(email)+".json",data);
   }
 
 
-  public AddOrder(){
-    var insert = {"name":"Karthikeyan","email":"kk@gmail.com","status":false,"kitid":"1","fulladdress":"","mobile":"1212","paymentid":"as1212dsd","timestamp":{".sv":"timestamp"}};
-
-    return this.httpclient.post(this.url+"Orders.json",insert);
+  public AddOrder(orderdata:any){
+    return this.httpclient.post(this.url+"Orders.json",orderdata);
   }
 
 
@@ -68,7 +85,6 @@ export class DBService {
     }
     return this.httpclient.patch(this.url+"Orders/"+key+".json",data);
   }
-
 
   public GetKit(id:any){
     return this.httpclient.get(this.url+"Kits/"+id+".json");
@@ -91,9 +107,25 @@ export class DBService {
     return this.httpclient.delete(this.url+"Kits/"+id+".json");
   }
 
+  public DeleteUserDevice(email:any,uid:any){
+    return this.httpclient.delete(this.url+"UserList/"+this.KeyMail(email)+"/device/"+uid+".json");
+  }
+
+  public DeleteRemote(uid:any){
+    return this.httpclient.delete(this.url+"Remote/"+uid+".json");
+  }
+
+  public CancelOrder(orderid:any){
+    return this.httpclient.patch(this.url+"Orders/"+orderid+".json",{status:"Cancelled"});
+  }
+
 
   public MapFetch(id:any){
     return this.httpclient.get(this.url+"Remote/"+id+".json");
+  }
+
+  public AddRemoteKit(data:any){
+    return this.httpclient.patch(this.url+"Remote.json",data);
   }
 
 

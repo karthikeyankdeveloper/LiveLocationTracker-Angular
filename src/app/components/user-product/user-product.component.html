@@ -1,0 +1,195 @@
+<div class="product" *ngIf="View">
+
+  <button class="backbtn" routerLink="/user/buy"><i class="fa-solid fa-arrow-left"></i> Back</button>
+
+  <div class="row1">
+
+    <div class="section1">
+      <img [src]="KitData.img" alt="img">
+    </div>
+
+    <div class="section2">
+      <h2><i class="fa-solid fa-server"></i> {{KitData.name}}</h2>
+      <p class="p">{{KitData.desc}}</p>
+
+      <p style="color: green;">Special price</p>
+
+      <div class="price">
+        <h4> {{KitData.discountprice|currency:'INR'}} </h4>
+        &nbsp;
+        &nbsp;
+        <p style="text-decoration: line-through; text-decoration-thickness: 1.5px; color: rgb(63, 61, 61);">
+          {{KitData.actualprice|currency:'INR'}}</p>
+        &nbsp;
+        &nbsp;
+        <p>{{((KitData.actualprice - KitData.discountprice) / KitData.actualprice) * 100 | number:'.0-0'}}% off</p>
+      </div>
+
+      <p><i class="fa-solid fa-bolt"></i> Feature</p>
+      <p class="p">•High Accuracy •More Effective •HighDurability</p>
+    </div>
+
+  </div>
+
+  <h3 *ngIf="KitData.stock>10"><i class="fa-solid fa-cart-shopping"></i> Checkout this product </h3>
+
+  <div class="row2" *ngIf="KitData.stock>10">
+
+    <div class="first">
+      <div class="changebtn">
+        <h4 style="font-size: 1.1rem;">Deliver to : </h4>
+        <button routerLink="/user/info">Update</button>
+      </div>
+
+      <div class="address">
+        <p style="letter-spacing: 1px;  font-size: 1.1rem;">{{UserData.name}}</p>
+        <p style="width: 320px; margin-top: 10px;"><i class="fa-solid fa-house"></i> &nbsp;
+          <small style="font-size: 1rem;"
+            *ngIf="!(UserData.address==null || UserData.address==''||UserData.pincode==null || UserData.pincode=='')">{{UserData.address}}
+            - {{UserData.pincode}}</small>
+          <small style="font-size: 1rem; color: red;"
+            *ngIf="(UserData.address==null || UserData.address==''||UserData.pincode==null || UserData.pincode=='')">No
+            Data available !</small>
+        </p>
+        <p style="margin-top: 10px;"><i class="fa-solid fa-phone"></i> &nbsp;
+          <small style="font-size: 1rem;"
+            *ngIf="!(UserData.phone==null || UserData.phone=='')">{{UserData.phone}}</small>
+          <small style="font-size: 1rem; color: red;" *ngIf="(UserData.phone==null || UserData.phone=='')">No Data
+            available !</small>
+        </p>
+      </div>
+    </div>
+
+    <div class="second">
+      <form [formGroup]="UIDForm" (ngSubmit)="placeOrder()">
+        <h4 style="font-size: 1.1rem; margin: 0px; margin-top: 20px;">Device UID :
+          <small *ngIf="enable_message" style="font-size: 1rem;">
+            <small style="color: green;font-size: 1rem;" *ngIf="enable_avail">available</small>
+            <small style="color: red;font-size: 1rem;" *ngIf="!enable_avail">not available</small>
+          </small>
+        </h4>
+        <div class="form">
+          <input type="text" placeholder="Enter UID" formControlName="uid">
+          <button type="button" (click)="availabilityBtn()" [disabled]="UIDForm.invalid" class="bbttnn">check
+            availability</button>
+        </div>
+        <small style="color: red;margin-left: 7px;">
+          <small *ngIf="UIDForm.controls['uid'].touched && UIDForm.controls['uid'].errors?.['required']">Enter
+            UID</small>
+          <small *ngIf="UIDForm.controls['uid'].dirty && UIDForm.controls['uid'].errors?.['pattern']">Number,Alphabet
+            with length 4-16</small>
+        </small>
+        <p style="margin: 0px; color: rgb(80, 77, 77); font-size: 0.9rem; margin-bottom: 15px; margin-top: 20px;">
+          This will helps to track your device with unique identity. </p>
+
+        <button type="submit" class="placeorderbtn" [disabled]="UIDForm.invalid">Place Order and pay
+          {{KitData.discountprice|currency:'INR'}}</button>
+      </form>
+    </div>
+
+  </div>
+
+  <h2 *ngIf="KitData.stock<=10" style="color: red;">Currently Unavailable</h2>
+
+</div>
+
+
+<div class="extraspace"></div>
+
+
+<div class="payment" *ngIf="paymentView" >
+
+  <div class="payment_box" data-aos="zoom-in">
+
+    <div class="payment_top">
+      <i class="fa-brands fa-amazon-pay"></i>
+      <p>{{UserData.name}}</p>
+      <i class="fa-solid fa-xmark cancel" (click)="disablePaymentView()"></i>
+    </div>
+
+    <div class="payment_content">
+
+      <p style="margin-left: 10px; color: blue;">Pay With UPI QR</p>
+      <div class="qr">
+        <img src="assets/qr.png" alt="img">
+        <div>
+          <p>Scan the QR using any UPI app on your phone.</p>
+          <div class="provider">
+            <img src="assets/paytm.svg" alt="paytm">
+            <img src="assets/phonepe.svg" alt="phonepe">
+            <img src="assets/googlepay.svg" alt="googlepay">
+          </div>
+
+        </div>
+      </div>
+
+
+      <p style="margin-left: 10px; color: blue;">Personal Info</p>
+      <div class="user_info">
+        <p><i class="fa-solid fa-at"></i> {{UserData.email}}</p>
+        <p><i class="fa-solid fa-location-dot"></i> {{UserData.address}} - {{UserData.pincode}}, {{UserData.phone}}</p>
+      </div>
+
+
+      <p style="margin-left: 10px; color: blue;">Cards, UPI & More</p>
+      <div class="card_upi">
+
+        <div class="items">
+          <div>
+            <p><i class="fa-brands fa-gg"></i> UPI / QR</p>
+            <p class="pp">pay with installed app</p>
+          </div>
+          <button (click)="makePaymentSuccess()">Pay</button>
+        </div>
+        <div class="items">
+          <div>
+            <p><i class="fa-solid fa-building-columns"></i> Netbanking</p>
+            <p class="pp">all indian banks</p>
+          </div>
+          <button (click)="makePaymentSuccess()">Pay</button>
+        </div>
+        <div class="items">
+          <div>
+            <p><i class="fa-solid fa-wallet"></i> Wallet</p>
+            <p class="pp">paytm and more</p>
+          </div>
+          <button (click)="makePaymentSuccess()">Pay</button>
+        </div>
+        <div class="items">
+          <div>
+            <p><i class="fa-brands fa-apple-pay"></i> Pay Later</p>
+            <p class="pp">amazon pay later</p>
+          </div>
+          <button (click)="makePaymentSuccess()">Pay</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="payment_bottom">
+      <p> {{KitData.discountprice|currency:'INR'}}</p>
+      <button (click)="disablePaymentView()"><i class="fa-solid fa-xmark"></i> Cancel</button>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<div class="payment_success" *ngIf="paymentSuccessView">
+
+  <div class="payment_content1" data-aos="zoom-in">
+      <img src="assets/payment_success.jpg" alt="payment">
+      <h2>Order Placed Successfully</h2>
+      <p style="font-size: 1.2rem;"> {{KitData.discountprice|currency:'INR'}}</p>
+      <p>Payment ID :  {{PaymentID}}</p>
+
+
+      <div class="payment_btn">
+          <button routerLink="/user/orders"><i class="fa-solid fa-list-check"></i> Go to Order</button>
+      </div>
+
+  </div>
+
+</div>

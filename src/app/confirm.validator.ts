@@ -21,8 +21,6 @@ export function confirmValidator(parmName:string,parmPassword:string,parmRepassw
       }
     }
 
-
-
     if(password.value!==repassword.value){
       repassword.setErrors({passwordmatcher:true});
     }else{

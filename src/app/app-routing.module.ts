@@ -22,6 +22,10 @@ import { AdminViewkitComponent } from './components/admin-viewkit/admin-viewkit.
 import { UserNavigationComponent } from './components/user-navigation/user-navigation.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { UserBuyComponent } from './components/user-buy/user-buy.component';
+import { UserProductComponent } from './components/user-product/user-product.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { UserManageComponent } from './components/user-manage/user-manage.component';
 
 
 const routes: Routes = [
@@ -124,11 +128,29 @@ const routes: Routes = [
         path:'info',
         component:UserInfoComponent,
         title:'User | Personal Info'
+      },
+      {
+        path:'buy',
+        component:UserBuyComponent,
+        title:'User | Buy'
+      },
+      {
+        path:'product',
+        component:UserProductComponent,
+        title:'User | Product'
+      },
+      {
+        path:'orders',
+        component:UserOrdersComponent,
+        title:'User | Orders'
+      },
+      {
+        path:'manage',
+        component:UserManageComponent,
+        title:'User | Manage Kit'
       }
 
     ]
-
-
   },
   {
     path:'map',

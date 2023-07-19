@@ -1,1 +1,76 @@
-<p>user-info works!</p>
+<div class="profile" *ngIf="view">
+
+  <div data-aos="fade-down">
+    <div class="profile_logo">
+      <img src="assets/user-avatar.png" alt="img">
+      &nbsp;
+      &nbsp;
+      <h3>Personal Info</h3>
+    </div>
+    <p>You can also edit these details and save them again, except for the primary email.</p>
+  </div>
+
+
+
+  <div class="profile_main" data-aos="fade-up">
+
+    <form [formGroup]="PersonalInfo" (ngSubmit)="Update()">
+
+
+      <h2>Basic Info</h2>
+
+
+      <label>
+        <i class="fa-solid fa-file-signature"></i> Name
+        <small *ngIf="PersonalInfo.controls['name'].touched && PersonalInfo.controls['name'].errors?.['required']" >*required</small>
+        <small *ngIf="PersonalInfo.controls['name'].dirty && PersonalInfo.controls['name'].errors?.['pattern']" >*enter valid name</small>
+      </label>
+      <input type="text" placeholder="Name"  formControlName="name">
+
+
+
+      <h2>Contact Info</h2>
+      <label><i class="fa-solid fa-at"></i> Primary Email</label>
+      <input type="text" placeholder="Email" disabled [value]="accessService.GetEmail()">
+
+
+      <label>
+        <i class="fa-solid fa-phone"></i> Phone Number
+        <small *ngIf="PersonalInfo.controls['phone'].touched && PersonalInfo.controls['phone'].errors?.['required']" >*required</small>
+        <small *ngIf="PersonalInfo.controls['phone'].dirty && PersonalInfo.controls['phone'].errors?.['pattern']" >*enter valid number</small>
+      </label>
+      <input type="number" placeholder="Phone Number"  formControlName="phone">
+
+
+      <h2>Address</h2>
+      <label>
+        <i class="fa-solid fa-location-dot"></i> Home Address
+        <small *ngIf="PersonalInfo.controls['address'].touched && PersonalInfo.controls['address'].errors?.['required']" >*required</small>
+        <small *ngIf="PersonalInfo.controls['address'].dirty && PersonalInfo.controls['address'].errors?.['pattern']" >*enter valid address</small>
+      </label>
+      <input type="text" placeholder="Home Address"  formControlName="address">
+
+      <label>
+        <i class="fa-solid fa-map-location-dot"></i> Pincode
+        <small *ngIf="PersonalInfo.controls['pincode'].touched && PersonalInfo.controls['pincode'].errors?.['required']" >*required</small>
+        <small *ngIf="PersonalInfo.controls['pincode'].dirty && PersonalInfo.controls['pincode'].errors?.['pattern']" >*enter valid pincode</small>
+      </label>
+      <input type="number" placeholder="Pincode" formControlName="pincode">
+
+      <br>
+      <button type="submit" [disabled]="PersonalInfo.invalid" class="smt_btn">Save changes</button>
+
+
+    </form>
+
+    <h2>Other info</h2>
+    <p style="font-size: 1.2rem;"><i class="fa-solid fa-key"></i> Password</p>
+    <p style="color: rgb(89, 88, 88);">A secure password helps protect your Account.</p>
+
+    <p style="font-weight: bold; font-size: 1.5rem;">&nbsp;. . . . . . . .</p>
+
+    <p> Last update on <i class="fa-solid fa-lock"></i> <small style="font-size: 1rem; color: #d33809;"> {{ UserData?.time |date:'MMM d, y, h:mm:ss a'}}</small> &nbsp; <a routerLink="/forgot">change passowrd<i class="fa-solid fa-arrow-right-long"></i></a></p>
+
+  </div>
+
+</div>

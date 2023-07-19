@@ -1,13 +1,14 @@
 import { Component, HostListener } from '@angular/core';
 import { AccessService } from './services/access.service';
 import { DBService } from './services/db.service';
+import { Credential } from './properties';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
 
   public isupdate:any = false;
 
@@ -26,6 +27,7 @@ export class AppComponent {
         access_service.LoadData(json);
       }
     }
+
 
   }
 

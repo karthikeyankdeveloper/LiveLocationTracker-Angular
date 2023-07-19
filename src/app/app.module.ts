@@ -30,6 +30,13 @@ import { AdminViewkitComponent } from './components/admin-viewkit/admin-viewkit.
 import { UserNavigationComponent } from './components/user-navigation/user-navigation.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { UserBuyComponent } from './components/user-buy/user-buy.component';
+import { UserProductComponent } from './components/user-product/user-product.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { UserManageComponent } from './components/user-manage/user-manage.component';
+import { IsAdminGuard } from './guards/is-admin.guard';
+import { IsUserGuard } from './guards/is-user.guard';
+import { CryptographyService } from './services/cryptography.service';
 
 @NgModule({
   declarations: [
@@ -55,6 +62,10 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     UserNavigationComponent,
     UserDashboardComponent,
     UserInfoComponent,
+    UserBuyComponent,
+    UserProductComponent,
+    UserOrdersComponent,
+    UserManageComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +74,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccessService,DBService,LoaderService,IsLoginGuard],
+  providers: [AccessService,DBService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
