@@ -1,17 +1,17 @@
 <div class="dashboard" *ngIf="View">
-  <div class="profilepic" data-aos="fade-down">
+  <div class="profilepic">
     <div class="centerit" routerLink="/user/info">
       <i class="fa-solid fa-user"></i>
     </div>
   </div>
 
-  <div class="welcome" data-aos="fade-down">
+  <div class="welcome">
     <h2>Welcome, {{UserData.name}}</h2>
     <p>Manage your info, security, and more .</p>
   </div>
 
   <div class="shortinfo">
-    <div class="child" data-aos="fade-right" data-aos-delay="200">
+    <div class="child">
       <h3>Last Order</h3>
 
       <div class="shortcontent">
@@ -28,10 +28,12 @@
         <img src="assets/user-lastorder.png" alt="images">
       </div>
 
-      <a href="">view all order</a>
+      <div style="margin-top: auto; border-top: 1px solid rgb(215, 218, 215);">
+        <a routerLink="/user/orders">view all order</a>
+      </div>
     </div>
 
-    <div class="child" data-aos="fade-left" data-aos-delay="400">
+    <div class="child">
       <h3>Device</h3>
       <div class="shortcontent">
         <div class="bref">
@@ -42,11 +44,13 @@
         </div>
         <img src="assets/user-processor.png" alt="images">
       </div>
-      <a href="">see details</a> | <a href="">buy device</a>
+      <div style="margin-top: auto; border-top: 1px solid rgb(215, 218, 215);">
+        <a routerLink="/user/manage">Manage Device</a> | <a routerLink="/user/buy">buy device</a>
+      </div>
     </div>
   </div>
 
-  <div class="security" data-aos="fade-up" data-aos-delay="500">
+  <div class="security">
     <div class="sec_main">
       <h3>Security</h3>
       <div class="sec_content">
@@ -63,7 +67,7 @@
 
   </div>
 
-  <div data-aos="fade-up" >
+  <div>
     <h3 style="text-align: center;">Frequently Asked Questions (FAQ)</h3>
 
     <div class="faq" style="text-align: center;">

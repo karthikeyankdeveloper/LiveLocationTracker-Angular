@@ -161,7 +161,14 @@ export class UserProductComponent {
           var update_remote = {
             [uid]: {
               active: false,
-              password: Math.floor(Math.random() * 899999) + 100000
+              password: Math.floor(Math.random() * 899999) + 100000,
+              kitname: this.KitData.name,
+              kitimg: this.KitData.img,
+              uid:uid,
+              enable:true,
+              forascending:{
+                ".sv":"timestamp"
+              }
             }
           }
 

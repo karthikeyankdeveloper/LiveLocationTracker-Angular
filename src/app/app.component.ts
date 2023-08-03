@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { AccessService } from './services/access.service';
 import { DBService } from './services/db.service';
-import { Credential } from './properties';
 
 @Component({
   selector: 'app-root',

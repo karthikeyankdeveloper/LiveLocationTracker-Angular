@@ -22,8 +22,9 @@ export class AdminViewkitComponent {
     name:[],
     desc:[],
     img:[],
-    price:[],
-    available:['']
+    actualprice:[],
+    discountprice:[],
+    stock:[]
   });
 
 
@@ -58,8 +59,9 @@ export class AdminViewkitComponent {
         this.UpdateForm.controls["name"].setValue(this.Finaldata.name);
         this.UpdateForm.controls["desc"].setValue(this.Finaldata.desc);
         this.UpdateForm.controls["img"].setValue(this.Finaldata.img);
-        this.UpdateForm.controls["price"].setValue(this.Finaldata.price);
-        this.UpdateForm.controls["available"].patchValue(this.Finaldata.available+"");
+        this.UpdateForm.controls["actualprice"].setValue(this.Finaldata.actualprice);
+        this.UpdateForm.controls["discountprice"].setValue(this.Finaldata.discountprice);
+        this.UpdateForm.controls["stock"].setValue(this.Finaldata.stock);
       }
     });
 
@@ -68,31 +70,10 @@ export class AdminViewkitComponent {
 
   public Update():void{
 
-    var name = this.UpdateForm.controls["name"].value;
-    var desc = this.UpdateForm.controls["desc"].value;
-    var img = this.UpdateForm.controls["img"].value;
-    var price = this.UpdateForm.controls["price"].value;
-    var available = this.UpdateForm.controls["available"].value;
-    var availboolean;
-
-    if(available=="true"){
-      availboolean = true;
-    }else{
-      availboolean = false;
-    }
-
-
-    if(name==null||name==''||desc==null||desc==''||img==null||img==''||price==null||price==''||available==null||available==''){
+    if(this.UpdateForm.invalid){
       alert("Invalid data");
     }else{
-
-      var datas = {
-        name:name,
-        desc:desc,
-        img:img,
-        price:price,
-        available:availboolean
-      }
+      var datas = this.UpdateForm.value;
 
       this.Preventload = false;
 

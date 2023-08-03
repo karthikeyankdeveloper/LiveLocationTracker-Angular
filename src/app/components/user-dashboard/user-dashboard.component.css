@@ -70,6 +70,8 @@
   margin: 10px;
   border-radius: 10px;
   width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .child h3,
@@ -96,7 +98,7 @@
   display: flex;
   align-items: flex-start;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgb(215, 218, 215);
+  
   /* border: 2px  solid red; */
 }
 

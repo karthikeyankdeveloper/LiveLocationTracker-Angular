@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Credential } from '../properties';
+import { Properties } from '../properties';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DBService extends Credential{
+export class DBService extends Properties{
 
   private url = DBService.getUrl();
 
@@ -79,7 +79,7 @@ export class DBService extends Credential{
     return this.httpclient.get(this.url+"Orders/"+key+".json");
   }
 
-  public ToggleOrder(key:string,condition:boolean){
+  public ToggleOrder(key:string,condition:string){
     var data = {
       status:condition
     }
@@ -126,6 +126,10 @@ export class DBService extends Credential{
 
   public AddRemoteKit(data:any){
     return this.httpclient.patch(this.url+"Remote.json",data);
+  }
+
+  public UpdateRemote(uid:any,data:any){
+    return this.httpclient.patch(this.url+"Remote/"+uid+".json",data);
   }
 
 

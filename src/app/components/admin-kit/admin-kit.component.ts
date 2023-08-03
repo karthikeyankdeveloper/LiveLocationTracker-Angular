@@ -39,35 +39,30 @@ export class AdminKitComponent {
     id: [, [Validators.required]],
     name: [, [Validators.required]],
     desc: [, [Validators.required]],
-    price: [, [Validators.required]],
+    actualprice: [, [Validators.required]],
+    discountprice: [, [Validators.required]],
+    stock: [, [Validators.required]],
     img: [, [Validators.required]]
   });
 
 
 
   public AddNewKit() {
-
-    var id = this.AddKitForm.controls["id"].value;
-    var name = this.AddKitForm.controls["name"].value;
-    var desc = this.AddKitForm.controls["desc"].value;
-    var price = this.AddKitForm.controls["price"].value;
-    var img = this.AddKitForm.controls["img"].value;
-
     var values = this.AddKitForm.value;
 
-    if (id == null || id == "" || name == null || name == "" || desc == null || desc == "" || price == null || price == "" || img == null || img == "") {
-      alert("Invalid Data");
+    if (this.AddKitForm.invalid) {
+      alert("Invalid Data, Enter All detail");
     } else {
 
       this.ToggleView();
 
       this.NoDataPrevent = false;
 
-      this.dbservice.GetKit(id).subscribe((tt) => {
+      this.dbservice.GetKit(values.id).subscribe((tt) => {
 
         if (tt == null) {
 
-          Object.assign(values, { available: true });
+          // Object.assign(values, { available: true });
           var data = {
             [values.id + ""]: values
           };

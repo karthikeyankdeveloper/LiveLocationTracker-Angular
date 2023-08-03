@@ -13,9 +13,11 @@
         <img [src]="Finaldata?.img" alt="">
       </div>
       <div class="content">
-        <h4>{{Finaldata?.name}} ({{Finaldata?.id}})</h4>
-        <h5>{{Finaldata?.desc}}</h5>
-        <h4>{{Finaldata?.price|currency:'INR'}} <span style="color: green;" *ngIf="Finaldata?.available">Available</span> <span style="color: red;" *ngIf="!Finaldata?.available">Not Available</span></h4>
+
+        <h4>{{Finaldata.name}} ({{Finaldata.id}})</h4>
+        <h5>{{Finaldata.desc | slice:0:35}} . . .</h5>
+        <h4>{{Finaldata.discountprice|currency:'INR'}}  <span style="color: red;">{{Finaldata.actualprice|currency:'INR'}}</span></h4>
+        <h5 style="color: green;">Stock : {{Finaldata.stock}}</h5>
       </div>
     </div>
     <button (click)="DeleteKit()">Delete</button>
@@ -35,17 +37,20 @@
         <input type="text" type="text" placeholder="Description" id="Description" formControlName="desc">
       </div>
       <div class="input">
-        <label for="Price">Price</label>
-        <input type="number" placeholder="Price" id="Price" formControlName="price">
+        <label for="actualprice">ActualPrice</label>
+        <input type="number" placeholder="actualprice" id="actualprice" formControlName="actualprice">
+      </div>
+      <div class="input">
+        <label for="discountprice">DiscountPrice</label>
+        <input type="number" placeholder="discountprice" id="discountprice" formControlName="discountprice">
+      </div>
+      <div class="input">
+        <label for="stock">Stock</label>
+        <input type="number" placeholder="stock" id="stock" formControlName="stock">
       </div>
       <div class="input">
         <label for="url">Image Url</label>
         <input type="text" type="text" placeholder="Image Url" id="url" formControlName="img">
-      </div>
-
-      <div>
-        <input type="radio" name="available" id="status" value="true" formControlName="available"> <label for="status">Available</label>
-        <input type="radio" name="available" id="status1" value="false" formControlName="available"> <label for="status1">Not Available</label>
       </div>
 
       <div>

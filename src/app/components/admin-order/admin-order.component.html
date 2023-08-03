@@ -17,27 +17,24 @@
     <table>
       <thead>
         <tr>
-          <th>order id</th>
+          <!-- <th>order id</th> -->
           <th>payment id</th>
           <th>customer</th>
-          <th>date</th>
           <th>status</th>
+          <th>date</th>
+          <!-- <th>status</th> -->
         </tr>
 
       </thead>
 
       <tbody>
 
-        <tr *ngFor="let data of FinalTable">
-          <td>{{data.orderid | slice:0:10}}...</td>
+        <tr *ngFor="let data of FinalTable" (click)="View(data.orderid)">
+          <!-- <td>{{data.orderid | slice:0:10}}...</td> -->
           <td>#{{data.paymentid}}</td>
           <td>{{data.name}}</td>
+          <td [ngStyle]="{'color': data.status=='Cancelled'?'red':'green'}">{{data.status}}</td>
           <td>{{data.date | date:'MMM d, yyyy,  h:mm a'}}</td>
-          <td>
-            <input type="button" [value]="data.status?'done':'pending'"
-              [style]="data.status?'background-color:green':'background-color:#747406'" (click)="ToggleOrderStatus(data.orderid,data.status)">
-            <input type="button" (click)="View(data.orderid)" value="view" [style]="'background-color:purple'">
-          </td>
         </tr>
 
 
@@ -71,21 +68,40 @@
     </div>
 
     <div class="sidebar_content" *ngIf="viewloading">
+      <div class="product_info">
+
+        <div class="left_info">
+          <img [src]="FinalViewData?.kitimg" alt="img">
+        </div>
+        <div class="right_info">
+          <h3>{{FinalViewData.kitname}}</h3>
+          <h3>{{FinalViewData.kitprice|currency:'INR'}}</h3>
+          <h3>ID : {{FinalViewData.kitid}}</h3>
+        </div>
+
+      </div>
       <h4>Name : <span>{{FinalViewData?.name}}</span></h4>
       <h4>Email : <span>{{FinalViewData?.email}}</span></h4>
-      <h4>Address : <span>{{FinalViewData?.fulladdress}}</span></h4>
-      <h4>Mobile : <span>{{FinalViewData?.mobile}}</span></h4>
+      <h4>Address : <span>{{FinalViewData?.address}}</span></h4>
+      <h4>Pincode : <span>{{FinalViewData?.pincode}}</span></h4>
+      <h4>Mobile : <span>{{FinalViewData?.phone}}</span></h4>
+      <h4>Requested UID : <span>{{FinalViewData?.uid}}</span></h4>
       <h4>Date : <span>{{FinalViewData?.date|date:'EEEE, MMMM d, y, h:mm:ss a zzzz'}}</span></h4>
-      <h4>Order Kit Id : <span>{{FinalViewData?.kitid}}</span></h4>
-      <h4>Payment Id : <span>{{FinalViewData?.paymentid}}</span></h4>
-      <h4>Status : <span *ngIf="FinalViewData?.status" style="color: green;">DONE</span> <span *ngIf="!FinalViewData?.status" style="color: #747406;">PENDING</span></h4>
       <h4>Order Id : <span>{{FinalViewData?.orderid}}</span></h4>
+      <h4>Payment Id : <span>#{{FinalViewData?.paymentid}}</span></h4>
+      <h4>Status : <span [ngStyle]="{'color': FinalViewData?.status=='Cancelled'?'red':'green'}">{{FinalViewData?.status}}</span></h4>
     </div>
 
 
     <div class="sidebar_foot" *ngIf="viewloading">
-      <button *ngIf="!FinalViewData?.status" (click)="ToggleOrderStatus(FinalViewData?.orderid,FinalViewData?.status)" style="background-color: green;">Mark as Done</button>
-      <button *ngIf="FinalViewData?.status" (click)="ToggleOrderStatus(FinalViewData?.orderid,FinalViewData?.status)" style="background-color: #747406;">Mark as Pending</button>
+      <!-- <button *ngIf="!FinalViewData?.status" (click)="ToggleOrderStatus(FinalViewData?.orderid,FinalViewData?.status)" style="background-color: green;">Mark as Done</button>
+      <button *ngIf="FinalViewData?.status" (click)="ToggleOrderStatus(FinalViewData?.orderid,FinalViewData?.status)" style="background-color: #747406;">Mark as Pending</button> -->
+      <button *ngIf="FinalViewData?.status=='Order Placed' && FinalViewData?.status!='Cancelled'" (click)="ToggleOrderStatus(FinalViewData?.orderid,'Shipped')" style="background-color: #747406;">Shipped</button>
+      <button *ngIf="FinalViewData?.status=='Shipped' && FinalViewData?.status!='Cancelled'" (click)="ToggleOrderStatus(FinalViewData?.orderid,'Out For Delivery')" style="background-color: #3b0674;">Out For Delivery</button>
+      <button *ngIf="FinalViewData?.status=='Out For Delivery' && FinalViewData?.status!='Cancelled'" (click)="ToggleOrderStatus(FinalViewData?.orderid,'Delivered')" style="background-color: green;">Delivered</button>
+      <button *ngIf="FinalViewData?.status=='Order Placed' || FinalViewData?.status=='Shipped' || FinalViewData?.status=='Out For Delivery'" (click)="ToggleOrderStatus(FinalViewData?.orderid,'Cancelled')" style="background-color: red;">Cancel</button>
+      <p style="color: green;" *ngIf="FinalViewData?.status=='Delivered'">Product should be delivered.</p>
+      <p style="color: red;" *ngIf="FinalViewData?.status=='Cancelled'">Order Cancelled.</p>
     </div>
 
   </div>

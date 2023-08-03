@@ -37,6 +37,8 @@ import { UserManageComponent } from './components/user-manage/user-manage.compon
 import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsUserGuard } from './guards/is-user.guard';
 import { CryptographyService } from './services/cryptography.service';
+import { RouterModule } from '@angular/router';
+import { Properties } from './properties';
 
 @NgModule({
   declarations: [
@@ -69,12 +71,13 @@ import { CryptographyService } from './services/cryptography.service';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccessService,DBService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard],
+  providers: [AccessService,DBService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,Properties],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

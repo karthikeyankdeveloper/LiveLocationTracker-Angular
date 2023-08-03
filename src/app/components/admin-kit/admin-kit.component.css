@@ -172,16 +172,19 @@ h5 {
 
 .sidebar_content {
   margin-top: 10px;
-  height: 80%;
+  height: 60%;
   color: black;
   overflow-y: scroll;
   display: flex;
   justify-content: center;
+  /* border: 2px solid green; */
+  padding-bottom: 50px;
 }
 
 .sidebar_content form{
   /* border: 2px solid red; */
   width: 80%;
+  height: fit-content;
 }
 
 .label{

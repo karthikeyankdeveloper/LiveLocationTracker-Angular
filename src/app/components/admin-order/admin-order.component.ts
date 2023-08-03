@@ -11,8 +11,12 @@ export class AdminOrderComponent {
   public FinalTable: any;
 
   public all:any;
-  public pending:any;
-  public done:any;
+
+  public orderplaced:any;
+  public shipped:any;
+  public outfordelivery:any;
+  public delivered:any;
+  public cancelled:any;
 
 
   public NoDataPrevent = false;
@@ -34,19 +38,31 @@ export class AdminOrderComponent {
 
       this.all = this.KeyAddReverse(data);
 
-      var pending_temp = [];
-      var done_temp = [];
+      var orderplaced_temp = [];
+      var shipped_temp = [];
+      var outfordelivery_temp = [];
+      var delivered_temp = [];
+      var cancelled_temp = [];
 
       for(let j of this.all){
-        if(j.status){
-          done_temp.push(j)
+        if(j.status=='Order Placed'){
+          orderplaced_temp.push(j)
+        }else if(j.status=='Shipped'){
+          shipped_temp.push(j);
+        }else if(j.status=='Out For Delivery'){
+          outfordelivery_temp.push(j);
+        }else if(j.status=='Delivered'){
+          delivered_temp.push(j);
         }else{
-          pending_temp.push(j);
+          cancelled_temp.push(j);
         }
       }
 
-      this.pending = pending_temp;
-      this.done = done_temp;
+      this.orderplaced = orderplaced_temp;
+      this.shipped = shipped_temp;
+      this.outfordelivery = outfordelivery_temp;
+      this.delivered = delivered_temp;
+      this.cancelled = cancelled_temp;
 
       this.togglestatus(false);
     });
@@ -61,7 +77,7 @@ export class AdminOrderComponent {
 
     if(condition){
       this.key++;
-      if(this.key>2){
+      if(this.key>5){
         this.key = 0;
       }
     }
@@ -70,11 +86,20 @@ export class AdminOrderComponent {
       this.FinalTable = this.all;
       this.text = "All";
     }else if(this.key==1){
-      this.FinalTable = this.pending;
-      this.text = "Pending";
+      this.FinalTable = this.orderplaced;
+      this.text = "Order Placed";
     }else if(this.key==2){
-      this.FinalTable = this.done;
-      this.text = "Done";
+      this.FinalTable = this.shipped;
+      this.text = "Shipped";
+    }else if(this.key==3){
+      this.FinalTable = this.outfordelivery;
+      this.text = "Out For Delivery";
+    }else if(this.key==4){
+      this.FinalTable = this.delivered;
+      this.text = "Delivered";
+    }else if(this.key==5){
+      this.FinalTable = this.cancelled;
+      this.text = "Cancelled";
     }
 
   }
@@ -135,14 +160,14 @@ export class AdminOrderComponent {
   }
 
 
-  public ToggleOrderStatus(key:string,condition:boolean){
+  public ToggleOrderStatus(key:string,condition:string){
 
     if(confirm("Confirm Your Action")){
 
       this.Falseview();
       this.NoDataPrevent = false;
 
-      this.dbservice.ToggleOrder(key,!condition).subscribe((data)=>{
+      this.dbservice.ToggleOrder(key,condition).subscribe((data)=>{
         this.GetAllOrder();
       });
 

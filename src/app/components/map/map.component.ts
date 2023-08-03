@@ -15,7 +15,9 @@ export class MapComponent {
 
   public loader = true;
 
-  public timestamp:any;
+  public timestamp: any;
+
+  private reload = false;
 
 
   constructor(private route: ActivatedRoute, private router: Router, private dbservice: DBService) {
@@ -45,15 +47,33 @@ export class MapComponent {
         this.router.navigate(["/"], { replaceUrl: true });
       } else {
         var jsodata = JSON.parse(JSON.stringify(data));
-        var maps = document.getElementById('map');
-        setTimeout(()=>{
-          this.timestamp = new Date(jsodata.timestamp);
-          if (maps) {
-            this.loader = false;
-            maps.innerHTML = '<iframe src="https://maps.google.com/maps?q=' + jsodata?.lat + ',' + jsodata?.lon + '&hl=en&z=16&t=k&amp;output=embed" style="border:0; width: 100%; height: 100%;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+        if (jsodata.active == false) {
+          alert("Device Not Yet Activated");
+          this.router.navigate(["/"], { replaceUrl: true });
+        }
+        else if (jsodata.enable == false) {
+          alert("Device currrently disabled");
+          this.router.navigate(["/"], { replaceUrl: true });
+        }
+        else if(this.reload || prompt("Enter Password")==jsodata.password  ){
+          this.reload = true;
+          var maps = document.getElementById('map');
+          setTimeout(() => {
+            this.timestamp = new Date(jsodata.timestamp);
+            if (maps) {
+              this.loader = false;
+              maps.innerHTML = '<iframe src="https://maps.google.com/maps?q=' + jsodata?.lat + ',' + jsodata?.lon + '&hl=en&z=16&t=k&amp;output=embed" style="border:0; width: 100%; height: 100%;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+            }
+          }, 1500);
+        }
+        else {
+          alert("Incorrect Password");
+          if(confirm("Are you want to retry !")){
+            this.FetchData();
+          }else{
+          this.router.navigate(["/"], { replaceUrl: true });
           }
-        },1500);
-
+        }
       }
 
     });

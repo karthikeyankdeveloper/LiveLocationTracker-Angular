@@ -20,8 +20,9 @@
     </div>
     <div class="content">
       <h4>{{data.name}} ({{data.id}})</h4>
-      <h5>{{data.desc}}</h5>
-      <h4>{{data.price|currency:'INR'}} <span style="color: green;" *ngIf="data.available">Available</span> <span style="color: red;" *ngIf="!data.available">Not Available</span></h4>
+      <h5>{{data.desc | slice:0:35}} . . .</h5>
+      <h4>{{data.discountprice|currency:'INR'}}  <span style="color: red;">{{data.actualprice|currency:'INR'}}</span></h4>
+      <h5>Stock : {{data.stock}}</h5>
 
     </div>
   </div>
@@ -74,11 +75,25 @@
       </div>
 
 
-      <div class="label" [ngStyle]="{'color': AddKitForm.controls['price'].errors?.['required'] && AddKitForm.controls['price'].touched?'red':'black'}">
-        <label for="price">Price</label>
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['actualprice'].errors?.['required'] && AddKitForm.controls['actualprice'].touched?'red':'black'}">
+        <label for="actualprice">ActualPrice</label>
       </div>
       <div class="input">
-        <input type="number" placeholder="Price" formControlName="price" id="price">
+        <input type="number" placeholder="actualprice" formControlName="actualprice" id="actualprice">
+      </div>
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['discountprice'].errors?.['required'] && AddKitForm.controls['discountprice'].touched?'red':'black'}">
+        <label for="discountprice">DiscountPrice</label>
+      </div>
+      <div class="input">
+        <input type="number" placeholder="discountprice" formControlName="discountprice" id="discountprice">
+      </div>
+
+      <div class="label" [ngStyle]="{'color': AddKitForm.controls['stock'].errors?.['required'] && AddKitForm.controls['stock'].touched?'red':'black'}">
+        <label for="stock">Stock</label>
+      </div>
+      <div class="input">
+        <input type="number" placeholder="stock" formControlName="stock" id="stock">
       </div>
 
 

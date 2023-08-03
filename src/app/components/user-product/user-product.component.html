@@ -5,7 +5,7 @@
   <div class="row1">
 
     <div class="section1">
-      <img [src]="KitData.img" alt="img">
+      <img [src]="KitData.img" alt="img" [title]="KitData.name">
     </div>
 
     <div class="section2">
@@ -99,7 +99,7 @@
 
 <div class="payment" *ngIf="paymentView" >
 
-  <div class="payment_box" data-aos="zoom-in">
+  <div class="payment_box">
 
     <div class="payment_top">
       <i class="fa-brands fa-amazon-pay"></i>
@@ -179,7 +179,7 @@
 
 <div class="payment_success" *ngIf="paymentSuccessView">
 
-  <div class="payment_content1" data-aos="zoom-in">
+  <div class="payment_content1">
       <img src="assets/payment_success.jpg" alt="payment">
       <h2>Order Placed Successfully</h2>
       <p style="font-size: 1.2rem;"> {{KitData.discountprice|currency:'INR'}}</p>
