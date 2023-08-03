@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit{
   }
 
   SignupFormData = this.forms.group({
-    name:[,[Validators.required]],
+    name:[,[Validators.required,Validators.pattern('^(?!.*([A-Za-z])\\1{3})[A-Za-z]{2,16}$')]],
     email:[,[Validators.required,Validators.email,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")]],
     password:[,[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)]],
     repassword:[,[Validators.required]]

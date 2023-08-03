@@ -16,6 +16,7 @@
 
             <small *ngIf="SignupFormData.controls['name'].errors?.['required'] && SignupFormData.controls['name'].touched">Enter Name</small>
             <small *ngIf="SignupFormData.controls['name'].errors?.['nameAlphabetError'] && SignupFormData.controls['name'].dirty">Name Only contain Alphabets</small>
+            <small *ngIf="SignupFormData.controls['name'].errors?.['pattern'] && SignupFormData.controls['name'].dirty">Enter valid name</small>
             <small *ngIf="SignupFormData.controls['name'].errors?.['nameLengthError'] && SignupFormData.controls['name'].dirty">Name Min length is 2</small>
 
           </div>
