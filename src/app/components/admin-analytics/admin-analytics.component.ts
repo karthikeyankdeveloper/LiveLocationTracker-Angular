@@ -9,36 +9,35 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class AdminAnalyticsComponent {
 
-  protected TotalUser:number = 0;
-  protected TotalBlockeduser:number = 0;
-  protected TotalAdmin:number = 0;
-  protected TotalBlockedadmin:number = 0;
-  protected TodayOrder:number = 0;
-  protected TotalOrder:number = 0;
-  protected TotalPendingOrder:number = 0;
-  protected TotalDoneOrder:number = 0;
+  protected totalUser:number = 0;
+  protected totalBlockeduser:number = 0;
+  protected totalAdmin:number = 0;
+  protected totalBlockedadmin:number = 0;
+  protected todayOrder:number = 0;
+  protected totalOrder:number = 0;
+  protected totalPendingOrder:number = 0;
+  protected totalDoneOrder:number = 0;
 
   private getAllUserDataSubscription:any;
   private getAllOrderSubscription:any;
 
   constructor(private databaseService:DatabaseService,private loaderService:LoaderService){
-
     this.loaderService.setLoader(true);
 
     this.getAllUserDataSubscription = this.databaseService.GetAllUserData().subscribe((data)=>{
       this.loaderService.setLoader(false);
       for(let dbvalue of Object.values(data)){
         if(dbvalue.role=="admin" && dbvalue.block==false){
-          this.TotalAdmin++;
+          this.totalAdmin++;
         }
         else if(dbvalue.role=="admin" && dbvalue.block==true){
-          this.TotalBlockedadmin++;
+          this.totalBlockedadmin++;
         }
         else if(dbvalue.role=="user" && dbvalue.block==false){
-          this.TotalUser++;
+          this.totalUser++;
         }
         else if(dbvalue.role=="user" && dbvalue.block==true){
-          this.TotalBlockeduser++;
+          this.totalBlockeduser++;
         }
       }
 
@@ -52,7 +51,7 @@ export class AdminAnalyticsComponent {
 
     this.getAllOrderSubscription = this.databaseService.GetAllOrder().subscribe((data)=>{
       var values = Object.values(data);
-      this.TotalOrder = values.length;
+      this.totalOrder = values.length;
 
       for(let dbval of values){
         var remotedateinstance = new Date(dbval?.["timestamp"]);
@@ -62,13 +61,13 @@ export class AdminAnalyticsComponent {
         var remotedate = date+month+year;
 
         if(todaydate==remotedate){
-          this.TodayOrder++;
+          this.todayOrder++;
         }
 
         if(dbval?.["status"]){
-          this.TotalDoneOrder++;
+          this.totalDoneOrder++;
         }else{
-          this.TotalPendingOrder++;
+          this.totalPendingOrder++;
         }
 
       }

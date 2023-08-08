@@ -10,7 +10,7 @@
       <div class="right-content">
         <h1>INVITE ADMIN</h1>
         <p style="margin: 25px 13%;">Manage your task in easy way.</p>
-        <form [formGroup]="InviteForm" (ngSubmit)="AddAdmin()">
+        <form [formGroup]="InviteForm" (ngSubmit)="addAdmin()">
 
           <div class="key">
             <input [type]="'name'" placeholder="Name"  formControlName="name" name="name">
@@ -30,7 +30,7 @@
 
 
           <div class="btn">
-            <button [disabled]="InviteForm.invalid || disable_button" type="submit">INVITE</button>
+            <button [disabled]="InviteForm.invalid || disableButton" type="submit">INVITE</button>
           </div>
 
         </form>

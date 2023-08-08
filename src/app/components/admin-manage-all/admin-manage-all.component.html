@@ -10,8 +10,8 @@
     </div>
 
     <div class="topbar-second">
-      <input type="button" [value]="isuser?'user':'admin'" (click)="ToggleUser()" [style]="isuser?'background-color:purple;':'background-color:#008B8B;'">
-      <input type="button" [value]="isactive?'active':'blocked'" (click)="ToggleStatus()" [style]="isactive?'background-color:green;':'background-color:red;'">
+      <input type="button" [value]="isuser?'user':'admin'" (click)="toggleUser()" [style]="isuser?'background-color:purple;':'background-color:#008B8B;'">
+      <input type="button" [value]="isactive?'active':'blocked'" (click)="toggleStatus()" [style]="isactive?'background-color:green;':'background-color:red;'">
     </div>
 
 
@@ -32,11 +32,11 @@
 
       <tbody>
 
-        <tr *ngFor="let data of FinalTable">
+        <tr *ngFor="let data of finalTable">
           <td>{{data.name}}</td>
           <td>{{data.email}}</td>
           <td>{{data.role|uppercase}}</td>
-          <td><input type="button" (click)="Block(data.email,data.block)" [value]="data.block?'blocked':'active'" [style]="data.block?'background-color:red;':'background-color:green;'"></td>
+          <td><input type="button" (click)="block(data.email,data.block)" [value]="data.block?'blocked':'active'" [style]="data.block?'background-color:red;':'background-color:green;'"></td>
         </tr>
 
       </tbody>
@@ -44,9 +44,9 @@
 
 
   </div>
-  <div class="loading" *ngIf="!NoDataPrevent">
+  <div class="loading" *ngIf="!noDataPrevent">
     <img src="/assets/load.svg" alt="loading">
   </div>
-  <h2 style="text-align: center;" *ngIf="(FinalTable==null || FinalTable=='') && NoDataPrevent">No Data Found !</h2>
+  <h2 style="text-align: center;" *ngIf="(finalTable==null || finalTable=='') && noDataPrevent">No Data Found !</h2>
 
 </div>

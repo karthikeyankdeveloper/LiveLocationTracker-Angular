@@ -1,4 +1,4 @@
-<div class="loading" *ngIf="!Preventload">
+<div class="loading" *ngIf="!preventLoading">
   <img src="/assets/load.svg" alt="loading">
 </div>
 
@@ -10,23 +10,23 @@
     <h3>Live View</h3>
     <div class="list">
       <div class="img">
-        <img [src]="Finaldata?.img" alt="">
+        <img [src]="finalData?.img" alt="">
       </div>
       <div class="content">
 
-        <h4>{{Finaldata.name}} ({{Finaldata.id}})</h4>
-        <h5>{{Finaldata.desc | slice:0:35}} . . .</h5>
-        <h4>{{Finaldata.discountprice|currency:'INR'}}  <span style="color: red;">{{Finaldata.actualprice|currency:'INR'}}</span></h4>
-        <h5 style="color: green;">Stock : {{Finaldata.stock}}</h5>
+        <h4>{{finalData.name}} ({{finalData.id}})</h4>
+        <h5>{{finalData.desc | slice:0:35}} . . .</h5>
+        <h4>{{finalData.discountprice|currency:'INR'}}  <span style="color: red;">{{finalData.actualprice|currency:'INR'}}</span></h4>
+        <h5 style="color: green;">Stock : {{finalData.stock}}</h5>
       </div>
     </div>
-    <button (click)="DeleteKit()">Delete</button>
+    <button (click)="deleteKit()">Delete</button>
   </div>
 
   <div class="edit">
     <h3>Update</h3>
 
-    <form (ngSubmit)="Update()" [formGroup]="UpdateForm">
+    <form (ngSubmit)="updateKit()" [formGroup]="updateForm">
 
       <div class="input">
         <label for="name">Name</label>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { DBService } from 'src/app/services/db.service';
+import { Environment } from 'src/app/environment';
+import { DatabaseService } from 'src/app/services/database.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-admin-order',
@@ -8,73 +10,59 @@ import { DBService } from 'src/app/services/db.service';
 })
 export class AdminOrderComponent {
 
-  public FinalTable: any;
+  protected finalTable: any;
+  protected all:any;
+  protected orderplaced:any;
+  protected shipped:any;
+  protected outfordelivery:any;
+  protected delivered:any;
+  protected cancelled:any;
+  protected noDataPrevent:boolean = Environment.conditionFalse;
+  private getAllOrderSubscription:any;
+  private getOrderSubscription:any;
+  private key:number = 0;
+  protected text:string = "All";
+  protected viewModel:boolean = Environment.conditionFalse;
+  protected viewLoading:boolean = Environment.conditionFalse;
+  protected finalViewData:any;
 
-  public all:any;
-
-  public orderplaced:any;
-  public shipped:any;
-  public outfordelivery:any;
-  public delivered:any;
-  public cancelled:any;
-
-
-  public NoDataPrevent = false;
-
-  constructor(private dbservice: DBService) {
-
-    this.GetAllOrder();
-
+  constructor(private databaseService: DatabaseService) {
+    this.getAllOrder();
   }
 
-  public GetAllOrder(){
-
-    this.NoDataPrevent = false;
-
-
-    this.dbservice.GetAllOrder().subscribe((data) => {
-
-      this.NoDataPrevent = true;
-
-      this.all = this.KeyAddReverse(data);
-
-      var orderplaced_temp = [];
-      var shipped_temp = [];
-      var outfordelivery_temp = [];
-      var delivered_temp = [];
-      var cancelled_temp = [];
-
-      for(let j of this.all){
-        if(j.status=='Order Placed'){
-          orderplaced_temp.push(j)
-        }else if(j.status=='Shipped'){
-          shipped_temp.push(j);
-        }else if(j.status=='Out For Delivery'){
-          outfordelivery_temp.push(j);
-        }else if(j.status=='Delivered'){
-          delivered_temp.push(j);
+  private getAllOrder():void{
+    this.noDataPrevent = false;
+    this.getAllOrderSubscription = this.databaseService.GetAllOrder().subscribe((data) => {
+      this.noDataPrevent = true;
+      this.all = this.convertKeyAddReverse(data);
+      let orderplaced_temp = [];
+      let shipped_temp = [];
+      let outfordelivery_temp = [];
+      let delivered_temp = [];
+      let cancelled_temp = [];
+      for(let index of this.all){
+        if(index.status=='Order Placed'){
+          orderplaced_temp.push(index)
+        }else if(index.status=='Shipped'){
+          shipped_temp.push(index);
+        }else if(index.status=='Out For Delivery'){
+          outfordelivery_temp.push(index);
+        }else if(index.status=='Delivered'){
+          delivered_temp.push(index);
         }else{
-          cancelled_temp.push(j);
+          cancelled_temp.push(index);
         }
       }
-
       this.orderplaced = orderplaced_temp;
       this.shipped = shipped_temp;
       this.outfordelivery = outfordelivery_temp;
       this.delivered = delivered_temp;
       this.cancelled = cancelled_temp;
-
-      this.togglestatus(false);
+      this.toggleStatus(false);
     });
-
   }
 
-
-  private key = 0;
-  public text = "All";
-
-  public togglestatus(condition:boolean){
-
+  protected toggleStatus(condition:boolean):void{
     if(condition){
       this.key++;
       if(this.key>5){
@@ -83,96 +71,76 @@ export class AdminOrderComponent {
     }
 
     if(this.key==0){
-      this.FinalTable = this.all;
+      this.finalTable = this.all;
       this.text = "All";
     }else if(this.key==1){
-      this.FinalTable = this.orderplaced;
+      this.finalTable = this.orderplaced;
       this.text = "Order Placed";
     }else if(this.key==2){
-      this.FinalTable = this.shipped;
+      this.finalTable = this.shipped;
       this.text = "Shipped";
     }else if(this.key==3){
-      this.FinalTable = this.outfordelivery;
+      this.finalTable = this.outfordelivery;
       this.text = "Out For Delivery";
     }else if(this.key==4){
-      this.FinalTable = this.delivered;
+      this.finalTable = this.delivered;
       this.text = "Delivered";
     }else if(this.key==5){
-      this.FinalTable = this.cancelled;
+      this.finalTable = this.cancelled;
       this.text = "Cancelled";
     }
-
   }
 
-
-  private KeyAddReverse(datas:any) {
-    var i = 0;
-    var keys = Object.keys(datas);
-    var values = Object.values(datas);
-    var finaldata = [];
-
-    for (let k of values) {
-      var kk = JSON.parse(JSON.stringify(k));
-
-      var date = new Date(kk.timestamp);
-
-      Object.assign(kk, { "orderid": keys[i++],"date":date });
-      finaldata.push(kk);
+  private convertKeyAddReverse(datas:any):any[] {
+    let index = 0;
+    let keys = Object.keys(datas);
+    let values = Object.values(datas);
+    let finaldata = [];
+    for (let data1 of values) {
+      let temp = JSON.parse(JSON.stringify(data1));
+      Object.assign(temp, { "orderid": keys[index++],"date":new Date(temp.timestamp) });
+      finaldata.push(temp);
     }
-
     return finaldata.reverse();
-
   }
-
 
   // For sidebar
-
-  public viewmodel = false;
-  public viewloading = false;
-  public FinalViewData:any;
-
-
-  public Falseview(){
-    this.viewmodel = false;
+  protected falseView():void{
+    this.viewModel = Environment.conditionFalse;
   }
 
+  protected View(key:any):void{
+    this.viewModel = true;
+    this.viewLoading = false;
 
-  public View(key:any){
-
-    this.viewmodel = true;
-
-    this.viewloading = false;
-
-    this.dbservice.GetOrder(key).subscribe((data)=>{
-
+    this.getOrderSubscription = this.databaseService.GetOrder(key).subscribe((data)=>{
       setTimeout(()=>{
-        this.viewloading = true;
+        this.viewLoading = true;
       },500);
-
-
-      var temp = JSON.parse(JSON.stringify(data));
-      var date = new Date(temp.timestamp);
-      Object.assign(temp,{"orderid":key,"date":date});
-
-      this.FinalViewData = temp;
+      let temp = JSON.parse(JSON.stringify(data));
+      Object.assign(temp,{"orderid":key,"date":new Date(temp.timestamp)});
+      this.finalViewData = temp;
     });
-
   }
 
-
-  public ToggleOrderStatus(key:string,condition:string){
-
+  protected toggleOrderStatus(key:string,condition:string):void{
     if(confirm("Confirm Your Action")){
-
-      this.Falseview();
-      this.NoDataPrevent = false;
-
-      this.dbservice.ToggleOrder(key,condition).subscribe((data)=>{
-        this.GetAllOrder();
+      this.falseView();
+      this.noDataPrevent = false;
+      this.databaseService.ToggleOrder(key,condition).subscribe((data)=>{
+        this.getAllOrder();
+        LoggerService.info(`${key} order status changed to ${condition}`);
       });
-
     }
+  }
 
+  ngOnDestroy(){
+    if(this.getAllOrderSubscription){
+      this.getAllOrderSubscription.unsubscribe();
+    }
+    if(this.getOrderSubscription){
+      this.getOrderSubscription.unsubscribe();
+    }
   }
 
 }

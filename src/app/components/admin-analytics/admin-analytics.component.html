@@ -8,7 +8,7 @@
 
     <h2><i class="fa-solid fa-calendar-day"></i>Today Orders</h2>
 
-    <h3>{{TodayOrder}}</h3>
+    <h3>{{todayOrder}}</h3>
 
     <a routerLink="order">
       <button>View</button>
@@ -18,7 +18,7 @@
 
   <div class="analytics-content">
     <h2><i class="fa-regular fa-hourglass-half"></i>Total Pending Orders</h2>
-    <h3>{{TotalPendingOrder}}</h3>
+    <h3>{{totalPendingOrder}}</h3>
     <a routerLink="order">
       <button>View</button>
     </a>
@@ -26,7 +26,7 @@
   </div>
   <div class="analytics-content">
     <h2><i class="fa-regular fa-calendar-check"></i>Total Done Orders</h2>
-    <h3>{{TotalDoneOrder}}</h3>
+    <h3>{{totalDoneOrder}}</h3>
     <a routerLink="order">
       <button>View</button>
     </a>
@@ -34,7 +34,7 @@
   </div>
   <div class="analytics-content">
     <h2><i class="fa-solid fa-cart-arrow-down"></i>Total Orders</h2>
-    <h3>{{TotalOrder}}</h3>
+    <h3>{{totalOrder}}</h3>
     <a routerLink="order">
       <button>View</button>
     </a>
@@ -42,7 +42,7 @@
   </div>
   <div class="analytics-content">
     <h2><i class="fa-solid fa-users"></i>Active Users</h2>
-    <h3>{{TotalUser}}</h3>
+    <h3>{{totalUser}}</h3>
     <a routerLink="manageuser" [queryParams]="{isuser:'true',isactive:'true'}">
       <button>Manage</button>
     </a>
@@ -54,7 +54,7 @@
 
     <h2><i class="fa-solid fa-users-slash"></i>Blocked Users</h2>
 
-    <h3>{{TotalBlockeduser}}</h3>
+    <h3>{{totalBlockeduser}}</h3>
 
     <a routerLink="manageuser" [queryParams]="{isuser:'true',isactive:'false'}">
       <button>Manage</button>
@@ -66,7 +66,7 @@
 
     <h2><i class="fa-solid fa-users-gear"></i>Active Admins</h2>
 
-    <h3>{{TotalAdmin}}</h3>
+    <h3>{{totalAdmin}}</h3>
 
     <a routerLink="manageuser" [queryParams]="{isuser:'false',isactive:'true'}">
       <button>Manage</button>
@@ -83,7 +83,7 @@
 
     <h2><i class="fa-solid fa-user-lock"></i>Blocked Admins</h2>
 
-    <h3>{{TotalBlockedadmin}}</h3>
+    <h3>{{totalBlockedadmin}}</h3>
 
     <a routerLink="manageuser" [queryParams]="{isuser:'false',isactive:'false'}">
       <button>Manage</button>

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Environment } from 'src/app/environment';
 import { CryptographyService } from 'src/app/services/cryptography.service';
-import { DBService } from 'src/app/services/db.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-admin-invite',
@@ -11,20 +13,16 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class AdminInviteComponent {
 
-  public disable_button = false;
+  protected disableButton:boolean = Environment.conditionFalse;
 
-  constructor(private builder:FormBuilder,private crypto:CryptographyService,private dbservice:DBService,private loader:LoaderService){
+  constructor(private formBuilder:FormBuilder,private cryptographyService:CryptographyService,private databaseService:DatabaseService,private loaderService:LoaderService){}
 
-  }
-
-
-  InviteForm = this.builder.group({
+  protected InviteForm:FormGroup<any> = this.formBuilder.group({
     name:[,[Validators.required]],
     email:[,[Validators.required,Validators.email,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")]],
   },{validator:(formgroup:FormGroup)=>{
     var name = formgroup.controls['name'];
     var namex = (name.value+"").toLowerCase();
-
     if(!(namex=="") && namex.length<2){
       name.setErrors({nameLengthError:true});
     }else if(!(namex=="")){
@@ -37,52 +35,41 @@ export class AdminInviteComponent {
     }
   }});
 
-
-  public AddAdmin(){
-
-    this.disable_button = true;
-    this.loader.setLoader(true);
-
+  protected addAdmin():void{
+    this.disableButton = true;
+    this.loaderService.setLoader(true);
     var name = this.InviteForm.controls['name'].value;
     var email = this.InviteForm.controls['email'].value.toLowerCase();
 
-
-    if(name==""||name==null||email==""||email==null){
+    if(this.InviteForm.invalid){
       alert("Invalid Data");
-      this.disable_button = false;
-      this.loader.setLoader(false);
+      LoggerService.error("Invalid Data error, Please enter valid data");
+      this.disableButton = false;
+      this.loaderService.setLoader(false);
     }else{
-
       var data = {
         name:name,
         email:email,
-        password:this.crypto.encryption("123*Axyz"),
+        password:this.cryptographyService.encryption("123*Axyz"),
         role:"admin",
         block:false
       }
-
-      this.dbservice.GetUser(email).subscribe((getdata)=>{
+      this.databaseService.GetUser(email).subscribe((getdata)=>{
         if(getdata==null){
-
-          this.dbservice.AddUser(data).subscribe((adddata)=>{
-
+          this.databaseService.AddUser(data).subscribe((adddata)=>{
             if(adddata!=null){
               alert("Admin Created\nName : "+name+"\nEmail : "+email+"\nPassword : 123*Axyz");
+              LoggerService.info(`Admin Created Successfully : ${email}`);
             }else{
-              alert("Error occured");
+              LoggerService.error(`Error Occured in database.`);
             }
-
-            this.disable_button = false;
-            this.loader.setLoader(false);
-
+            this.disableButton = false;
+            this.loaderService.setLoader(false);
           });
-
-
-
         }else{
           alert("Email already exists")
-          this.disable_button = false;
-          this.loader.setLoader(false);
+          this.disableButton = false;
+          this.loaderService.setLoader(false);
         }
       })
 

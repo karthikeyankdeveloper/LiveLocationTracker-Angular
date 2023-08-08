@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DBService } from 'src/app/services/db.service';
+import { Environment } from 'src/app/environment';
+import { DatabaseService } from 'src/app/services/database.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-admin-viewkit',
@@ -10,15 +12,14 @@ import { DBService } from 'src/app/services/db.service';
 })
 export class AdminViewkitComponent {
 
-  private KitId:any;
-  public Finaldata:any;
-  public Preventload=false;
+  private kitId:any;
+  protected finalData:any;
+  protected preventLoading:boolean=Environment.conditionFalse;
+  private getKitSubscription:any;
 
+  constructor(private formBuilder:FormBuilder,private activatedRoute:ActivatedRoute,private router:Router,private databaseService:DatabaseService){}
 
-  constructor(private builder:FormBuilder,private route:ActivatedRoute,private router:Router,private dbservice:DBService){}
-
-
-  UpdateForm = this.builder.group({
+  protected updateForm:FormGroup<any> = this.formBuilder.group({
     name:[],
     desc:[],
     img:[],
@@ -27,72 +28,65 @@ export class AdminViewkitComponent {
     stock:[]
   });
 
-
-
-  ngOnInit(): void {
-
-    this.route.queryParamMap.subscribe((query)=>{
-      this.KitId = query.get('id');
-
-      if(this.KitId==null||this.KitId==''){
+  ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe((query)=>{
+      this.kitId = query.get('id');
+      if(this.kitId==null||this.kitId==''){
         this.router.navigate(['admin/kit'],{replaceUrl:true});
       }else{
-        this.GetKit(this.KitId);
+        this.getKit(this.kitId);
       }
     });
-
   }
 
-  private GetKit(id:any){
-
-    this.Preventload = false;
-
-    this.dbservice.GetKit(id).subscribe((data)=>{
+  private getKit(id:any):any{
+    this.preventLoading = false;
+    this.getKitSubscription = this.databaseService.GetKit(id).subscribe((data)=>{
       if(data==null){
         alert("No data Found!");
         this.router.navigate(['admin/kit'],{replaceUrl:true});
       }else{
-
-        this.Preventload = true;
-        this.Finaldata = data;
-
-        this.UpdateForm.controls["name"].setValue(this.Finaldata.name);
-        this.UpdateForm.controls["desc"].setValue(this.Finaldata.desc);
-        this.UpdateForm.controls["img"].setValue(this.Finaldata.img);
-        this.UpdateForm.controls["actualprice"].setValue(this.Finaldata.actualprice);
-        this.UpdateForm.controls["discountprice"].setValue(this.Finaldata.discountprice);
-        this.UpdateForm.controls["stock"].setValue(this.Finaldata.stock);
+        this.preventLoading = true;
+        this.finalData = data;
+        this.updateForm.controls["name"].setValue(this.finalData.name);
+        this.updateForm.controls["desc"].setValue(this.finalData.desc);
+        this.updateForm.controls["img"].setValue(this.finalData.img);
+        this.updateForm.controls["actualprice"].setValue(this.finalData.actualprice);
+        this.updateForm.controls["discountprice"].setValue(this.finalData.discountprice);
+        this.updateForm.controls["stock"].setValue(this.finalData.stock);
       }
     });
-
   }
 
-
-  public Update():void{
-
-    if(this.UpdateForm.invalid){
+  protected updateKit():void{
+    if(this.updateForm.invalid){
       alert("Invalid data");
+      LoggerService.error("Invalid data from input");
     }else{
-      var datas = this.UpdateForm.value;
-
-      this.Preventload = false;
-
-      this.dbservice.UpdateKit(this.KitId,datas).subscribe((tt)=>{
-        this.GetKit(this.KitId);
+      var datas = this.updateForm.value;
+      this.preventLoading = false;
+      this.databaseService.UpdateKit(this.kitId,datas).subscribe((response)=>{
+        LoggerService.info("Kit details Updated");
+        this.getKit(this.kitId);
       });
     }
 
   }
 
-
-  public DeleteKit(){
-
+  protected deleteKit():void{
     if(confirm("Confirm Delete")){
-      this.Preventload=false;
-      this.dbservice.DeleteKit(this.KitId).subscribe((data)=>{
+      this.preventLoading=false;
+      this.databaseService.DeleteKit(this.kitId).subscribe((data)=>{
         alert("Deleted Successfully");
-        this.router.navigate(['admin/kit'],{replaceUrl:true});
+        LoggerService.info("Kit deleted successfully");
+        this.router.navigate(['admin/kit'],{replaceUrl:Environment.conditionTrue});
       });
+    }
+  }
+
+  ngOnDestroy(){
+    if(this.getKitSubscription){
+      this.getKitSubscription.unsubscribe();
     }
   }
 

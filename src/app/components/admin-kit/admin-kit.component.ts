@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { DBService } from 'src/app/services/db.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Environment } from 'src/app/environment';
+import { DatabaseService } from 'src/app/services/database.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-admin-kit',
@@ -9,33 +11,28 @@ import { DBService } from 'src/app/services/db.service';
 })
 export class AdminKitComponent {
 
-  public FinalKitList: any;
-  public NoDataPrevent = false;
-  public ViewModel = false;
+  protected finalKitList: any;
+  protected noDataPrevent:boolean = Environment.conditionFalse;
+  protected viewModel:boolean = Environment.conditionFalse;
+  private getAllKitSubscription:any;
 
-  constructor(private dbservice: DBService, private builder: FormBuilder) {
-    this.GetAllKit();
+  constructor(private databaseService: DatabaseService, private formBuilder: FormBuilder) {
+    this.getAllKit();
   }
 
-  public GetAllKit() {
-    this.NoDataPrevent = false;
-
-    this.dbservice.GetAllKit().subscribe((data) => {
-
-      this.NoDataPrevent = true;
-
-      this.FinalKitList = Object.values(data);
-
+  private getAllKit():void {
+    this.noDataPrevent = false;
+    this.getAllKitSubscription = this.databaseService.GetAllKit().subscribe((data) => {
+      this.noDataPrevent = true;
+      this.finalKitList = Object.values(data);
     });
-
   }
 
-  public ToggleView() {
-    this.ViewModel = !this.ViewModel;
+  protected toggleView():void {
+    this.viewModel = !this.viewModel;
   }
 
-
-  AddKitForm = this.builder.group({
+  protected addKitForm:FormGroup<any> = this.formBuilder.group({
     id: [, [Validators.required]],
     name: [, [Validators.required]],
     desc: [, [Validators.required]],
@@ -45,40 +42,36 @@ export class AdminKitComponent {
     img: [, [Validators.required]]
   });
 
-
-
-  public AddNewKit() {
-    var values = this.AddKitForm.value;
-
-    if (this.AddKitForm.invalid) {
+  protected addNewKit():void {
+    var values = this.addKitForm.value;
+    if (this.addKitForm.invalid) {
       alert("Invalid Data, Enter All detail");
+      LoggerService.warn("Invalid Input Data.");
     } else {
-
-      this.ToggleView();
-
-      this.NoDataPrevent = false;
-
-      this.dbservice.GetKit(values.id).subscribe((tt) => {
-
-        if (tt == null) {
-
-          // Object.assign(values, { available: true });
-          var data = {
+      this.toggleView();
+      this.noDataPrevent = false;
+      this.databaseService.GetKit(values.id).subscribe((data) => {
+        if (data == null) {
+          var data1 = {
             [values.id + ""]: values
           };
-
-          this.dbservice.AddNewKit(data).subscribe((dat) => {
-            this.GetAllKit();
+          this.databaseService.AddNewKit(data1).subscribe((response) => {
+            LoggerService.info("New Kit added");
+            this.getAllKit();
           });
-
         } else {
           alert("Kit id already exists");
-          this.NoDataPrevent = true;
+          LoggerService.info("Kit id already exists.");
+          this.noDataPrevent = true;
         }
       });
-
     }
+  }
 
+  ngOnDestroy(){
+    if(this.getAllKitSubscription){
+      this.getAllKitSubscription.unsubscribe();
+    }
   }
 
 }

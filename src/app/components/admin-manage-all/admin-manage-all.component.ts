@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DBService } from 'src/app/services/db.service';
+import { Environment } from 'src/app/environment';
+import { DatabaseService } from 'src/app/services/database.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-admin-manage-all',
@@ -9,22 +11,21 @@ import { DBService } from 'src/app/services/db.service';
 })
 export class AdminManageAllComponent implements OnInit{
 
-  public isuser = true;
-  public isactive = true;
+  protected isuser:boolean = Environment.conditionTrue;
+  protected isactive:boolean = Environment.conditionTrue;
 
+  protected finalTable:any;
+  protected activeUser:any;
+  protected blockUser:any;
+  protected activeAdmin:any;
+  protected blockAdmin:any;
 
-  public FinalTable:any;
-  public ActiveUser:any;
-  public BlockUser:any;
-  public ActiveAdmin:any;
-  public BlockAdmin:any;
-
-  public NoDataPrevent = false;
+  protected noDataPrevent:boolean = Environment.conditionFalse;
+  private getAllUserDataSubscription:any;
 
 
   ngOnInit(){
-    this.routes.queryParamMap.subscribe((querdata)=>{
-
+    this.activatedRoute.queryParamMap.subscribe((querdata)=>{
       if(querdata.get('isuser')=="true" && querdata.get('isactive')=="true"){
         this.isuser = true;
         this.isactive = true;
@@ -41,36 +42,24 @@ export class AdminManageAllComponent implements OnInit{
         this.isuser = false;
         this.isactive = true;
       }
-
-      this.FetchData();
-
+      this.fetchData();
     });
   }
 
-
-  constructor(private routes:ActivatedRoute,private dbService:DBService){
-
-    this.GetAllUser();
-
+  constructor(private activatedRoute:ActivatedRoute,private databaseService:DatabaseService){
+    this.getAllUser();
   }
 
-
-  private GetAllUser(){
-
-    this.NoDataPrevent = false;
-
-    this.dbService.GetAllUserData().subscribe((data)=>{
-
-      this.NoDataPrevent = true;
-
+  private getAllUser():void{
+    this.noDataPrevent = false;
+    this.getAllUserDataSubscription = this.databaseService.GetAllUserData().subscribe((data)=>{
+      this.noDataPrevent = true;
       var activeuser = [];
       var blockuser = [];
       var activeadmin = [];
       var blockadmin = [];
 
-
       for(let valuess of Object.values(data)){
-
         if(valuess.role=="admin" && valuess.block==false && valuess.email!="2k19cse041@kiot.ac.in"){
           activeadmin.push(valuess);
         }
@@ -85,55 +74,54 @@ export class AdminManageAllComponent implements OnInit{
         }
       }
 
-      this.ActiveAdmin = activeadmin;
-      this.ActiveUser = activeuser;
-      this.BlockAdmin = blockadmin;
-      this.BlockUser = blockuser;
+      this.activeAdmin = activeadmin;
+      this.activeUser = activeuser;
+      this.blockAdmin = blockadmin;
+      this.blockUser = blockuser;
 
-      this.FetchData();
-
+      this.fetchData();
     });
 
   }
 
-
-
-  public ToggleUser(){
+  protected toggleUser():void{
     this.isuser = !this.isuser;
-    this.FetchData();
+    this.fetchData();
   }
 
-
-  public ToggleStatus(){
+  protected toggleStatus():void{
     this.isactive = !this.isactive;
-    this.FetchData();
+    this.fetchData();
   }
 
-
-  private FetchData(){
+  private fetchData():void{
     if(this.isuser==true && this.isactive==true){
-      this.FinalTable = this.ActiveUser;
+      this.finalTable = this.activeUser;
     }
     else if(this.isuser==true && this.isactive==false){
-      this.FinalTable = this.BlockUser;
+      this.finalTable = this.blockUser;
     }
     else if(this.isuser==false && this.isactive==true){
-      this.FinalTable = this.ActiveAdmin;
+      this.finalTable = this.activeAdmin;
     }
     else if(this.isuser==false && this.isactive==false){
-      this.FinalTable = this.BlockAdmin;
+      this.finalTable = this.blockAdmin;
     }
   }
 
-
-
-  public Block(email:any,booleancondition:any){
-
+  protected block(email:any,booleancondition:any):void{
     if(confirm("Confirm Your Action")){
-      this.NoDataPrevent = false;
-      this.dbService.Block(email,!booleancondition).subscribe((data)=>{
-        this.GetAllUser();
+      this.noDataPrevent = false;
+      this.databaseService.Block(email,!booleancondition).subscribe((data)=>{
+        LoggerService.info(`${email} user block status changed to ${!booleancondition}`);
+        this.getAllUser();
       });
+    }
+  }
+
+  ngOnDestroy(){
+    if(this.getAllUserDataSubscription){
+      this.getAllUserDataSubscription.unsubscribe();
     }
   }
 
