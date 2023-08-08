@@ -10,10 +10,9 @@ export class Environment{
     return this.databaseUrl;
   }
 
-  private static databaseUrl:string = "https://check-firebase-b36c8-default-rtdb.firebaseio.com/";
-  public static conditionTrue:boolean = true;
-  public static conditionFalse:boolean = false;
-  public static cryptoKey:number = 3;
-
+  private static readonly databaseUrl:string = "https://check-firebase-b36c8-default-rtdb.firebaseio.com/";
+  public static readonly conditionTrue:boolean = true;
+  public static readonly conditionFalse:boolean = false;
+  public static readonly cryptoKey:number = 3;
 
 }

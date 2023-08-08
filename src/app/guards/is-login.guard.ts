@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AccessService } from '../services/access.service';
+import { Environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +9,15 @@ import { AccessService } from '../services/access.service';
 
 export class IsLoginGuard implements CanActivate {
 
-  constructor(private access_service:AccessService,private router:Router){}
+  constructor(private accessService:AccessService,private router:Router){}
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
-
-    if(this.access_service.isLoggedIn()==true){
-
-      this.router.navigate(['']);
-
+    if(this.accessService.isLoggedIn()==true){
+      this.router.navigate([''],{replaceUrl:Environment.conditionTrue});
       return false;
-
     }else{
       return true;
     }
-
   }
 
 }

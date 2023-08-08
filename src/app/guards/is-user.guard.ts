@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AccessService } from '../services/access.service';
+import { Environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsUserGuard implements CanActivate {
 
-  constructor(private access_service:AccessService,private router:Router){}
+  constructor(private accessService:AccessService,private router:Router){}
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
-
-    if(this.access_service.isUser()==false){
-      this.router.navigate(['']);
+    if(this.accessService.isUser()==false){
+      this.router.navigate([''],{replaceUrl:Environment.conditionTrue});
       return false;
     }
     return true;
