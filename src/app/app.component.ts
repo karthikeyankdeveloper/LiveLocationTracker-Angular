@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
 import { AccessService } from './services/access.service';
 import { DatabaseService } from './services/database.service';
 import { LoggerService } from './services/logger.service';
+import { Environment } from './environment';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { LoggerService } from './services/logger.service';
 })
 export class AppComponent{
 
-  protected isUpdate:any = false;
+  protected isUpdate:any = Environment.conditionFalse;
 
   constructor(private databaseService:DatabaseService,private accessService:AccessService){
 
@@ -27,13 +28,13 @@ export class AppComponent{
     });
 
     if(localStorage.getItem("llt-date")!=((new Date()).getDate()+"")){
-      LoggerService.info("Session expired");
-      this.accessService.Logout();
+      LoggerService.info("User session expired. Automatically logged out for security reasons.");
+      this.accessService.logout();
     }else{
       LoggerService.info("Session available");
       var json = JSON.parse(localStorage.getItem("llt-userdata")+"");
       if(json!=null || json!=""){
-        this.accessService.LoadData(json);
+        this.accessService.loadData(json);
       }
     }
 

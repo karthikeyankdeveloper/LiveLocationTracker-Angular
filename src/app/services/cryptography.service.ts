@@ -1,39 +1,30 @@
 import { Injectable } from '@angular/core';
+import { Environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CryptographyService {
 
-  private ciphertext:any;
-  private plaintext:any;
-  private key = 3;
+  private cipherText:string = "";
+  private plainText:string = "";
+  private key = Environment.cryptoKey;
 
-  constructor() { }
-
-
-  public Encryption(plaintext:String){
-    this.ciphertext = "";
-
-    for(let i=0;i<plaintext.length;i++){
-      var j = plaintext.charCodeAt(i)+this.key;
-      this.ciphertext+=String.fromCharCode(j);
+  public encryption(plaintext:String):string{
+    this.cipherText = "";
+    for(let index=0;index<plaintext.length;index++){
+      var temp = plaintext.charCodeAt(index)+this.key;
+      this.cipherText+=String.fromCharCode(temp);
     }
-
-    return this.ciphertext;
-
+    return this.cipherText;
   }
 
-  public Decryption(ciphertext:any){
-
-    this.plaintext="";
-
-    for(let i=0;i<ciphertext.length;i++){
-      var j = ciphertext.charCodeAt(i)-this.key;
-      this.plaintext+=String.fromCharCode(j);
+  public decryption(ciphertext:any):string{
+    this.plainText="";
+    for(let index=0;index<ciphertext.length;index++){
+      var temp = ciphertext.charCodeAt(index)-this.key;
+      this.plainText+=String.fromCharCode(temp);
     }
-
-    return this.plaintext;
-
+    return this.plainText;
   }
 }

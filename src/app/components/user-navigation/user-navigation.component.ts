@@ -20,7 +20,7 @@ export class UserNavigationComponent {
   }
 
   protected Logout(){
-    this.accessService.Logout();
+    this.accessService.logout();
     this.ToggleLogout();
     this.router.navigate([''],{replaceUrl:true});
   }

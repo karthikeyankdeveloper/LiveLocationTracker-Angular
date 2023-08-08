@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit{
 
     this.disable_button = true;
 
-    this.loaderservice.SetSampleLoader(true);
+    this.loaderservice.setLoader(true);
 
     this.email = (this.LoginFormData.controls['email'].value+"").toLowerCase();
     this.password = this.LoginFormData.controls['password'].value;
@@ -51,14 +51,14 @@ export class LoginComponent implements OnInit{
     if(this.email==null||this.email==""||this.password==null||this.password==""){
       alert("Enter all Field");
       this.disable_button = false;
-      this.loaderservice.SetSampleLoader(false);
+      this.loaderservice.setLoader(false);
     }else{
 
       this.dbservice.GetUser(this.email).subscribe((adddata)=>{
 
         if(adddata==null){
 
-          this.loaderservice.SetSampleLoader(false);
+          this.loaderservice.setLoader(false);
           this.disable_button = false;
           if(confirm("No user found!,please signup")){
             this.router.navigate(["signup"],{replaceUrl:true});
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit{
 
           }else{
 
-            if(this.crypto.Decryption(final_getdata.password)==this.password){
+            if(this.crypto.decryption(final_getdata.password)==this.password){
 
               var stringify_data = {
                 name:final_getdata.name,
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit{
                 role:final_getdata.role
               };
 
-              this.access_service.LoadData(stringify_data);
+              this.access_service.loadData(stringify_data);
 
               localStorage.setItem("llt-userdata",JSON.stringify(stringify_data));
 
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit{
           }
 
           this.disable_button = false;
-          this.loaderservice.SetSampleLoader(false);
+          this.loaderservice.setLoader(false);
         }
 
 

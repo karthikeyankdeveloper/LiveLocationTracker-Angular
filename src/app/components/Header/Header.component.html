@@ -14,17 +14,17 @@
       <div class="header_content" *ngIf="head_content">
         <ul>
           <li> <a routerLink="" (click)="this.onResize()">Home</a> </li>
-          <li *ngIf="access_service.IsUser()"> <a routerLink="user" (click)="this.onResize()">Dashboard</a> </li>
-          <li *ngIf="access_service.IsAdmin()"> <a routerLink="admin" (click)="this.onResize()">Dashboard(Admin)</a> </li>
-          <li *ngIf="!access_service.IsAdmin()"> <a routerLink="support" (click)="this.onResize()">Support</a> </li>
-          <li *ngIf="!access_service.IsLoggedIn()"> <a routerLink="about" (click)="this.onResize()">About</a> </li>
-          <li *ngIf="!access_service.IsLoggedIn()"> <a routerLink="login" (click)="this.onResize()">Login</a> </li>
-          <li *ngIf="access_service.IsLoggedIn()"> <a  (click)="Logout()"  style="cursor: pointer;">Logout</a> </li>
+          <li *ngIf="access_service.isUser()"> <a routerLink="user" (click)="this.onResize()">Dashboard</a> </li>
+          <li *ngIf="access_service.isAdmin()"> <a routerLink="admin" (click)="this.onResize()">Dashboard(Admin)</a> </li>
+          <li *ngIf="!access_service.isAdmin()"> <a routerLink="support" (click)="this.onResize()">Support</a> </li>
+          <li *ngIf="!access_service.isLoggedIn()"> <a routerLink="about" (click)="this.onResize()">About</a> </li>
+          <li *ngIf="!access_service.isLoggedIn()"> <a routerLink="login" (click)="this.onResize()">Login</a> </li>
+          <li *ngIf="access_service.isLoggedIn()"> <a  (click)="Logout()"  style="cursor: pointer;">Logout</a> </li>
         </ul>
       </div>
     </nav>
   </header>
-  <div class="loader" id="loader" *ngIf="loaderservice.GetSampleLoader()"></div>
+  <div class="loader" id="loader" *ngIf="loaderservice.getLoader()"></div>
 </div>
 
 

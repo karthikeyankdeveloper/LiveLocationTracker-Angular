@@ -15,7 +15,7 @@ export class UserBuyComponent {
   private getAllKitSubscription:any;
 
   constructor(private loaderService:LoaderService,private dbService:DBService){
-    this.loaderService.SetUserLoading(true);
+    this.loaderService.setUserLoader(true);
 
     this.getAllKitSubscription = dbService.GetAllKit().subscribe((data)=>{
       if(data!=null){
@@ -33,7 +33,7 @@ export class UserBuyComponent {
 
 
   private makeViewStopLoading():void{
-    this.loaderService.SetUserLoading(false);
+    this.loaderService.setUserLoader(false);
     if(!this.View){
       this.View=true;
     }

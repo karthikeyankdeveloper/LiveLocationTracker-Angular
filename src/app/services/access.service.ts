@@ -1,34 +1,42 @@
 import { Injectable } from '@angular/core';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccessService {
 
-  private UserDatas:any;
+  private userData:any;
 
-
-  public LoadData(load_params:any){
-    this.UserDatas = load_params;
+  public loadData(load_params:any):void{
+    this.userData = load_params;
   }
 
-  public GetData(){
-    return this.UserDatas;
+  public getData():any{
+    return this.userData;
   }
 
-
-  public IsLoggedIn():boolean{
-    if(this.UserDatas==null){
+  public isLoggedIn():boolean{
+    if(this.userData==null){
       return false;
     }
-
     return true;
   }
 
+  public isAdmin():boolean{
+    if(this.userData!=null){
+      if(this.userData["role"] == "admin"){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    return false;
+  }
 
-  public IsAdmin():boolean{
-    if(this.UserDatas!=null){
-      if(this.UserDatas["role"] == "admin"){
+  public isUser():boolean{
+    if(this.userData!=null){
+      if(this.userData["role"] == "user"){
         return true;
       }else{
         return false;
@@ -38,32 +46,18 @@ export class AccessService {
     return false;
   }
 
-
-  public IsUser():boolean{
-    if(this.UserDatas!=null){
-      if(this.UserDatas["role"] == "user"){
-        return true;
-      }else{
-        return false;
-      }
-    }
-
-    return false;
+  public getEmail():string{
+    return (this.userData.email+"");
   }
 
-  public GetEmail(){
-    return (this.UserDatas.email+"");
+  public getName():string{
+    return (this.userData.name+"");
   }
 
-  public GetName(){
-    return (this.UserDatas.name+"");
-  }
-
-
-  public Logout(){
-    console.log("session logout");
+  public logout():void{
+    LoggerService.log("User has been logged out.");
     localStorage.clear();
-    this.UserDatas = null;
+    this.userData = null;
   }
 
 }

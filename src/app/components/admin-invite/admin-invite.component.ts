@@ -41,7 +41,7 @@ export class AdminInviteComponent {
   public AddAdmin(){
 
     this.disable_button = true;
-    this.loader.SetSampleLoader(true);
+    this.loader.setLoader(true);
 
     var name = this.InviteForm.controls['name'].value;
     var email = this.InviteForm.controls['email'].value.toLowerCase();
@@ -50,13 +50,13 @@ export class AdminInviteComponent {
     if(name==""||name==null||email==""||email==null){
       alert("Invalid Data");
       this.disable_button = false;
-      this.loader.SetSampleLoader(false);
+      this.loader.setLoader(false);
     }else{
 
       var data = {
         name:name,
         email:email,
-        password:this.crypto.Encryption("123*Axyz"),
+        password:this.crypto.encryption("123*Axyz"),
         role:"admin",
         block:false
       }
@@ -73,7 +73,7 @@ export class AdminInviteComponent {
             }
 
             this.disable_button = false;
-            this.loader.SetSampleLoader(false);
+            this.loader.setLoader(false);
 
           });
 
@@ -82,7 +82,7 @@ export class AdminInviteComponent {
         }else{
           alert("Email already exists")
           this.disable_button = false;
-          this.loader.SetSampleLoader(false);
+          this.loader.setLoader(false);
         }
       })
 

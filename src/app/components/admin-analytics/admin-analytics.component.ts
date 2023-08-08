@@ -20,11 +20,11 @@ export class AdminAnalyticsComponent {
 
   constructor(private dbservice:DBService,private loader:LoaderService){
 
-    loader.SetSampleLoader(true);
+    loader.setLoader(true);
 
     dbservice.GetAllUserData().subscribe((data)=>{
 
-      loader.SetSampleLoader(false);
+      loader.setLoader(false);
 
       for(let dbvalue of Object.values(data)){
 

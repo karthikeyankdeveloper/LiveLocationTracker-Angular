@@ -27,7 +27,7 @@ export class UserProductComponent {
 
   constructor(private builder: FormBuilder, private loaderService: LoaderService, private route: ActivatedRoute, private router: Router, private dbService: DBService, private accessService: AccessService) {
 
-    loaderService.SetUserLoading(true);
+    loaderService.setUserLoader(true);
 
     this.route.queryParamMap.subscribe((id) => {
       var idref = id.get("id");
@@ -39,7 +39,7 @@ export class UserProductComponent {
           if (kitdata != null) {
             this.KitData = kitdata;
 
-            this.getUserSubscription = this.dbService.GetUser(accessService.GetEmail()).subscribe((userdata) => {
+            this.getUserSubscription = this.dbService.GetUser(accessService.getEmail()).subscribe((userdata) => {
               this.UserData = userdata;
               this.makeViewStopLoading();
             });
@@ -71,7 +71,7 @@ export class UserProductComponent {
   protected availabilityBtn(): void {
     if (this.UIDForm.valid) {
       var uid_input = (this.UIDForm.controls['uid'].value + "").toLowerCase();
-      this.loaderService.SetUserLoading(true);
+      this.loaderService.setUserLoader(true);
       this.getMapKitSubscription1 = this.dbService.MapFetch(uid_input).subscribe((mapdata) => {
         this.enable_message = true;
         if (mapdata != null) {
@@ -89,7 +89,7 @@ export class UserProductComponent {
       var uid_input = (this.UIDForm.controls['uid'].value + "").toLowerCase();
 
       if (this.UserData.address != null && this.UserData.address != '' && this.UserData.pincode != null && this.UserData.pincode != '' && this.UserData.phone != null && this.UserData.phone != '') {
-        this.loaderService.SetUserLoading(true);
+        this.loaderService.setUserLoader(true);
         this.getMapKitSubscription2 = this.dbService.MapFetch(uid_input).subscribe((mapdata) => {
           if (mapdata != null) {
             alert("UID Not Available");
@@ -208,7 +208,7 @@ export class UserProductComponent {
 
 
   private makeViewStopLoading(): void {
-    this.loaderService.SetUserLoading(false);
+    this.loaderService.setUserLoader(false);
     if (!this.View) {
       this.View = true;
     }

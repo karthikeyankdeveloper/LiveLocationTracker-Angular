@@ -24,8 +24,8 @@ export class UserManageComponent {
   });
 
   private Initialize():void{
-    this.loaderService.SetUserLoading(true);
-    this.dbService.GetUser(this.accessService.GetEmail()).subscribe((user_response)=>{
+    this.loaderService.setUserLoader(true);
+    this.dbService.GetUser(this.accessService.getEmail()).subscribe((user_response)=>{
       var user_response_json = JSON.parse(JSON.stringify(user_response));
       if(user_response_json?.device!=null){
         var final_data:any = [];
@@ -58,7 +58,7 @@ export class UserManageComponent {
   protected UpdatePassword(){
     if(this.passwordForm.valid){
       this.TogglePass();
-      this.loaderService.SetUserLoading(true);
+      this.loaderService.setUserLoader(true);
       var password = this.passwordForm.controls['password'].value;
       var data = {
         password : password
@@ -75,7 +75,7 @@ export class UserManageComponent {
   }
 
   protected disable(uid:any){
-    this.loaderService.SetUserLoading(true);
+    this.loaderService.setUserLoader(true);
     var data = {
       enable:false
     }
@@ -84,7 +84,7 @@ export class UserManageComponent {
     });
   }
   protected enable(uid:any){
-    this.loaderService.SetUserLoading(true);
+    this.loaderService.setUserLoader(true);
     var data = {
       enable:true
     }
@@ -99,7 +99,7 @@ export class UserManageComponent {
   }
 
   private makeViewStopLoading(): void {
-    this.loaderService.SetUserLoading(false);
+    this.loaderService.setUserLoader(false);
     if (!this.View) {
       this.View = true;
     }

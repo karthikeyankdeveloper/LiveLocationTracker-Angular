@@ -22,12 +22,12 @@ export class UserOrdersComponent {
   }
 
   private Initialize(){
-    this.loaderService.SetUserLoading(true);
+    this.loaderService.setUserLoader(true);
 
     this.getTimeSubscription = this.dbService.getTimestamp().subscribe((response_time)=>{
       this.serverTime = response_time;
 
-      this.getUserSubscription = this.dbService.GetUser(this.accessService.GetEmail()).subscribe((user_data)=>{
+      this.getUserSubscription = this.dbService.GetUser(this.accessService.getEmail()).subscribe((user_data)=>{
         var user_data_json = JSON.parse(JSON.stringify(user_data));
 
         if(user_data_json?.order!=null){
@@ -66,9 +66,9 @@ export class UserOrdersComponent {
 
   protected cancelOrder(uid:any,orderid:any,kitid:any){
     if(confirm("Confirm Cancellation")){
-      this.loaderService.SetUserLoading(true);
+      this.loaderService.setUserLoader(true);
 
-      this.dbService.DeleteUserDevice(this.accessService.GetEmail(),uid).subscribe((response)=>{});
+      this.dbService.DeleteUserDevice(this.accessService.getEmail(),uid).subscribe((response)=>{});
       this.dbService.DeleteRemote(uid).subscribe((response)=>{});
       this.dbService.CancelOrder(orderid).subscribe((response)=>{});
 
@@ -86,7 +86,7 @@ export class UserOrdersComponent {
   }
 
   private makeViewStopLoading():void{
-    this.loaderService.SetUserLoading(false);
+    this.loaderService.setUserLoader(false);
     if(!this.View){
       this.View=true;
     }

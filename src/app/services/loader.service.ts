@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoaderService {
 
-  private sampleloader:boolean = false;
+  private loader:boolean = Environment.conditionFalse;
+  private userloader:boolean = Environment.conditionFalse;
 
-  constructor() {}
 
-  public GetSampleLoader(){
-    return this.sampleloader;
-  }
-  public SetSampleLoader(load:any){
-    this.sampleloader = load;
+  public getLoader():boolean{
+    return this.loader;
   }
 
-
-  // ----------For User-----------
-  private userloading:boolean = false;
-
-  public GetUserLoading(){
-    return this.userloading;
+  public setLoader(loader:any):void{
+    this.loader = loader;
   }
 
-  public SetUserLoading(load:any){
-    this.userloading = load;
+  public getUserLoader():boolean{
+    return this.userloader;
   }
 
-
-
+  public setUserLoader(userloader:any):void{
+    this.userloader = userloader;
+  }
 }

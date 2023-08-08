@@ -21,9 +21,9 @@ export class UserDashboardComponent {
 
   public constructor(private accessService:AccessService,private loaderService:LoaderService,private dbService:DBService){
 
-    this.loaderService.SetUserLoading(true);
+    this.loaderService.setUserLoader(true);
 
-    this.getUserSubscription = dbService.GetUser(accessService.GetEmail()).subscribe((data)=>{
+    this.getUserSubscription = dbService.GetUser(accessService.getEmail()).subscribe((data)=>{
       var datas = JSON.parse(JSON.stringify(data));
       Object.assign(datas,{"time":new Date(datas.timestamp)});
       this.UserData = datas;
@@ -51,7 +51,7 @@ export class UserDashboardComponent {
   }
 
   private makeViewStopLoading():void{
-    this.loaderService.SetUserLoading(false);
+    this.loaderService.setUserLoader(false);
     if(!this.View){
       this.View=true;
     }

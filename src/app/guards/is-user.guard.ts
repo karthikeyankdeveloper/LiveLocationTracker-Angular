@@ -12,7 +12,7 @@ export class IsUserGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
 
-    if(this.access_service.IsUser()==false){
+    if(this.access_service.isUser()==false){
       this.router.navigate(['']);
       return false;
     }

@@ -44,7 +44,7 @@ export class UpdatePasswordComponent {
   public Update(){
 
     this.disable_button = true;
-    this.loader.SetSampleLoader(true);
+    this.loader.setLoader(true);
 
     var email = (this.ForgotFormData.controls['email'].value+"").toLowerCase();
     var password = this.ForgotFormData.controls['password'].value;
@@ -54,7 +54,7 @@ export class UpdatePasswordComponent {
     if(email==""||email==null||password==""||password==null||repassword==""||repassword==null||password!=repassword){
       alert("Invalid Data !");
       this.disable_button = false;
-      this.loader.SetSampleLoader(false);
+      this.loader.setLoader(false);
     }else{
 
       this.dbservice.GetUser(email).subscribe((data)=>{
@@ -63,17 +63,17 @@ export class UpdatePasswordComponent {
           alert("No email found !");
 
           this.disable_button = false;
-          this.loader.SetSampleLoader(false);
+          this.loader.setLoader(false);
 
         }else{
 
-          this.dbservice.UpdatePassword(email,this.crypto.Encryption(password)).subscribe((datass)=>{
+          this.dbservice.UpdatePassword(email,this.crypto.encryption(password)).subscribe((datass)=>{
 
             alert("Password updated");
 
             this.router.navigate(['login'],{replaceUrl:true});
             this.disable_button = false;
-            this.loader.SetSampleLoader(false);
+            this.loader.setLoader(false);
 
           })
 

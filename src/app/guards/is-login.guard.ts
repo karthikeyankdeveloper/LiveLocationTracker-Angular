@@ -12,7 +12,7 @@ export class IsLoginGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
 
-    if(this.access_service.IsLoggedIn()==true){
+    if(this.access_service.isLoggedIn()==true){
 
       this.router.navigate(['']);
 

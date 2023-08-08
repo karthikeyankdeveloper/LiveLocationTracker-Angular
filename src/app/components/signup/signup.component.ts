@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit{
 
   public AddUser():void{
     this.disable_button = true;
-    this.loaderservice.SetSampleLoader(true);
+    this.loaderservice.setLoader(true);
 
     this.name = this.SignupFormData.controls['name'].value;
     this.email = (this.SignupFormData.controls['email'].value+"").toLowerCase();
@@ -55,13 +55,13 @@ export class SignupComponent implements OnInit{
     if(this.name==null||this.name==""||this.email==null||this.email==""||this.password==null||this.password==""||this.repassword==null||this.repassword==""){
       alert("Wrong Data,Please fill all Field");
       this.disable_button = false;
-      this.loaderservice.SetSampleLoader(false);
+      this.loaderservice.setLoader(false);
     }else{
 
       var data = {
         name:this.name,
         email:this.email,
-        password: this.crypto.Encryption(this.password),
+        password: this.crypto.encryption(this.password),
         role:"user",
         block:false,
         timestamp:{
@@ -73,7 +73,7 @@ export class SignupComponent implements OnInit{
         if(getdata==null){
           this.dbservice.AddUser(data).subscribe((adddata)=>{
             this.disable_button = false;
-            this.loaderservice.SetSampleLoader(false);
+            this.loaderservice.setLoader(false);
             if(adddata!=null){
               alert("Register success");
               this.router.navigate(['login'],{replaceUrl:true})
@@ -86,7 +86,7 @@ export class SignupComponent implements OnInit{
             this.router.navigate(['login'],{replaceUrl:true});
           }
           this.disable_button = false;
-          this.loaderservice.SetSampleLoader(false);
+          this.loaderservice.setLoader(false);
         }
       });
 

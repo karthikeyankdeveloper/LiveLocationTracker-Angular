@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   public Logout():void{
     if(confirm("Confirm Logout")){
-      this.access_service.Logout();
+      this.access_service.logout();
       this.router.navigate([''],{replaceUrl:true});
     }
 

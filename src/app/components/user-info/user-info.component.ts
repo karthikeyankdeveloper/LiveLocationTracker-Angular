@@ -18,9 +18,9 @@ export class UserInfoComponent{
   protected view:boolean = false;
 
   public constructor(public accessService:AccessService,private dbService:DBService,private loderService:LoaderService,private  builder:FormBuilder){
-    loderService.SetUserLoading(true);
+    loderService.setUserLoader(true);
 
-    this.getUserSubscription = dbService.GetUser(accessService.GetEmail()).subscribe((data)=>{
+    this.getUserSubscription = dbService.GetUser(accessService.getEmail()).subscribe((data)=>{
       var datas = JSON.parse(JSON.stringify(data));
       Object.assign(datas,{"time":new Date(datas.timestamp)});
       this.UserData = datas;
@@ -44,15 +44,15 @@ export class UserInfoComponent{
 
 
   protected Update(){
-    this.loderService.SetUserLoading(true);
-    this.updateProfileSubscription = this.dbService.UpdateProfile(this.accessService.GetEmail(),this.PersonalInfo.value).subscribe((dd)=>{
+    this.loderService.setUserLoader(true);
+    this.updateProfileSubscription = this.dbService.UpdateProfile(this.accessService.getEmail(),this.PersonalInfo.value).subscribe((dd)=>{
       this.makeViewStopLoading();
       alert("Update Success");
     });
   }
 
   private makeViewStopLoading():void{
-    this.loderService.SetUserLoading(false);
+    this.loderService.setUserLoader(false);
     if(!this.view){
       this.view=true;
     }
