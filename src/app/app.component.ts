@@ -8,7 +8,7 @@ Reviewed at: --
 */
 import { Component } from '@angular/core';
 import { AccessService } from './services/access.service';
-import { DBService } from './services/db.service';
+import { DatabaseService } from './services/database.service';
 
 @Component({
   selector: 'app-root',
@@ -17,21 +17,22 @@ import { DBService } from './services/db.service';
 })
 export class AppComponent{
 
-  public isupdate:any = false;
+  public isUpdate:any = false;
 
-  constructor(private db:DBService,private access_service:AccessService){
-    db.DBcheck().subscribe((data)=>{
-      this.isupdate = data;
+  constructor(private accessService:AccessService,private databaseService:DatabaseService){
+
+    this.databaseService.checkDatabase().subscribe((data)=>{
+      this.isUpdate = data;
     });
 
     if(localStorage.getItem("llt-date")!=((new Date()).getDate()+"")){
       console.log("session expired");
-      access_service.Logout();
+      this.accessService.Logout();
     }else{
       console.log("session available");
       var json = JSON.parse(localStorage.getItem("llt-userdata")+"");
       if(json!=null || json!=""){
-        access_service.LoadData(json);
+        this.accessService.LoadData(json);
       }
     }
 
