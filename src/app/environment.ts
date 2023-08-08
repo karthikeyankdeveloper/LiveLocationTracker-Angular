@@ -6,9 +6,9 @@ import { Injectable } from "@angular/core";
 
 export class Environment{
 
-  private static databseUrl = "https://check-firebase-b36c8-default-rtdb.firebaseio.com/";
+  private static databaseUrl:String = "https://check-firebase-b36c8-default-rtdb.firebaseio.com/";
 
-  protected static getUrl():String{
-    return this.databseUrl;
+  public static getUrl():String{
+    return this.databaseUrl;
   }
 }

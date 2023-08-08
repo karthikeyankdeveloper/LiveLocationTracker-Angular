@@ -9,6 +9,7 @@ Reviewed at: --
 import { Component } from '@angular/core';
 import { AccessService } from './services/access.service';
 import { DatabaseService } from './services/database.service';
+import { LoggerService } from './services/logger.service';
 
 @Component({
   selector: 'app-root',
@@ -17,19 +18,19 @@ import { DatabaseService } from './services/database.service';
 })
 export class AppComponent{
 
-  public isUpdate:any = false;
+  protected isUpdate:any = false;
 
-  constructor(private accessService:AccessService,private databaseService:DatabaseService){
+  constructor(private databaseService:DatabaseService,private accessService:AccessService){
 
     this.databaseService.checkDatabase().subscribe((data)=>{
       this.isUpdate = data;
     });
 
     if(localStorage.getItem("llt-date")!=((new Date()).getDate()+"")){
-      console.log("session expired");
+      LoggerService.info("Session expired");
       this.accessService.Logout();
     }else{
-      console.log("session available");
+      LoggerService.info("Session available");
       var json = JSON.parse(localStorage.getItem("llt-userdata")+"");
       if(json!=null || json!=""){
         this.accessService.LoadData(json);

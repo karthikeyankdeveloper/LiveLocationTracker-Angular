@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Environment } from '../environment';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseService extends Environment{
+export class DatabaseService {
 
-  private url = DatabaseService.getUrl();
+  private url = Environment.getUrl();
 
-  constructor(private httpClient: HttpClient) {super();}
+  constructor(private httpClient: HttpClient) {}
 
-  public checkDatabase() {
+  public checkDatabase():Observable<any>{
     return this.httpClient.get(this.url + "update.json");
   }
 
