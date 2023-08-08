@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DBService } from 'src/app/services/db.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
@@ -9,25 +9,25 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class AdminAnalyticsComponent {
 
-  public TotalUser = 0;
-  public TotalBlockeduser = 0;
-  public TotalAdmin = 0;
-  public TotalBlockedadmin = 0;
-  public TodayOrder = 0;
-  public TotalOrder = 0;
-  public TotalPendingOrder = 0;
-  public TotalDoneOrder = 0;
+  protected TotalUser:number = 0;
+  protected TotalBlockeduser:number = 0;
+  protected TotalAdmin:number = 0;
+  protected TotalBlockedadmin:number = 0;
+  protected TodayOrder:number = 0;
+  protected TotalOrder:number = 0;
+  protected TotalPendingOrder:number = 0;
+  protected TotalDoneOrder:number = 0;
 
-  constructor(private dbservice:DBService,private loader:LoaderService){
+  private getAllUserDataSubscription:any;
+  private getAllOrderSubscription:any;
 
-    loader.setLoader(true);
+  constructor(private databaseService:DatabaseService,private loaderService:LoaderService){
 
-    dbservice.GetAllUserData().subscribe((data)=>{
+    this.loaderService.setLoader(true);
 
-      loader.setLoader(false);
-
+    this.getAllUserDataSubscription = this.databaseService.GetAllUserData().subscribe((data)=>{
+      this.loaderService.setLoader(false);
       for(let dbvalue of Object.values(data)){
-
         if(dbvalue.role=="admin" && dbvalue.block==false){
           this.TotalAdmin++;
         }
@@ -44,22 +44,17 @@ export class AdminAnalyticsComponent {
 
     });
 
+    let todaydateinstance = new Date();
+    let year = todaydateinstance.getFullYear().toString();
+    let month = (todaydateinstance.getMonth()+1).toString().padStart(2,"0");
+    let date = todaydateinstance.getDate().toString().padStart(2,"0");
+    let todaydate = date+month+year;
 
-
-    var todaydateinstance = new Date();
-    var year = todaydateinstance.getFullYear().toString();
-    var month = (todaydateinstance.getMonth()+1).toString().padStart(2,"0");
-    var date = todaydateinstance.getDate().toString().padStart(2,"0");
-    var todaydate = date+month+year;
-
-    dbservice.GetAllOrder().subscribe((data)=>{
-
+    this.getAllOrderSubscription = this.databaseService.GetAllOrder().subscribe((data)=>{
       var values = Object.values(data);
-
       this.TotalOrder = values.length;
 
       for(let dbval of values){
-
         var remotedateinstance = new Date(dbval?.["timestamp"]);
         var year = remotedateinstance.getFullYear().toString();
         var month = (remotedateinstance.getMonth()+1).toString().padStart(2,"0");
@@ -80,9 +75,15 @@ export class AdminAnalyticsComponent {
 
     });
 
+  }
 
-
-
+  ngOnDestroy(){
+    if(this.getAllOrderSubscription){
+      this.getAllOrderSubscription.unsubscribe();
+    }
+    if(this.getAllUserDataSubscription){
+      this.getAllUserDataSubscription.unsubscribe();
+    }
   }
 
 }

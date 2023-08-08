@@ -39,6 +39,8 @@ import { IsUserGuard } from './guards/is-user.guard';
 import { CryptographyService } from './services/cryptography.service';
 import { RouterModule } from '@angular/router';
 import { Environment } from './environment';
+import { DatabaseService } from './services/database.service';
+import { LoggerService } from './services/logger.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,7 @@ import { Environment } from './environment';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccessService,DBService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,Environment],
+  providers: [AccessService,DBService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,Environment,DatabaseService,LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
