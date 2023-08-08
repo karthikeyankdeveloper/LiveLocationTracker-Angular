@@ -1,4 +1,12 @@
-import { Component, HostListener } from '@angular/core';
+/*
+Title: Live Location Tracker
+Author: Karthikeyan
+Created at: 06/03/2023
+Updated at: 08/08/2023
+Reviewed by: --
+Reviewed at: --
+*/
+import { Component } from '@angular/core';
 import { AccessService } from './services/access.service';
 import { DBService } from './services/db.service';
 

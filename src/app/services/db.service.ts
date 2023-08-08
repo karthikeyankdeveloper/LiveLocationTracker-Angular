@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Properties } from '../properties';
+import { Environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DBService extends Properties{
+
+export class DBService extends Environment{
 
   private url = DBService.getUrl();
 
@@ -15,7 +16,7 @@ export class DBService extends Properties{
     return this.httpclient.get(this.url + "update.json");
   }
 
-  public GetTimestamp(){
+  public getTimestamp(){
     return this.httpclient.put(this.url+"time.json",{".sv":"timestamp"});
   }
 

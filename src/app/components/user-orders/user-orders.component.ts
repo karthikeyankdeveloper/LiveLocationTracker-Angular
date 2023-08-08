@@ -24,7 +24,7 @@ export class UserOrdersComponent {
   private Initialize(){
     this.loaderService.SetUserLoading(true);
 
-    this.getTimeSubscription = this.dbService.GetTimestamp().subscribe((response_time)=>{
+    this.getTimeSubscription = this.dbService.getTimestamp().subscribe((response_time)=>{
       this.serverTime = response_time;
 
       this.getUserSubscription = this.dbService.GetUser(this.accessService.GetEmail()).subscribe((user_data)=>{
