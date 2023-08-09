@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Environment } from 'src/app/environment';
@@ -10,7 +10,7 @@ import { LoggerService } from 'src/app/services/logger.service';
   templateUrl: './admin-viewkit.component.html',
   styleUrls: ['./admin-viewkit.component.css']
 })
-export class AdminViewkitComponent {
+export class AdminViewkitComponent implements OnInit,OnDestroy{
 
   private kitId:any;
   protected finalData:any;

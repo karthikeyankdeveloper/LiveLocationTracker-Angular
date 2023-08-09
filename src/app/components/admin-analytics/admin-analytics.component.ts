@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -7,7 +7,7 @@ import { LoaderService } from 'src/app/services/loader.service';
   templateUrl: './admin-analytics.component.html',
   styleUrls: ['./admin-analytics.component.css']
 })
-export class AdminAnalyticsComponent {
+export class AdminAnalyticsComponent implements OnDestroy{
 
   protected totalUser:number = 0;
   protected totalBlockeduser:number = 0;

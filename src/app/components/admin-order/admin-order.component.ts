@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoggerService } from 'src/app/services/logger.service';
@@ -8,7 +8,7 @@ import { LoggerService } from 'src/app/services/logger.service';
   templateUrl: './admin-order.component.html',
   styleUrls: ['./admin-order.component.css']
 })
-export class AdminOrderComponent {
+export class AdminOrderComponent implements OnDestroy{
 
   protected finalTable: any;
   protected all:any;

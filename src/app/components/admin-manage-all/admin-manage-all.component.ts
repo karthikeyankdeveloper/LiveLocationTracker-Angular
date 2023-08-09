@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -9,7 +9,7 @@ import { LoggerService } from 'src/app/services/logger.service';
   templateUrl: './admin-manage-all.component.html',
   styleUrls: ['./admin-manage-all.component.css']
 })
-export class AdminManageAllComponent implements OnInit{
+export class AdminManageAllComponent implements OnInit,OnDestroy{
 
   protected isuser:boolean = Environment.conditionTrue;
   protected isactive:boolean = Environment.conditionTrue;

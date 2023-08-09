@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -9,7 +9,7 @@ import { LoggerService } from 'src/app/services/logger.service';
   templateUrl: './admin-kit.component.html',
   styleUrls: ['./admin-kit.component.css']
 })
-export class AdminKitComponent {
+export class AdminKitComponent implements OnDestroy {
 
   protected finalKitList: any;
   protected noDataPrevent:boolean = Environment.conditionFalse;
