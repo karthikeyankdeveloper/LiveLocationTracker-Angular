@@ -29,12 +29,12 @@ export class UserManageComponent {
 
   private initialize():void{
     this.loaderService.setUserLoader(true);
-    this.getUserSubscription = this.databaseService.GetUser(this.accessService.getEmail()).subscribe((user_response)=>{
+    this.getUserSubscription = this.databaseService.getUser(this.accessService.getEmail()).subscribe((user_response)=>{
       var userResponseJson = JSON.parse(JSON.stringify(user_response));
       if(userResponseJson?.device!=null){
         let finalData:any = [];
         for(let device of Object.values(userResponseJson.device)){
-          this.databaseService.MapFetch(device).subscribe((response)=>{
+          this.databaseService.mapFetch(device).subscribe((response)=>{
             finalData.push(response);
           });
         }
@@ -65,7 +65,7 @@ export class UserManageComponent {
       this.loaderService.setUserLoader(true);
       let password = this.passwordForm.controls['password'].value;
       const data = {password : password};
-      this.databaseService.UpdateRemote(this.tempId,data).subscribe((response)=>{
+      this.databaseService.updateRemote(this.tempId,data).subscribe((response)=>{
         LoggerService.info('Device Password updated');
         this.initialize();
       });
@@ -77,7 +77,7 @@ export class UserManageComponent {
   protected disable(uid:any):void{
     this.loaderService.setUserLoader(true);
     var data = {enable:false};
-    this.databaseService.UpdateRemote(uid,data).subscribe((response)=>{
+    this.databaseService.updateRemote(uid,data).subscribe((response)=>{
       this.initialize();
       LoggerService.info("Device disabled");
     });
@@ -86,7 +86,7 @@ export class UserManageComponent {
   protected enable(uid:any):void{
     this.loaderService.setUserLoader(true);
     var data = {enable:true};
-    this.databaseService.UpdateRemote(uid,data).subscribe((response)=>{
+    this.databaseService.updateRemote(uid,data).subscribe((response)=>{
       this.initialize();
       LoggerService.info("Device enabled");
     });

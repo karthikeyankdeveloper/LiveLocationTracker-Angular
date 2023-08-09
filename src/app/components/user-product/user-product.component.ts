@@ -34,10 +34,10 @@ export class UserProductComponent implements OnDestroy{
       if (idref == null || idref == "") {
         this.router.navigate(["/user/buy"], { replaceUrl: Environment.conditionTrue });
       } else {
-        this.getKitSubscription = this.databaseService.GetKit(idref).subscribe((kitDataResponse) => {
+        this.getKitSubscription = this.databaseService.getKit(idref).subscribe((kitDataResponse) => {
           if (kitDataResponse != null) {
             this.kitData = kitDataResponse;
-            this.getUserSubscription = this.databaseService.GetUser(this.accessService.getEmail()).subscribe((userDataResponse) => {
+            this.getUserSubscription = this.databaseService.getUser(this.accessService.getEmail()).subscribe((userDataResponse) => {
               this.userData = userDataResponse;
               this.makeViewStopLoading();
             });
@@ -66,7 +66,7 @@ export class UserProductComponent implements OnDestroy{
     if (this.uidForm.valid) {
       let uidInput = (this.uidForm.controls['uid'].value + "").toLowerCase();
       this.loaderService.setUserLoader(true);
-      this.getMapKitSubscription1 = this.databaseService.MapFetch(uidInput).subscribe((mapdata) => {
+      this.getMapKitSubscription1 = this.databaseService.mapFetch(uidInput).subscribe((mapdata) => {
         this.enableMessage = true;
         if (mapdata != null) {
           this.enableAvail = false;
@@ -83,7 +83,7 @@ export class UserProductComponent implements OnDestroy{
       let uidInput = (this.uidForm.controls['uid'].value + "").toLowerCase();
       if (this.userData.address != null && this.userData.address != '' && this.userData.pincode != null && this.userData.pincode != '' && this.userData.phone != null && this.userData.phone != '') {
         this.loaderService.setUserLoader(true);
-        this.getMapKitSubscription2 = this.databaseService.MapFetch(uidInput).subscribe((mapdata) => {
+        this.getMapKitSubscription2 = this.databaseService.mapFetch(uidInput).subscribe((mapdata) => {
           if (mapdata != null) {
             alert("UID Not Available");
             LoggerService.info("uid not avaialble");
@@ -138,10 +138,10 @@ export class UserProductComponent implements OnDestroy{
       paymentid: paymentid,
     }
 
-    this.databaseService.GetKit(this.kitData.id).subscribe((stock_check) => {
+    this.databaseService.getKit(this.kitData.id).subscribe((stock_check) => {
       var temp_stock_check = JSON.parse(JSON.stringify(stock_check));
       if (temp_stock_check.stock > 10) {
-        this.databaseService.AddOrder(orderdata).subscribe((orderresponse) => {
+        this.databaseService.addOrder(orderdata).subscribe((orderresponse) => {
           var orderresponse_json = JSON.parse(JSON.stringify(orderresponse));
           var order_detail = {[orderresponse_json.name]: orderresponse_json.name}
           var device_detail = {[uid]: uid}
@@ -160,16 +160,16 @@ export class UserProductComponent implements OnDestroy{
             }
           }
 
-          this.databaseService.UserAddOrder(this.userData.email, order_detail).subscribe((response) => {});
+          this.databaseService.userAddOrder(this.userData.email, order_detail).subscribe((response) => {});
 
-          this.databaseService.UserAddDevice(this.userData.email, device_detail).subscribe((response) => {});
+          this.databaseService.userAddDevice(this.userData.email, device_detail).subscribe((response) => {});
 
-          this.databaseService.AddRemoteKit(update_remote).subscribe((response) => {});
+          this.databaseService.addRemoteKit(update_remote).subscribe((response) => {});
 
-          this.databaseService.GetKit(this.kitData.id).subscribe((kit_data) => {
+          this.databaseService.getKit(this.kitData.id).subscribe((kit_data) => {
             var temp = JSON.parse(JSON.stringify(kit_data));
             var stock = {stock: --temp.stock};
-            this.databaseService.UpdateKit(this.kitData.id, stock).subscribe((response) => {
+            this.databaseService.updateKit(this.kitData.id, stock).subscribe((response) => {
               this.makeViewStopLoading();
               LoggerService.info("Order placed successfully");
               this.paymentSuccessView = true;

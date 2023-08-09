@@ -29,12 +29,12 @@ export class UserOrdersComponent implements OnDestroy{
     this.getTimeSubscription = this.databaseService.getTimestamp().subscribe((responseTime)=>{
       this.serverTime = responseTime;
 
-      this.getUserSubscription = this.databaseService.GetUser(this.accessService.getEmail()).subscribe((userData)=>{
+      this.getUserSubscription = this.databaseService.getUser(this.accessService.getEmail()).subscribe((userData)=>{
         let userDataJson = JSON.parse(JSON.stringify(userData));
         if(userDataJson?.order!=null){
           let final_order_data:any = [];
           for(let values of Object.values(userDataJson.order)){
-            this.getOrderSubscription = this.databaseService.GetOrder(values+"").subscribe((response)=>{
+            this.getOrderSubscription = this.databaseService.getOrder(values+"").subscribe((response)=>{
               var response_modified = JSON.parse(JSON.stringify(response));
               const diffrence_time_Ms = this.serverTime-response_modified.timestamp;
               const twenty_four_fours_Ms = 24 * 60 * 60 * 1000;
@@ -69,14 +69,14 @@ export class UserOrdersComponent implements OnDestroy{
     if(confirm("Confirm Cancellation")){
       this.loaderService.setUserLoader(true);
 
-      this.databaseService.DeleteUserDevice(this.accessService.getEmail(),uid).subscribe((response)=>{});
-      this.databaseService.DeleteRemote(uid).subscribe((response)=>{ LoggerService.log("Device Deleted"); });
-      this.databaseService.CancelOrder(orderid).subscribe((response)=>{ LoggerService.log("Order Canceled"); });
+      this.databaseService.deleteUserDevice(this.accessService.getEmail(),uid).subscribe((response)=>{});
+      this.databaseService.deleteRemote(uid).subscribe((response)=>{ LoggerService.log("Device Deleted"); });
+      this.databaseService.cancelOrder(orderid).subscribe((response)=>{ LoggerService.log("Order Canceled"); });
 
-      this.databaseService.GetKit(kitid).subscribe((kitData) => {
+      this.databaseService.getKit(kitid).subscribe((kitData) => {
         var temp = JSON.parse(JSON.stringify(kitData));
         var stock = {stock: ++temp.stock};
-        this.databaseService.UpdateKit(kitid, stock).subscribe((response) => {
+        this.databaseService.updateKit(kitid, stock).subscribe((response) => {
           LoggerService.log("Stock Rollback Done");
           this.initialize();
         });

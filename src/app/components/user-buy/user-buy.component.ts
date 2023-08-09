@@ -16,7 +16,7 @@ export class UserBuyComponent implements OnDestroy {
 
   constructor(private loaderService:LoaderService,private databaseService:DatabaseService){
     this.loaderService.setUserLoader(true);
-    this.getAllKitSubscription = this.databaseService.GetAllKit().subscribe((data)=>{
+    this.getAllKitSubscription = this.databaseService.getAllKit().subscribe((data)=>{
       if(data!=null){
         let buyData = [];
         for(let temp of Object.values(data)){

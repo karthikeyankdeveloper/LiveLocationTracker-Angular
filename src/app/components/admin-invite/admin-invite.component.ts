@@ -54,9 +54,9 @@ export class AdminInviteComponent {
         role:"admin",
         block:false
       }
-      this.databaseService.GetUser(email).subscribe((getdata)=>{
+      this.databaseService.getUser(email).subscribe((getdata)=>{
         if(getdata==null){
-          this.databaseService.AddUser(data).subscribe((adddata)=>{
+          this.databaseService.addUser(data).subscribe((adddata)=>{
             if(adddata!=null){
               alert("Admin Created\nName : "+name+"\nEmail : "+email+"\nPassword : 123*Axyz");
               LoggerService.info(`Admin Created Successfully : ${email}`);

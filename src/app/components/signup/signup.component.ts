@@ -56,9 +56,9 @@ export class SignupComponent{
         }
       }
 
-      this.databaseService.GetUser(email).subscribe((getdata)=>{
+      this.databaseService.getUser(email).subscribe((getdata)=>{
         if(getdata==null){
-          this.databaseService.AddUser(data).subscribe((adddata)=>{
+          this.databaseService.addUser(data).subscribe((adddata)=>{
             this.disableButton = false;
             this.loaderService.setLoader(false);
             if(adddata!=null){

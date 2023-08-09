@@ -20,7 +20,7 @@ export class UserInfoComponent implements OnDestroy{
 
   constructor(private accessService:AccessService,private databaseService:DatabaseService,private loderService:LoaderService,private formBuilder:FormBuilder){
     this.loderService.setUserLoader(true);
-    this.getUserSubscription = databaseService.GetUser(this.accessService.getEmail()).subscribe((data)=>{
+    this.getUserSubscription = databaseService.getUser(this.accessService.getEmail()).subscribe((data)=>{
       var jsonData = JSON.parse(JSON.stringify(data));
       Object.assign(jsonData,{"time":new Date(jsonData.timestamp)});
       this.userData = jsonData;
@@ -43,7 +43,7 @@ export class UserInfoComponent implements OnDestroy{
 
   protected update():void{
     this.loderService.setUserLoader(true);
-    this.updateProfileSubscription = this.databaseService.UpdateProfile(this.accessService.getEmail(),this.personalInfo.value).subscribe((dd)=>{
+    this.updateProfileSubscription = this.databaseService.updateProfile(this.accessService.getEmail(),this.personalInfo.value).subscribe((dd)=>{
       this.makeViewStopLoading();
       alert("Update Success");
       LoggerService.info("Personal info updated");

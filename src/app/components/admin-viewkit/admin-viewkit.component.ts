@@ -41,7 +41,7 @@ export class AdminViewkitComponent implements OnInit,OnDestroy{
 
   private getKit(id:any):any{
     this.preventLoading = false;
-    this.getKitSubscription = this.databaseService.GetKit(id).subscribe((data)=>{
+    this.getKitSubscription = this.databaseService.getKit(id).subscribe((data)=>{
       if(data==null){
         alert("No data Found!");
         this.router.navigate(['admin/kit'],{replaceUrl:true});
@@ -65,7 +65,7 @@ export class AdminViewkitComponent implements OnInit,OnDestroy{
     }else{
       var datas = this.updateForm.value;
       this.preventLoading = false;
-      this.databaseService.UpdateKit(this.kitId,datas).subscribe((response)=>{
+      this.databaseService.updateKit(this.kitId,datas).subscribe((response)=>{
         LoggerService.info("Kit details Updated");
         this.getKit(this.kitId);
       });
@@ -76,7 +76,7 @@ export class AdminViewkitComponent implements OnInit,OnDestroy{
   protected deleteKit():void{
     if(confirm("Confirm Delete")){
       this.preventLoading=false;
-      this.databaseService.DeleteKit(this.kitId).subscribe((data)=>{
+      this.databaseService.deleteKit(this.kitId).subscribe((data)=>{
         alert("Deleted Successfully");
         LoggerService.info("Kit deleted successfully");
         this.router.navigate(['admin/kit'],{replaceUrl:Environment.conditionTrue});

@@ -21,7 +21,7 @@ export class UserDashboardComponent implements OnDestroy {
   constructor(private accessService:AccessService,private loaderService:LoaderService,private databaseService:DatabaseService){
     this.loaderService.setUserLoader(true);
 
-    this.getUserSubscription = this.databaseService.GetUser(this.accessService.getEmail()).subscribe((data)=>{
+    this.getUserSubscription = this.databaseService.getUser(this.accessService.getEmail()).subscribe((data)=>{
       var jsonData = JSON.parse(JSON.stringify(data));
       Object.assign(jsonData,{"time":new Date(jsonData.timestamp)});
       this.userData = jsonData;
@@ -32,7 +32,7 @@ export class UserDashboardComponent implements OnDestroy {
 
       if(jsonData.order!=null){
         var lastorderTemp = Object.keys(jsonData.order).reverse()[0];
-        this.getOrderSubscription = this.databaseService.GetOrder(lastorderTemp).subscribe((orderData)=>{
+        this.getOrderSubscription = this.databaseService.getOrder(lastorderTemp).subscribe((orderData)=>{
           var orderJson = JSON.parse(JSON.stringify(orderData));
           Object.assign(orderJson,{orderid:lastorderTemp,time:new Date(orderJson.timestamp)});
           this.lastOrder = orderJson;

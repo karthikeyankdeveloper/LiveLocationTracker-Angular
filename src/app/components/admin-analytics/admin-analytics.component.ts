@@ -24,7 +24,7 @@ export class AdminAnalyticsComponent implements OnDestroy{
   constructor(private databaseService:DatabaseService,private loaderService:LoaderService){
     this.loaderService.setLoader(true);
 
-    this.getAllUserDataSubscription = this.databaseService.GetAllUserData().subscribe((data)=>{
+    this.getAllUserDataSubscription = this.databaseService.getAllUserData().subscribe((data)=>{
       this.loaderService.setLoader(false);
       for(let dbvalue of Object.values(data)){
         if(dbvalue.role=="admin" && dbvalue.block==false){
@@ -49,7 +49,7 @@ export class AdminAnalyticsComponent implements OnDestroy{
     let date = todaydateinstance.getDate().toString().padStart(2,"0");
     let todaydate = date+month+year;
 
-    this.getAllOrderSubscription = this.databaseService.GetAllOrder().subscribe((data)=>{
+    this.getAllOrderSubscription = this.databaseService.getAllOrder().subscribe((data)=>{
       var values = Object.values(data);
       this.totalOrder = values.length;
 

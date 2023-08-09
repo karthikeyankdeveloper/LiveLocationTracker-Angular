@@ -52,7 +52,7 @@ export class AdminManageAllComponent implements OnInit,OnDestroy{
 
   private getAllUser():void{
     this.noDataPrevent = false;
-    this.getAllUserDataSubscription = this.databaseService.GetAllUserData().subscribe((data)=>{
+    this.getAllUserDataSubscription = this.databaseService.getAllUserData().subscribe((data)=>{
       this.noDataPrevent = true;
       var activeuser = [];
       var blockuser = [];
@@ -112,7 +112,7 @@ export class AdminManageAllComponent implements OnInit,OnDestroy{
   protected block(email:any,booleancondition:any):void{
     if(confirm("Confirm Your Action")){
       this.noDataPrevent = false;
-      this.databaseService.Block(email,!booleancondition).subscribe((data)=>{
+      this.databaseService.block(email,!booleancondition).subscribe((data)=>{
         LoggerService.info(`${email} user block status changed to ${!booleancondition}`);
         this.getAllUser();
       });

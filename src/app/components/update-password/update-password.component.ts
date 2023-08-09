@@ -48,14 +48,14 @@ export class UpdatePasswordComponent {
       this.disableButton = false;
       this.loaderService.setLoader(false);
     }else{
-      this.databaseService.GetUser(email).subscribe((data)=>{
+      this.databaseService.getUser(email).subscribe((data)=>{
         if(data==null){
           alert("No email found !");
           LoggerService.info(`No email found ${email}`);
           this.disableButton = false;
           this.loaderService.setLoader(false);
         }else{
-          this.databaseService.UpdatePassword(email,this.cryptographyService.encryption(password)).subscribe((response)=>{
+          this.databaseService.updatePassword(email,this.cryptographyService.encryption(password)).subscribe((response)=>{
             alert("Password updated");
             LoggerService.info(`Password updated for this email : ${email}`);
             this.router.navigate(['login'],{replaceUrl:true});

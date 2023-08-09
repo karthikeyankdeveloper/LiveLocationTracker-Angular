@@ -32,7 +32,7 @@ export class MapComponent implements OnDestroy{
 
   protected fetchData():void{
     this.loader = true;
-    this.mapFetchSubscription = this.databaseService.MapFetch(this.remoteId).subscribe((data) => {
+    this.mapFetchSubscription = this.databaseService.mapFetch(this.remoteId).subscribe((data) => {
       if (data == null) {
         alert("No Data Found");
         LoggerService.warn("Unable to fetch data, UID Not Found");

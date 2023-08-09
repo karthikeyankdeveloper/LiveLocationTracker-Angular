@@ -22,7 +22,7 @@ export class AdminKitComponent implements OnDestroy {
 
   private getAllKit():void {
     this.noDataPrevent = false;
-    this.getAllKitSubscription = this.databaseService.GetAllKit().subscribe((data) => {
+    this.getAllKitSubscription = this.databaseService.getAllKit().subscribe((data) => {
       this.noDataPrevent = true;
       this.finalKitList = Object.values(data);
     });
@@ -50,12 +50,12 @@ export class AdminKitComponent implements OnDestroy {
     } else {
       this.toggleView();
       this.noDataPrevent = false;
-      this.databaseService.GetKit(values.id).subscribe((data) => {
+      this.databaseService.getKit(values.id).subscribe((data) => {
         if (data == null) {
           var data1 = {
             [values.id + ""]: values
           };
-          this.databaseService.AddNewKit(data1).subscribe((response) => {
+          this.databaseService.addNewKit(data1).subscribe((response) => {
             LoggerService.info("New Kit added");
             this.getAllKit();
           });

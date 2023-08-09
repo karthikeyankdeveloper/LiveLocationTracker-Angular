@@ -32,7 +32,7 @@ export class AdminOrderComponent implements OnDestroy{
 
   private getAllOrder():void{
     this.noDataPrevent = false;
-    this.getAllOrderSubscription = this.databaseService.GetAllOrder().subscribe((data) => {
+    this.getAllOrderSubscription = this.databaseService.getAllOrder().subscribe((data) => {
       this.noDataPrevent = true;
       this.all = this.convertKeyAddReverse(data);
       let orderplaced_temp = [];
@@ -113,7 +113,7 @@ export class AdminOrderComponent implements OnDestroy{
     this.viewModel = true;
     this.viewLoading = false;
 
-    this.getOrderSubscription = this.databaseService.GetOrder(key).subscribe((data)=>{
+    this.getOrderSubscription = this.databaseService.getOrder(key).subscribe((data)=>{
       setTimeout(()=>{
         this.viewLoading = true;
       },500);
@@ -127,7 +127,7 @@ export class AdminOrderComponent implements OnDestroy{
     if(confirm("Confirm Your Action")){
       this.falseView();
       this.noDataPrevent = false;
-      this.databaseService.ToggleOrder(key,condition).subscribe((data)=>{
+      this.databaseService.toggleOrder(key,condition).subscribe((data)=>{
         this.getAllOrder();
         LoggerService.info(`${key} order status changed to ${condition}`);
       });

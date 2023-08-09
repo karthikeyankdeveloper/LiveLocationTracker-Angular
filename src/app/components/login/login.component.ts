@@ -41,7 +41,7 @@ export class LoginComponent{
       this.disableButton = false;
       this.loaderService.setLoader(false);
     }else{
-      this.databaseService.GetUser(email).subscribe((adddata)=>{
+      this.databaseService.getUser(email).subscribe((adddata)=>{
         if(adddata==null){
           this.loaderService.setLoader(false);
           this.disableButton = false;
