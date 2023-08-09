@@ -13,11 +13,10 @@
         <img [src]="finalData?.img" alt="">
       </div>
       <div class="content">
-
-        <h4>{{finalData.name}} ({{finalData.id}})</h4>
-        <h5>{{finalData.desc | slice:0:35}} . . .</h5>
-        <h4>{{finalData.discountprice|currency:'INR'}}  <span style="color: red;">{{finalData.actualprice|currency:'INR'}}</span></h4>
-        <h5 style="color: green;">Stock : {{finalData.stock}}</h5>
+        <h4>{{finalData?.name}} ({{finalData?.id}})</h4>
+        <h5>{{finalData?.desc | slice:0:35}} . . .</h5>
+        <h4>{{finalData?.discountprice|currency:'INR'}}  <span style="color: red;">{{finalData?.actualprice|currency:'INR'}}</span></h4>
+        <h5 style="color: green;">Stock : {{finalData?.stock}}</h5>
       </div>
     </div>
     <button (click)="deleteKit()">Delete</button>

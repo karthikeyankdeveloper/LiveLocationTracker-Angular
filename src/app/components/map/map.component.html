@@ -3,11 +3,9 @@
 </div>
 
 <div class="kitdetail">
-
   <div class="left">
-      <p>Last Response: {{timestamp|date:'MMMM d, y, h:mm:ss a'}} &nbsp; <button (click)="FetchData()"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button></p>
+      <p>Last Response: {{timestamp|date:'MMMM d, y, h:mm:ss a'}} &nbsp; <button (click)="fetchData()"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button></p>
   </div>
-
   <div class="right">
     <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
     <p><i class="fa-solid fa-plus"></i> Kit Detail</p>
@@ -15,10 +13,6 @@
 
 </div>
 
-
-
-<div id="map">
-
-</div>
+<div id="map"></div>
 
 

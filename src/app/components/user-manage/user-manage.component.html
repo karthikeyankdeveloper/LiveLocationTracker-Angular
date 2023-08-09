@@ -1,12 +1,12 @@
-<div class="managekit" *ngIf="View">
+<div class="managekit" *ngIf="view">
   <h3 style="font-size: 1.5rem; letter-spacing: 1px;"><i class="fa-brands fa-uikit" style="color: blue;"></i>
     Manage Device</h3>
   <p>Password will be visible only if the device is activated.</p>
 
-  <h3 style="color: red;" *ngIf="DeviceData==null || DeviceData==''">No Device Available !</h3>
+  <h3 style="color: red;" *ngIf="deviceData==null || deviceData==''">No Device Available !</h3>
 
   <div class="items">
-    <div class="item_data" *ngFor="let device of DeviceData">
+    <div class="item_data" *ngFor="let device of deviceData">
       <div class="left_block">
         <img [src]="device.kitimg" alt="device">
       </div>
@@ -22,7 +22,7 @@
                 *ngIf="!device.enable">DISABLE</span></p>
           </div>
           <div class="right_btn">
-            <button class="changepassbtn" (click)="ChangePass(device.uid)">Change password</button>
+            <button class="changepassbtn" (click)="changePass(device.uid)">Change password</button>
             <button class="disablebtn" *ngIf="device.enable" (click)="disable(device.uid)">Disable</button>
             <button class="enablebtn" *ngIf="!device.enable" (click)="enable(device.uid)">Enable</button>
           </div>
@@ -40,9 +40,9 @@
   </div>
 </div>
 
-<div class="changepass" *ngIf="passView">
+<div class="changepass" *ngIf="passwordView">
 
-  <form [formGroup]="passwordForm" (ngSubmit)="UpdatePassword()">
+  <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
     <div>
       <i class="fa-brands fa-uikit" style="font-size: 1.5rem;"></i>
     </div>
@@ -52,7 +52,7 @@
     <input type="number" id="changepass" formControlName="password">
     <div style="margin: 10px 0px;">
       <button type="submit" class="green">Update</button>
-      <button type="button" class="red" style="margin-left: 10px;" (click)="TogglePass()">Cancel</button>
+      <button type="button" class="red" style="margin-left: 10px;" (click)="togglePasswordView()">Cancel</button>
     </div>
   </form>
 </div>

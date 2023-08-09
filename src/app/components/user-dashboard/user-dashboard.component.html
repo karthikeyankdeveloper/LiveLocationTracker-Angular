@@ -1,4 +1,4 @@
-<div class="dashboard" *ngIf="View">
+<div class="dashboard" *ngIf="view">
   <div class="profilepic">
     <div class="centerit" routerLink="/user/info">
       <i class="fa-solid fa-user"></i>
@@ -6,7 +6,7 @@
   </div>
 
   <div class="welcome">
-    <h2>Welcome, {{UserData.name}}</h2>
+    <h2>Welcome, {{userData.name}}</h2>
     <p>Manage your info, security, and more .</p>
   </div>
 
@@ -16,14 +16,14 @@
 
       <div class="shortcontent">
         <div class="bref">
-          <p>See the last order status and date of order. <small style="font-size: 1rem;" *ngIf="LastOrder==null||LastOrder==''">you can also visit the order history or tracking section. <br><br><br></small>  </p>
-          <div *ngIf="!(LastOrder==null||LastOrder=='')">
-            <p ><i class="fa-regular fa-id-badge"></i> Order Id : {{LastOrder?.orderid|slice:1:99}}</p>
-            <p ><i class="fa-solid fa-file-invoice-dollar"></i> Payment Id : {{LastOrder?.paymentid}}</p>
-            <p><i class="fa-solid fa-calendar-days"></i> Date : {{LastOrder?.time|date:'MMM d, y, h:mm:ss a'}}</p>
-            <p><i class="fa-solid fa-circle-info"></i> Status : {{LastOrder?.status}}</p>
+          <p>See the last order status and date of order. <small style="font-size: 1rem;" *ngIf="lastOrder==null||lastOrder==''">you can also visit the order history or tracking section. <br><br><br></small>  </p>
+          <div *ngIf="!(lastOrder==null||lastOrder=='')">
+            <p ><i class="fa-regular fa-id-badge"></i> Order Id : {{lastOrder?.orderid|slice:1:99}}</p>
+            <p ><i class="fa-solid fa-file-invoice-dollar"></i> Payment Id : {{lastOrder?.paymentid}}</p>
+            <p><i class="fa-solid fa-calendar-days"></i> Date : {{lastOrder?.time|date:'MMM d, y, h:mm:ss a'}}</p>
+            <p><i class="fa-solid fa-circle-info"></i> Status : {{lastOrder?.status}}</p>
           </div>
-          <p *ngIf="LastOrder==null||LastOrder==''" style="color: rgb(11, 11, 90);">- <i class="fa-regular fa-folder-open"></i> No Order available.<br><br></p>
+          <p *ngIf="lastOrder==null||lastOrder==''" style="color: rgb(11, 11, 90);">- <i class="fa-regular fa-folder-open"></i> No Order available.<br><br></p>
         </div>
         <img src="assets/user-lastorder.png" alt="images">
       </div>
@@ -37,7 +37,7 @@
       <h3>Device</h3>
       <div class="shortcontent">
         <div class="bref">
-          <li>You have <i class="fa-solid fa-hard-drive"></i> {{DeviceCount}} device.</li>
+          <li>You have <i class="fa-solid fa-hard-drive"></i> {{deviceCount}} device.</li>
           <li>Manage your device details in the tracking section.</li>
           <li>We recommend you to continously change your device password for security purpose.</li>
           <li>Use below navigation to manage or buy kit.</li>
@@ -56,7 +56,7 @@
       <div class="sec_content">
         <div class="bref">
           <li>Settings and recommendations to help you keep your account secure.</li>
-          <li>Your account password last changed on <i class="fa-solid fa-lock"></i> &nbsp;<small style="font-size: 1rem; color: rgb(7, 7, 61);">{{UserData.time|date:'MMM d, y, h:mm:ss a'}}</small> .</li>
+          <li>Your account password last changed on <i class="fa-solid fa-lock"></i> &nbsp;<small style="font-size: 1rem; color: rgb(7, 7, 61);">{{userData.time|date:'MMM d, y, h:mm:ss a'}}</small> .</li>
           <li>We recommend you to continously change your account password for security purpose.</li>
           <li>Use below navigation to manage or buy kit.</li>
         </div>

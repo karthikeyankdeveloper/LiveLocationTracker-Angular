@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
@@ -10,19 +11,18 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class UserNavigationComponent {
 
-  protected LogoutToggle = false;
+  protected logoutCondition:boolean = Environment.conditionFalse;
 
   constructor(private accessService:AccessService,private router:Router,protected loaderService:LoaderService){  }
 
-
-  protected ToggleLogout(){
-    this.LogoutToggle = ! this.LogoutToggle;
+  protected toggleLogout():void{
+    this.logoutCondition = ! this.logoutCondition;
   }
 
-  protected Logout(){
+  protected logout():void{
     this.accessService.logout();
-    this.ToggleLogout();
-    this.router.navigate([''],{replaceUrl:true});
+    this.toggleLogout();
+    this.router.navigate([''],{replaceUrl:Environment.conditionTrue});
   }
 
 }

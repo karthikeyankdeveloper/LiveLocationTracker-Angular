@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
-import { DBService } from 'src/app/services/db.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 
 @Component({
@@ -11,73 +13,65 @@ import { LoaderService } from 'src/app/services/loader.service';
   templateUrl: './user-product.component.html',
   styleUrls: ['./user-product.component.css']
 })
-export class UserProductComponent {
+export class UserProductComponent implements OnDestroy{
 
   private getKitSubscription: any;
   private getUserSubscription: any;
   private getMapKitSubscription1: any;
   private getMapKitSubscription2: any;
+  protected kitData: any;
+  protected userData: any;
+  protected paymentID: any;
+  protected view: boolean = Environment.conditionFalse;
+  protected paymentView: boolean = Environment.conditionFalse;
+  protected paymentSuccessView: boolean = Environment.conditionFalse;
 
-  protected KitData: any;
-  protected UserData: any;
-  protected PaymentID: any;
-  protected View: boolean = false;
-  protected paymentView: boolean = false;
-  protected paymentSuccessView: boolean = false;
+  constructor(private formBuilder: FormBuilder, private loaderService: LoaderService, private activatedRoute: ActivatedRoute, private router: Router, private databaseService: DatabaseService, private accessService: AccessService) {
+    this.loaderService.setUserLoader(true);
 
-  constructor(private builder: FormBuilder, private loaderService: LoaderService, private route: ActivatedRoute, private router: Router, private dbService: DBService, private accessService: AccessService) {
-
-    loaderService.setUserLoader(true);
-
-    this.route.queryParamMap.subscribe((id) => {
-      var idref = id.get("id");
+    this.activatedRoute.queryParamMap.subscribe((id) => {
+      let idref = id.get("id");
       if (idref == null || idref == "") {
-        this.router.navigate(["/user/buy"], { replaceUrl: true });
+        this.router.navigate(["/user/buy"], { replaceUrl: Environment.conditionTrue });
       } else {
-
-        this.getKitSubscription = this.dbService.GetKit(idref).subscribe((kitdata) => {
-          if (kitdata != null) {
-            this.KitData = kitdata;
-
-            this.getUserSubscription = this.dbService.GetUser(accessService.getEmail()).subscribe((userdata) => {
-              this.UserData = userdata;
+        this.getKitSubscription = this.databaseService.GetKit(idref).subscribe((kitDataResponse) => {
+          if (kitDataResponse != null) {
+            this.kitData = kitDataResponse;
+            this.getUserSubscription = this.databaseService.GetUser(this.accessService.getEmail()).subscribe((userDataResponse) => {
+              this.userData = userDataResponse;
               this.makeViewStopLoading();
             });
-
           } else {
-            this.router.navigate(["/user/buy"], { replaceUrl: true });
+            this.router.navigate(["/user/buy"], { replaceUrl: Environment.conditionTrue });
           }
         });
-
       }
 
     });
 
-    this.UIDForm.controls['uid'].valueChanges.subscribe(() => {
-      this.enable_message = false;
+    this.uidForm.controls['uid'].valueChanges.subscribe(() => {
+      this.enableMessage = false;
     });
 
   }
 
-  protected UIDForm = this.builder.group({
+  protected uidForm:FormGroup<any> = this.formBuilder.group({
     uid: [, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]]
   });
 
+  protected enableAvail = Environment.conditionFalse;
+  protected enableMessage = Environment.conditionFalse;
 
-
-  protected enable_avail = false;
-  protected enable_message = false;
-
-  protected availabilityBtn(): void {
-    if (this.UIDForm.valid) {
-      var uid_input = (this.UIDForm.controls['uid'].value + "").toLowerCase();
+  protected availabilityButton(): void {
+    if (this.uidForm.valid) {
+      let uidInput = (this.uidForm.controls['uid'].value + "").toLowerCase();
       this.loaderService.setUserLoader(true);
-      this.getMapKitSubscription1 = this.dbService.MapFetch(uid_input).subscribe((mapdata) => {
-        this.enable_message = true;
+      this.getMapKitSubscription1 = this.databaseService.MapFetch(uidInput).subscribe((mapdata) => {
+        this.enableMessage = true;
         if (mapdata != null) {
-          this.enable_avail = false;
+          this.enableAvail = false;
         } else {
-          this.enable_avail = true;
+          this.enableAvail = true;
         }
         this.makeViewStopLoading();
       });
@@ -85,14 +79,14 @@ export class UserProductComponent {
   }
 
   protected placeOrder(): void {
-    if (this.UIDForm.valid) {
-      var uid_input = (this.UIDForm.controls['uid'].value + "").toLowerCase();
-
-      if (this.UserData.address != null && this.UserData.address != '' && this.UserData.pincode != null && this.UserData.pincode != '' && this.UserData.phone != null && this.UserData.phone != '') {
+    if (this.uidForm.valid) {
+      let uidInput = (this.uidForm.controls['uid'].value + "").toLowerCase();
+      if (this.userData.address != null && this.userData.address != '' && this.userData.pincode != null && this.userData.pincode != '' && this.userData.phone != null && this.userData.phone != '') {
         this.loaderService.setUserLoader(true);
-        this.getMapKitSubscription2 = this.dbService.MapFetch(uid_input).subscribe((mapdata) => {
+        this.getMapKitSubscription2 = this.databaseService.MapFetch(uidInput).subscribe((mapdata) => {
           if (mapdata != null) {
             alert("UID Not Available");
+            LoggerService.info("uid not avaialble");
             this.makeViewStopLoading();
           } else {
             this.enablePaymentView();
@@ -101,41 +95,42 @@ export class UserProductComponent {
       }
       else {
         alert("Update Your contact info");
+        LoggerService.info("Update Your contact info");
       }
     } else {
       alert("Enter Valid details");
+      LoggerService.info("Invalid detail");
     }
-
   }
 
-  protected enablePaymentView() {
+  protected enablePaymentView():void {
     this.paymentView = true;
   }
 
-  protected disablePaymentView() {
+  protected disablePaymentView():void {
     this.paymentView = false;
     setTimeout(() => {
       this.makeViewStopLoading();
     }, 500);
   }
 
-  protected makePaymentSuccess() {
+  protected makePaymentSuccess():void {
     this.paymentView = false;
-    var uid = (this.UIDForm.controls['uid'].value + "").toLowerCase();
+    var uid = (this.uidForm.controls['uid'].value + "").toLowerCase();
     var paymentid = Math.floor(Math.random() * 899999999) + 100000000;
-    this.PaymentID = paymentid;
+    this.paymentID = paymentid;
 
     var orderdata = {
-      name: this.UserData.name,
-      email: this.UserData.email,
-      address: this.UserData.address,
-      pincode: this.UserData.pincode,
-      phone: this.UserData.phone,
+      name: this.userData.name,
+      email: this.userData.email,
+      address: this.userData.address,
+      pincode: this.userData.pincode,
+      phone: this.userData.phone,
       uid: uid,
-      kitid: this.KitData.id,
-      kitname: this.KitData.name,
-      kitimg: this.KitData.img,
-      kitprice: this.KitData.discountprice,
+      kitid: this.kitData.id,
+      kitname: this.kitData.name,
+      kitimg: this.kitData.img,
+      kitprice: this.kitData.discountprice,
       timestamp: {
         ".sv": "timestamp"
       },
@@ -143,27 +138,20 @@ export class UserProductComponent {
       paymentid: paymentid,
     }
 
-    this.dbService.GetKit(this.KitData.id).subscribe((stock_check) => {
-
+    this.databaseService.GetKit(this.kitData.id).subscribe((stock_check) => {
       var temp_stock_check = JSON.parse(JSON.stringify(stock_check));
       if (temp_stock_check.stock > 10) {
-
-        this.dbService.AddOrder(orderdata).subscribe((orderresponse) => {
+        this.databaseService.AddOrder(orderdata).subscribe((orderresponse) => {
           var orderresponse_json = JSON.parse(JSON.stringify(orderresponse));
-
-          var order_detail = {
-            [orderresponse_json.name]: orderresponse_json.name
-          }
-          var device_detail = {
-            [uid]: uid
-          }
+          var order_detail = {[orderresponse_json.name]: orderresponse_json.name}
+          var device_detail = {[uid]: uid}
 
           var update_remote = {
             [uid]: {
               active: false,
               password: Math.floor(Math.random() * 899999) + 100000,
-              kitname: this.KitData.name,
-              kitimg: this.KitData.img,
+              kitname: this.kitData.name,
+              kitimg: this.kitData.img,
               uid:uid,
               enable:true,
               forascending:{
@@ -172,45 +160,35 @@ export class UserProductComponent {
             }
           }
 
-          this.dbService.UserAddOrder(this.UserData.email, order_detail).subscribe((response) => {});
+          this.databaseService.UserAddOrder(this.userData.email, order_detail).subscribe((response) => {});
 
-          this.dbService.UserAddDevice(this.UserData.email, device_detail).subscribe((response) => {});
+          this.databaseService.UserAddDevice(this.userData.email, device_detail).subscribe((response) => {});
 
-          this.dbService.AddRemoteKit(update_remote).subscribe((response) => {});
+          this.databaseService.AddRemoteKit(update_remote).subscribe((response) => {});
 
-          this.dbService.GetKit(this.KitData.id).subscribe((kit_data) => {
-
+          this.databaseService.GetKit(this.kitData.id).subscribe((kit_data) => {
             var temp = JSON.parse(JSON.stringify(kit_data));
-
-            var stock = {
-              stock: --temp.stock
-            }
-
-            this.dbService.UpdateKit(this.KitData.id, stock).subscribe((response) => {
+            var stock = {stock: --temp.stock};
+            this.databaseService.UpdateKit(this.kitData.id, stock).subscribe((response) => {
               this.makeViewStopLoading();
+              LoggerService.info("Order placed successfully");
               this.paymentSuccessView = true;
             });
-
           });
-
-
         });
 
       } else {
         alert("Sorry for inconvenience , No stock available");
+        LoggerService.info("No stock available");
         this.makeViewStopLoading();
       }
-
     });
-
-
   }
-
 
   private makeViewStopLoading(): void {
     this.loaderService.setUserLoader(false);
-    if (!this.View) {
-      this.View = true;
+    if (!this.view) {
+      this.view = true;
     }
   }
 

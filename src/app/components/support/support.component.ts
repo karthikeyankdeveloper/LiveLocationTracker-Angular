@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DBService } from 'src/app/services/db.service';
 
 @Component({
   selector: 'app-support',

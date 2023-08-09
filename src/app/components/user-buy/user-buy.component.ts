@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { DBService } from 'src/app/services/db.service';
+import { Component, OnDestroy } from '@angular/core';
+import { Environment } from 'src/app/environment';
+import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
@@ -7,35 +8,32 @@ import { LoaderService } from 'src/app/services/loader.service';
   templateUrl: './user-buy.component.html',
   styleUrls: ['./user-buy.component.css']
 })
-export class UserBuyComponent {
+export class UserBuyComponent implements OnDestroy {
 
-  protected View:boolean = false;
-  protected BuyDataList:any;
-
+  protected view:boolean = Environment.conditionFalse;
+  protected buyDataList:any;
   private getAllKitSubscription:any;
 
-  constructor(private loaderService:LoaderService,private dbService:DBService){
+  constructor(private loaderService:LoaderService,private databaseService:DatabaseService){
     this.loaderService.setUserLoader(true);
-
-    this.getAllKitSubscription = dbService.GetAllKit().subscribe((data)=>{
+    this.getAllKitSubscription = this.databaseService.GetAllKit().subscribe((data)=>{
       if(data!=null){
-        var buydata = [];
+        let buyData = [];
         for(let temp of Object.values(data)){
           if(temp?.stock>10){
-            buydata.push(temp);
+            buyData.push(temp);
           }
         }
-        this.BuyDataList = buydata.reverse();
+        this.buyDataList = buyData.reverse();
       }
       this.makeViewStopLoading();
     });
   }
 
-
   private makeViewStopLoading():void{
     this.loaderService.setUserLoader(false);
-    if(!this.View){
-      this.View=true;
+    if(!this.view){
+      this.view=true;
     }
   }
 

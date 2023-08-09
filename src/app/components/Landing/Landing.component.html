@@ -10,13 +10,13 @@
             today. Whether you're a concerned parent, a business owner, or just someone who wants to stay informed, our
             live location tracker is the perfect solution for all your tracking needs.</p>
 
-          <form [formGroup]="UidForm" (ngSubmit)="MapFetch()">
+          <form [formGroup]="uidForm" (ngSubmit)="mapFetch()">
             <div>
               <input type="text" placeholder="Enter UID" formControlName="uid">
             </div>
-            <small style="color: red;" *ngIf="UidForm.controls['uid'].touched && UidForm.controls['uid'].errors?.['required']">Enter UID</small>
+            <small style="color: red;" *ngIf="uidForm.controls['uid'].touched && uidForm.controls['uid'].errors?.['required']">Enter UID</small>
             <div>
-              <button type="submit" [disabled]="UidForm.invalid">Track</button>
+              <button type="submit" [disabled]="uidForm.invalid">Track</button>
             </div>
           </form>
         </div>

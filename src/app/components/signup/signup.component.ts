@@ -1,67 +1,54 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { confirmValidator } from 'src/app/confirm.validator';
+import { Environment } from 'src/app/environment';
 import { CryptographyService } from 'src/app/services/cryptography.service';
-import { DBService } from 'src/app/services/db.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent{
 
-  public showpass = false;
-  public disable_button = false;
+  protected showPassword:boolean = Environment.conditionFalse;
+  protected disableButton:boolean = Environment.conditionFalse;
 
-  public Togglepass():void{
-    this.showpass=!this.showpass;
+  constructor (private loaderService:LoaderService, private formBuilder:FormBuilder, private databaseService:DatabaseService, private router:Router, private cryptographyService:CryptographyService){}
+
+  protected togglePassword():void{
+    this.showPassword=!this.showPassword;
   }
 
-  constructor (public loaderservice:LoaderService,private forms:FormBuilder,private dbservice:DBService,private router:Router,private crypto:CryptographyService){
-
-  }
-
-
-  ngOnInit(): void {
-
-
-  }
-
-  SignupFormData = this.forms.group({
+  protected signupForm:FormGroup<any> = this.formBuilder.group({
     name:[,[Validators.required,Validators.pattern('^(?!.*([A-Za-z])\\1{3})[A-Za-z]{2,16}$')]],
     email:[,[Validators.required,Validators.email,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")]],
     password:[,[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/)]],
     repassword:[,[Validators.required]]
   },{validator:confirmValidator('name','password','repassword')});
 
+  protected addUser():void{
+    this.disableButton = true;
+    this.loaderService.setLoader(true);
 
-  public name:any;
-  public email:any;
-  public password:any;
-  public repassword:any;
+    let name = this.signupForm.controls['name'].value;
+    let email = (this.signupForm.controls['email'].value+"").toLowerCase();
+    let password = this.signupForm.controls['password'].value;
 
-  public AddUser():void{
-    this.disable_button = true;
-    this.loaderservice.setLoader(true);
-
-    this.name = this.SignupFormData.controls['name'].value;
-    this.email = (this.SignupFormData.controls['email'].value+"").toLowerCase();
-    this.password = this.SignupFormData.controls['password'].value;
-    this.repassword = this.SignupFormData.controls['repassword'].value;
-
-    if(this.name==null||this.name==""||this.email==null||this.email==""||this.password==null||this.password==""||this.repassword==null||this.repassword==""){
+    if(this.signupForm.invalid){
       alert("Wrong Data,Please fill all Field");
-      this.disable_button = false;
-      this.loaderservice.setLoader(false);
+      LoggerService.info('Invalid data from signup feild');
+      this.disableButton = false;
+      this.loaderService.setLoader(false);
     }else{
-
-      var data = {
-        name:this.name,
-        email:this.email,
-        password: this.crypto.encryption(this.password),
+      let data = {
+        name:name,
+        email:email,
+        password: this.cryptographyService.encryption(password),
         role:"user",
         block:false,
         timestamp:{
@@ -69,32 +56,32 @@ export class SignupComponent implements OnInit{
         }
       }
 
-      this.dbservice.GetUser(this.email).subscribe((getdata)=>{
+      this.databaseService.GetUser(email).subscribe((getdata)=>{
         if(getdata==null){
-          this.dbservice.AddUser(data).subscribe((adddata)=>{
-            this.disable_button = false;
-            this.loaderservice.setLoader(false);
+          this.databaseService.AddUser(data).subscribe((adddata)=>{
+            this.disableButton = false;
+            this.loaderService.setLoader(false);
             if(adddata!=null){
               alert("Register success");
-              this.router.navigate(['login'],{replaceUrl:true})
+              LoggerService.info("Signup Success");
+              this.router.navigate(['login'],{replaceUrl:Environment.conditionTrue})
             }else{
+              LoggerService.error("Error creating account,Try again");
               alert("Error creating account,Try again");
             }
           });
         }else{
+          LoggerService.info("Account Already exists, Please Login");
           if(confirm("Account Already exists! Please Login")){
-            this.router.navigate(['login'],{replaceUrl:true});
+            this.router.navigate(['login'],{replaceUrl:Environment.conditionTrue});
           }
-          this.disable_button = false;
-          this.loaderservice.setLoader(false);
+          this.disableButton = false;
+          this.loaderService.setLoader(false);
         }
       });
 
     }
 
   }
-
-
-
 
 }

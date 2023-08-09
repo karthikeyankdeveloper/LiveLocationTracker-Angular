@@ -14,7 +14,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { UpdatingServiceAlertComponent } from './components/updating-service-alert/updating-service-alert.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccessService } from './services/access.service';
-import { DBService } from './services/db.service';
 import { LoaderService } from './services/loader.service';
 import { IsLoginGuard } from './guards/is-login.guard';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
@@ -79,7 +78,7 @@ import { LoggerService } from './services/logger.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccessService,DBService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,Environment,DatabaseService,LoggerService],
+  providers: [AccessService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,Environment,DatabaseService,LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

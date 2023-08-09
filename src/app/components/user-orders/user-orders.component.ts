@@ -1,39 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
-import { DBService } from 'src/app/services/db.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-user-orders',
   templateUrl: './user-orders.component.html',
   styleUrls: ['./user-orders.component.css']
 })
-export class UserOrdersComponent {
+export class UserOrdersComponent implements OnDestroy{
 
-  protected View = false;
-  protected FinalOrderdata:any;
+  protected view:boolean = Environment.conditionFalse;
+  protected finalOrderData:any;
   private serverTime:any;
   private getTimeSubscription:any;
   private getUserSubscription:any;
   private getOrderSubscription:any;
 
-  constructor(private loaderService:LoaderService,private dbService:DBService,private accessService:AccessService){
-    this.Initialize();
+  constructor(private loaderService:LoaderService,private databaseService:DatabaseService,private accessService:AccessService){
+    this.initialize();
   }
 
-  private Initialize(){
+  private initialize():void{
     this.loaderService.setUserLoader(true);
 
-    this.getTimeSubscription = this.dbService.getTimestamp().subscribe((response_time)=>{
-      this.serverTime = response_time;
+    this.getTimeSubscription = this.databaseService.getTimestamp().subscribe((responseTime)=>{
+      this.serverTime = responseTime;
 
-      this.getUserSubscription = this.dbService.GetUser(this.accessService.getEmail()).subscribe((user_data)=>{
-        var user_data_json = JSON.parse(JSON.stringify(user_data));
-
-        if(user_data_json?.order!=null){
-          var final_order_data:any = [];
-          for(let values of Object.values(user_data_json.order)){
-            this.getOrderSubscription = this.dbService.GetOrder(values+"").subscribe((response)=>{
+      this.getUserSubscription = this.databaseService.GetUser(this.accessService.getEmail()).subscribe((userData)=>{
+        let userDataJson = JSON.parse(JSON.stringify(userData));
+        if(userDataJson?.order!=null){
+          let final_order_data:any = [];
+          for(let values of Object.values(userDataJson.order)){
+            this.getOrderSubscription = this.databaseService.GetOrder(values+"").subscribe((response)=>{
               var response_modified = JSON.parse(JSON.stringify(response));
               const diffrence_time_Ms = this.serverTime-response_modified.timestamp;
               const twenty_four_fours_Ms = 24 * 60 * 60 * 1000;
@@ -43,16 +44,16 @@ export class UserOrdersComponent {
           }
 
           setTimeout(()=>{
-            for (let i = 0; i < final_order_data.length; i++) {
-              for (let j = i + 1; j < final_order_data.length; j++) {
-                if (final_order_data[i].timestamp < final_order_data[j].timestamp) {
-                  var temp = final_order_data[i];
-                  final_order_data[i] = final_order_data[j];
-                  final_order_data[j] = temp;
+            for (let index = 0; index < final_order_data.length; index++) {
+              for (let subindex = index + 1; subindex < final_order_data.length; subindex++) {
+                if (final_order_data[index].timestamp < final_order_data[subindex].timestamp) {
+                  const temp = final_order_data[index];
+                  final_order_data[index] = final_order_data[subindex];
+                  final_order_data[subindex] = temp;
                 }
               }
             }
-            this.FinalOrderdata = final_order_data;
+            this.finalOrderData = final_order_data;
             this.makeViewStopLoading();
           },1500);
         }else{
@@ -64,21 +65,20 @@ export class UserOrdersComponent {
 
   }
 
-  protected cancelOrder(uid:any,orderid:any,kitid:any){
+  protected cancelOrder(uid:any,orderid:any,kitid:any):void{
     if(confirm("Confirm Cancellation")){
       this.loaderService.setUserLoader(true);
 
-      this.dbService.DeleteUserDevice(this.accessService.getEmail(),uid).subscribe((response)=>{});
-      this.dbService.DeleteRemote(uid).subscribe((response)=>{});
-      this.dbService.CancelOrder(orderid).subscribe((response)=>{});
+      this.databaseService.DeleteUserDevice(this.accessService.getEmail(),uid).subscribe((response)=>{});
+      this.databaseService.DeleteRemote(uid).subscribe((response)=>{ LoggerService.log("Device Deleted"); });
+      this.databaseService.CancelOrder(orderid).subscribe((response)=>{ LoggerService.log("Order Canceled"); });
 
-      this.dbService.GetKit(kitid).subscribe((kit_data) => {
-        var temp = JSON.parse(JSON.stringify(kit_data));
-        var stock = {
-          stock: ++temp.stock
-        }
-        this.dbService.UpdateKit(kitid, stock).subscribe((response) => {
-          this.Initialize();
+      this.databaseService.GetKit(kitid).subscribe((kitData) => {
+        var temp = JSON.parse(JSON.stringify(kitData));
+        var stock = {stock: ++temp.stock};
+        this.databaseService.UpdateKit(kitid, stock).subscribe((response) => {
+          LoggerService.log("Stock Rollback Done");
+          this.initialize();
         });
       });
     }
@@ -87,8 +87,8 @@ export class UserOrdersComponent {
 
   private makeViewStopLoading():void{
     this.loaderService.setUserLoader(false);
-    if(!this.View){
-      this.View=true;
+    if(!this.view){
+      this.view=true;
     }
   }
 
@@ -102,9 +102,7 @@ export class UserOrdersComponent {
     if(this.getOrderSubscription){
       this.getOrderSubscription.unsubscribe();
     }
-
     this.makeViewStopLoading();
-
   }
 
 }

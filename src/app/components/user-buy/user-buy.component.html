@@ -1,4 +1,4 @@
-<div class="buy" *ngIf="View">
+<div class="buy" *ngIf="view">
 
   <div>
     <div class="buy_logo">
@@ -12,7 +12,7 @@
 
   <div class="buy_main">
 
-    <div class="item" *ngFor="let data of BuyDataList" routerLink="/user/product" [queryParams]="{id:data.id}" [title]="data.desc">
+    <div class="item" *ngFor="let data of buyDataList" routerLink="/user/product" [queryParams]="{id:data.id}" [title]="data.desc">
 
       <div class="fewleft" *ngIf="data.stock<30">
         <small><i class="fa-solid fa-arrow-down-wide-short"></i> only few left</small>
@@ -45,6 +45,6 @@
 
   </div>
 
-  <h2 style="color: red;" *ngIf="BuyDataList==null || BuyDataList==''">No Device Available !</h2>
+  <h2 style="color: red;" *ngIf="buyDataList==null || buyDataList==''">No Device Available !</h2>
 
 </div>

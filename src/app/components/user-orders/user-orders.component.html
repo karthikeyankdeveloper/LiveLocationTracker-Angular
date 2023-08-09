@@ -1,11 +1,11 @@
-<div class="orders" *ngIf="View">
+<div class="orders" *ngIf="view">
   <h3 style="font-size: 1.5rem; letter-spacing: 1px;"><i class="fa-solid fa-list-check" style="color: blue;"></i> My
     Orders</h3>
   <p>Order cancellation will be enabled for 24 hours.</p>
-  <h3 *ngIf="FinalOrderdata==null || FinalOrderdata == ''" style="color: red;">No Order Available !</h3>
+  <h3 *ngIf="finalOrderData==null || finalOrderData == ''" style="color: red;">No Order Available !</h3>
   <div class="items">
 
-    <div class="item_data" *ngFor="let data of FinalOrderdata">
+    <div class="item_data" *ngFor="let data of finalOrderData">
       <div class="flex">
         <div class="left_block">
           <h2 style="color: rgb(2, 2, 119)"><i class="fa-solid fa-server"></i> {{data.kitname}}</h2>

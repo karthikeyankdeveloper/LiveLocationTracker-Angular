@@ -8,7 +8,7 @@
           <li>  <a routerLink="/user/manage"  routerLinkActive="selected_navigator">  <i class="fa-brands fa-uikit"></i> Manage Kit</a></li>
           <li>  <a routerLink="/user/orders"  routerLinkActive="selected_navigator">  <i class="fa-solid fa-list-check"></i> My Orders</a></li>
           <li>  <a routerLink="/user/buy"  routerLinkActive="selected_navigator">  <i class="fa-solid fa-cart-shopping"></i> Buy</a></li>
-          <li>  <a style="cursor: pointer;" (click)="ToggleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+          <li>  <a style="cursor: pointer;" (click)="toggleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
       </ul>
   </div>
 
@@ -21,13 +21,13 @@
 
 </div>
 
-<div class="log_main" *ngIf="LogoutToggle">
+<div class="log_main" *ngIf="logoutCondition">
   <div class="logout">
-      <h3><i class="fa-solid fa-xmark" (click)="ToggleLogout()"></i> Confirmation</h3>
+      <h3><i class="fa-solid fa-xmark" (click)="toggleLogout()"></i> Confirmation</h3>
       <p>Are you sure you want to logout?</p>
       <div class="lg_btns">
-          <button class="btn_red" (click)="ToggleLogout()">Cancel</button>
-          <button class="btn_green" (click)="Logout()">Logout</button>
+          <button class="btn_red" (click)="toggleLogout()">Cancel</button>
+          <button class="btn_green" (click)="logout()">Logout</button>
       </div>
   </div>
 </div>
