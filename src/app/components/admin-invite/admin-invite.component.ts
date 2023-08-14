@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Environment } from 'src/app/environment';
 import { CryptographyService } from 'src/app/services/cryptography.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-invite',
@@ -13,7 +13,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class AdminInviteComponent {
 
-  protected disableButton:boolean = Environment.conditionFalse;
+  protected disableButton:boolean = environment.conditionFalse;
 
   constructor(private formBuilder:FormBuilder,private cryptographyService:CryptographyService,private databaseService:DatabaseService,private loaderService:LoaderService){}
 

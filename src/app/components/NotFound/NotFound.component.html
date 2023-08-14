@@ -8,15 +8,13 @@
         get started.</p>
 
       <div>
-        <a routerLink="/"><button>Back to Home Page</button></a>
+        <a [routerLink]="['/']"><button>Back to Home Page</button></a>
       </div>
     </div>
 
   </div>
 
   <div class="second">
-
-    <img src="assets/404page.jpg" alt="">
-
+    <img [src]="'assets/404page.jpg'" alt="Image of Notfound Page">
   </div>
 </div>

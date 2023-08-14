@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AccessService } from '../services/access.service';
-import { Environment } from '../environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class IsLoginGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
     if(this.accessService.isLoggedIn()==true){
-      this.router.navigate([''],{replaceUrl:Environment.conditionTrue});
+      this.router.navigate([''],{replaceUrl:environment.conditionTrue});
       return false;
     }else{
       return true;

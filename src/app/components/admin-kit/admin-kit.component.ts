@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-kit',
@@ -12,8 +12,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 export class AdminKitComponent implements OnDestroy {
 
   protected finalKitList: any;
-  protected noDataPrevent:boolean = Environment.conditionFalse;
-  protected viewModel:boolean = Environment.conditionFalse;
+  protected noDataPrevent:boolean = environment.conditionFalse;
+  protected viewModel:boolean = environment.conditionFalse;
   private getAllKitSubscription:any;
 
   constructor(private databaseService: DatabaseService, private formBuilder: FormBuilder) {

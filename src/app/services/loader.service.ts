@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Environment } from '../environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoaderService {
 
-  private loader:boolean = Environment.conditionFalse;
-  private userloader:boolean = Environment.conditionFalse;
+  private loader:boolean = environment.conditionFalse;
+  private userloader:boolean = environment.conditionFalse;
 
 
   public getLoader():boolean{

@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Environment } from '../environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
 
-  private url:string = Environment.getUrl();
+  private readonly url:string = environment.databaseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
   public checkDatabase():Observable<Object>{
-    return this.httpClient.get(this.url + "update.json");
+    return this.httpClient.get(`${this.url}update.json`);
   }
 
   public getTimestamp():Observable<Object>{
-    return this.httpClient.put(this.url+"time.json",{".sv":"timestamp"});
+    return this.httpClient.put(`${this.url}time.json`,{".sv":"timestamp"});
   }
 
   public getUser(email: string):Observable<Object> {
-    return this.httpClient.get(this.url + "UserList/" + this.convertKeyMail(email) + ".json",{responseType:'json'});
+    return this.httpClient.get(`${this.url}UserList/${this.convertKeyMail(email)}.json`,{responseType:'json'});
   }
 
   public addUser(insertdata: any):Observable<Object> {

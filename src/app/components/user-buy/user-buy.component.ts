@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-buy',
@@ -10,7 +10,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class UserBuyComponent implements OnDestroy {
 
-  protected view:boolean = Environment.conditionFalse;
+  protected view:boolean = environment.conditionFalse;
   protected buyDataList:any;
   private getAllKitSubscription:any;
 

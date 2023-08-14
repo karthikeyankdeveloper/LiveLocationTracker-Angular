@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Environment } from '../environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class CryptographyService {
 
   private cipherText:string = "";
   private plainText:string = "";
-  private key = Environment.cryptoKey;
+  private key = environment.cryptoKey;
 
   public encryption(plaintext:String):string{
     this.cipherText = "";

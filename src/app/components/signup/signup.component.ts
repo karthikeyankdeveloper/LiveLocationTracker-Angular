@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { confirmValidator } from 'src/app/confirm.validator';
-import { Environment } from 'src/app/environment';
 import { CryptographyService } from 'src/app/services/cryptography.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-signup',
@@ -15,8 +15,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class SignupComponent{
 
-  protected showPassword:boolean = Environment.conditionFalse;
-  protected disableButton:boolean = Environment.conditionFalse;
+  protected showPassword:boolean = environment.conditionFalse;
+  protected disableButton:boolean = environment.conditionFalse;
 
   constructor (private loaderService:LoaderService, private formBuilder:FormBuilder, private databaseService:DatabaseService, private router:Router, private cryptographyService:CryptographyService){}
 
@@ -64,7 +64,7 @@ export class SignupComponent{
             if(adddata!=null){
               alert("Register success");
               LoggerService.info("Signup Success");
-              this.router.navigate(['login'],{replaceUrl:Environment.conditionTrue})
+              this.router.navigate(['login'],{replaceUrl:environment.conditionTrue})
             }else{
               LoggerService.error("Error creating account,Try again");
               alert("Error creating account,Try again");
@@ -73,7 +73,7 @@ export class SignupComponent{
         }else{
           LoggerService.info("Account Already exists, Please Login");
           if(confirm("Account Already exists! Please Login")){
-            this.router.navigate(['login'],{replaceUrl:Environment.conditionTrue});
+            this.router.navigate(['login'],{replaceUrl:environment.conditionTrue});
           }
           this.disableButton = false;
           this.loaderService.setLoader(false);

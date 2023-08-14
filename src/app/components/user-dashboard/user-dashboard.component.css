@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
-
-
 .dashboard {
   font-family: 'Josefin Sans', sans-serif;
   /* border: 2px solid red; */
@@ -98,7 +95,7 @@
   display: flex;
   align-items: flex-start;
   padding-bottom: 10px;
-  
+
   /* border: 2px  solid red; */
 }
 

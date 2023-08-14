@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { CryptographyService } from 'src/app/services/cryptography.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-password',
@@ -14,8 +14,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class UpdatePasswordComponent {
 
-  protected showPassword:boolean = Environment.conditionFalse;
-  protected disableButton:boolean = Environment.conditionFalse;
+  protected showPassword:boolean = environment.conditionFalse;
+  protected disableButton:boolean = environment.conditionFalse;
 
   constructor(private router:Router,private formBuilder:FormBuilder,private databaseService:DatabaseService,private loaderService:LoaderService,private cryptographyService:CryptographyService){}
 

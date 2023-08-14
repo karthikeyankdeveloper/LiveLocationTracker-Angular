@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-orders',
@@ -12,7 +12,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class UserOrdersComponent implements OnDestroy{
 
-  protected view:boolean = Environment.conditionFalse;
+  protected view:boolean = environment.conditionFalse;
   protected finalOrderData:any;
   private serverTime:any;
   private getTimeSubscription:any;

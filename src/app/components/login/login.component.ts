@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { CryptographyService } from 'src/app/services/cryptography.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +15,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class LoginComponent{
 
-  protected showPassword:boolean = Environment.conditionFalse;
-  protected disableButton:boolean = Environment.conditionFalse;
+  protected showPassword:boolean = environment.conditionFalse;
+  protected disableButton:boolean = environment.conditionFalse;
 
   constructor(private databaseService:DatabaseService,private loaderService:LoaderService,private formBuilder:FormBuilder,private accessService:AccessService,private router:Router,private cryptographyService:CryptographyService){}
 
@@ -65,13 +65,13 @@ export class LoginComponent{
               localStorage.setItem("llt-userdata",JSON.stringify(stringifyData));
               localStorage.setItem("llt-date",(new Date()).getDate()+"");
               if(finalGetdata.role=="user"){
-                this.router.navigate(['/user'],{replaceUrl:Environment.conditionTrue});
+                this.router.navigate(['/user'],{replaceUrl:environment.conditionTrue});
                 LoggerService.info(`Logged in as User`);
               }else if(finalGetdata.role=="admin"){
-                this.router.navigate(['/admin'],{replaceUrl:Environment.conditionTrue});
+                this.router.navigate(['/admin'],{replaceUrl:environment.conditionTrue});
                 LoggerService.info(`Logged in as Admin`);
               }else{
-                this.router.navigate([''],{replaceUrl:Environment.conditionTrue});
+                this.router.navigate([''],{replaceUrl:environment.conditionTrue});
                 LoggerService.error(`Error occurred in Login, role not match`);
               }
             }else{

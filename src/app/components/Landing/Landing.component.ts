@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-Landing',
@@ -23,7 +23,7 @@ export class LandingComponent{
       alert("Invalid data");
       LoggerService.warn("Invalid data from UID input field");
     }else{
-      this.router.navigate(["/map"],{queryParams:{id:uid},replaceUrl:Environment.conditionTrue});
+      this.router.navigate(["/map"],{queryParams:{id:uid},replaceUrl:environment.conditionTrue});
     }
   }
 

@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-info',
@@ -16,7 +16,7 @@ export class UserInfoComponent implements OnDestroy{
   private getUserSubscription:any;
   private updateProfileSubscription:any;
   protected userData:any;
-  protected view:boolean = Environment.conditionFalse;
+  protected view:boolean = environment.conditionFalse;
 
   constructor(private accessService:AccessService,private databaseService:DatabaseService,private loderService:LoaderService,private formBuilder:FormBuilder){
     this.loderService.setUserLoader(true);

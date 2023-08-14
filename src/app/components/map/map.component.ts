@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-map',
@@ -13,9 +13,9 @@ import { LoggerService } from 'src/app/services/logger.service';
 export class MapComponent implements OnDestroy{
 
   protected remoteId:any;
-  protected loader:boolean = Environment.conditionTrue;
+  protected loader:boolean = environment.conditionTrue;
   protected timestamp:any;
-  private reload:boolean = Environment.conditionFalse;
+  private reload:boolean = environment.conditionFalse;
   private mapFetchSubscription:any;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private databaseService: DatabaseService) {
@@ -36,21 +36,21 @@ export class MapComponent implements OnDestroy{
       if (data == null) {
         alert("No Data Found");
         LoggerService.warn("Unable to fetch data, UID Not Found");
-        this.router.navigate(["/"], { replaceUrl: Environment.conditionTrue });
+        this.router.navigate(["/"], { replaceUrl: environment.conditionTrue });
       } else {
         let jsonData = JSON.parse(JSON.stringify(data));
         if (jsonData.active == false) {
           alert("Device Not Yet Activated");
           LoggerService.info("Device Not Yet Activated");
-          this.router.navigate(["/"], { replaceUrl: Environment.conditionTrue });
+          this.router.navigate(["/"], { replaceUrl: environment.conditionTrue });
         }
         else if (jsonData.enable == false) {
           alert("Device currrently disabled");
           LoggerService.info("Device currrently disabled");
-          this.router.navigate(["/"], { replaceUrl: Environment.conditionTrue });
+          this.router.navigate(["/"], { replaceUrl: environment.conditionTrue });
         }
         else if(this.reload || prompt("Enter Password")==jsonData.password  ){
-          this.reload = Environment.conditionTrue;
+          this.reload = environment.conditionTrue;
           let maps = document.getElementById('map');
           setTimeout(() => {
             this.timestamp = new Date(jsonData.timestamp);
@@ -66,7 +66,7 @@ export class MapComponent implements OnDestroy{
           if(confirm("Are you want to retry !")){
             this.fetchData();
           }else{
-          this.router.navigate(["/"], { replaceUrl: Environment.conditionTrue });
+          this.router.navigate(["/"], { replaceUrl: environment.conditionTrue });
           }
         }
       }

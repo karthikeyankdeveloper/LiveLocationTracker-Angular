@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-order',
@@ -17,13 +17,13 @@ export class AdminOrderComponent implements OnDestroy{
   protected outfordelivery:any;
   protected delivered:any;
   protected cancelled:any;
-  protected noDataPrevent:boolean = Environment.conditionFalse;
+  protected noDataPrevent:boolean = environment.conditionFalse;
   private getAllOrderSubscription:any;
   private getOrderSubscription:any;
   private key:number = 0;
   protected text:string = "All";
-  protected viewModel:boolean = Environment.conditionFalse;
-  protected viewLoading:boolean = Environment.conditionFalse;
+  protected viewModel:boolean = environment.conditionFalse;
+  protected viewLoading:boolean = environment.conditionFalse;
   protected finalViewData:any;
 
   constructor(private databaseService: DatabaseService) {
@@ -106,7 +106,7 @@ export class AdminOrderComponent implements OnDestroy{
 
   // For sidebar
   protected falseView():void{
-    this.viewModel = Environment.conditionFalse;
+    this.viewModel = environment.conditionFalse;
   }
 
   protected View(key:any):void{

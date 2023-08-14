@@ -1,8 +1,8 @@
 import { Component, OnInit,HostListener} from '@angular/core';
 import { Router } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-Header',
@@ -12,7 +12,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 export class HeaderComponent implements OnInit {
 
   protected screenwidth:any;
-  protected headContent:boolean = Environment.conditionFalse;
+  protected headContent:boolean = environment.conditionFalse;
 
   constructor(protected loaderService:LoaderService,protected accessService:AccessService,private router:Router){}
 
@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   protected logout():void{
     if(confirm("Confirm Logout")){
       this.accessService.logout();
-      this.router.navigate([''],{replaceUrl:Environment.conditionTrue});
+      this.router.navigate([''],{replaceUrl:environment.conditionTrue});
     }
   }
 

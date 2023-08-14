@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -13,7 +13,7 @@ export class UserDashboardComponent implements OnDestroy {
 
   private getUserSubscription:any;
   private getOrderSubscription:any;
-  protected view:boolean=Environment.conditionFalse;
+  protected view:boolean=environment.conditionFalse;
   protected userData:any;
   protected deviceCount:number=0;
   protected lastOrder:any;

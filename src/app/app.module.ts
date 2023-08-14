@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/Header/Header.component';
 import { LandingComponent } from './components/Landing/Landing.component';
-import { NotFoundComponent } from './components/NotFound/NotFound.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SupportComponent } from './components/support/support.component';
@@ -37,16 +36,15 @@ import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsUserGuard } from './guards/is-user.guard';
 import { CryptographyService } from './services/cryptography.service';
 import { RouterModule } from '@angular/router';
-import { Environment } from './environment';
 import { DatabaseService } from './services/database.service';
 import { LoggerService } from './services/logger.service';
+import { NotFoundComponent } from './components/NotFound/NotFound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LandingComponent,
-    NotFoundComponent,
     LoginComponent,
     SignupComponent,
     SupportComponent,
@@ -68,7 +66,7 @@ import { LoggerService } from './services/logger.service';
     UserBuyComponent,
     UserProductComponent,
     UserOrdersComponent,
-    UserManageComponent,
+    UserManageComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +76,7 @@ import { LoggerService } from './services/logger.service';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccessService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,Environment,DatabaseService,LoggerService],
+  providers: [AccessService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,DatabaseService,LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

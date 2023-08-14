@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 import { AccessService } from './services/access.service';
 import { DatabaseService } from './services/database.service';
 import { LoggerService } from './services/logger.service';
-import { Environment } from './environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -19,13 +19,15 @@ import { Environment } from './environment';
 })
 export class AppComponent{
 
-  protected isUpdate:any = Environment.conditionFalse;
+  public isUpdate:any = environment.conditionFalse;
 
   constructor(private databaseService:DatabaseService,private accessService:AccessService){
 
     this.databaseService.checkDatabase().subscribe((data)=>{
       this.isUpdate = data;
     });
+
+    console.log(environment);
 
     if(localStorage.getItem("llt-date")!=((new Date()).getDate()+"")){
       LoggerService.info("User session expired. Automatically logged out for security reasons.");
@@ -37,7 +39,6 @@ export class AppComponent{
         this.accessService.loadData(json);
       }
     }
-
 
   }
 

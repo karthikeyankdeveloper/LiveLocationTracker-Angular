@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-viewkit',
@@ -14,7 +14,7 @@ export class AdminViewkitComponent implements OnInit,OnDestroy{
 
   private kitId:any;
   protected finalData:any;
-  protected preventLoading:boolean=Environment.conditionFalse;
+  protected preventLoading:boolean=environment.conditionFalse;
   private getKitSubscription:any;
 
   constructor(private formBuilder:FormBuilder,private activatedRoute:ActivatedRoute,private router:Router,private databaseService:DatabaseService){}
@@ -79,7 +79,7 @@ export class AdminViewkitComponent implements OnInit,OnDestroy{
       this.databaseService.deleteKit(this.kitId).subscribe((data)=>{
         alert("Deleted Successfully");
         LoggerService.info("Kit deleted successfully");
-        this.router.navigate(['admin/kit'],{replaceUrl:Environment.conditionTrue});
+        this.router.navigate(['admin/kit'],{replaceUrl:environment.conditionTrue});
       });
     }
   }

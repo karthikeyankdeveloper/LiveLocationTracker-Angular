@@ -4,7 +4,7 @@
     <nav>
       <div class="header_icon">
         <a routerLink="/">
-          <img src="logo.png" alt="LOGO">
+          <img [src]="'logo.webp'" alt="LOGO of Tracker" width="1000" height="1000">
           <h1 class="header_icon_name">Tracker</h1>
         </a>
         <i class="fa-solid fa-bars" *ngIf="!headContent" (click)="toggle()"></i>

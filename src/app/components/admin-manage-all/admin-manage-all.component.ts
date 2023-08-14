@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-manage-all',
@@ -11,8 +11,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class AdminManageAllComponent implements OnInit,OnDestroy{
 
-  protected isuser:boolean = Environment.conditionTrue;
-  protected isactive:boolean = Environment.conditionTrue;
+  protected isuser:boolean = environment.conditionTrue;
+  protected isactive:boolean = environment.conditionTrue;
 
   protected finalTable:any;
   protected activeUser:any;
@@ -20,7 +20,7 @@ export class AdminManageAllComponent implements OnInit,OnDestroy{
   protected activeAdmin:any;
   protected blockAdmin:any;
 
-  protected noDataPrevent:boolean = Environment.conditionFalse;
+  protected noDataPrevent:boolean = environment.conditionFalse;
   private getAllUserDataSubscription:any;
 
 

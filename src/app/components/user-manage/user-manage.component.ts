@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-manage',
@@ -13,8 +13,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class UserManageComponent {
 
-  protected view:boolean = Environment.conditionFalse;
-  protected passwordView:boolean = Environment.conditionFalse;
+  protected view:boolean = environment.conditionFalse;
+  protected passwordView:boolean = environment.conditionFalse;
   protected deviceData:any;
   private tempId:any;
   private getUserSubscription:any;

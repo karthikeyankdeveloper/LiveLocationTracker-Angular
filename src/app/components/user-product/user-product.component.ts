@@ -1,11 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Environment } from 'src/app/environment';
 import { AccessService } from 'src/app/services/access.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -22,9 +22,9 @@ export class UserProductComponent implements OnDestroy{
   protected kitData: any;
   protected userData: any;
   protected paymentID: any;
-  protected view: boolean = Environment.conditionFalse;
-  protected paymentView: boolean = Environment.conditionFalse;
-  protected paymentSuccessView: boolean = Environment.conditionFalse;
+  protected view: boolean = environment.conditionFalse;
+  protected paymentView: boolean = environment.conditionFalse;
+  protected paymentSuccessView: boolean = environment.conditionFalse;
 
   constructor(private formBuilder: FormBuilder, private loaderService: LoaderService, private activatedRoute: ActivatedRoute, private router: Router, private databaseService: DatabaseService, private accessService: AccessService) {
     this.loaderService.setUserLoader(true);
@@ -32,7 +32,7 @@ export class UserProductComponent implements OnDestroy{
     this.activatedRoute.queryParamMap.subscribe((id) => {
       let idref = id.get("id");
       if (idref == null || idref == "") {
-        this.router.navigate(["/user/buy"], { replaceUrl: Environment.conditionTrue });
+        this.router.navigate(["/user/buy"], { replaceUrl: environment.conditionTrue });
       } else {
         this.getKitSubscription = this.databaseService.getKit(idref).subscribe((kitDataResponse) => {
           if (kitDataResponse != null) {
@@ -42,7 +42,7 @@ export class UserProductComponent implements OnDestroy{
               this.makeViewStopLoading();
             });
           } else {
-            this.router.navigate(["/user/buy"], { replaceUrl: Environment.conditionTrue });
+            this.router.navigate(["/user/buy"], { replaceUrl: environment.conditionTrue });
           }
         });
       }
@@ -59,8 +59,8 @@ export class UserProductComponent implements OnDestroy{
     uid: [, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]]
   });
 
-  protected enableAvail = Environment.conditionFalse;
-  protected enableMessage = Environment.conditionFalse;
+  protected enableAvail = environment.conditionFalse;
+  protected enableMessage = environment.conditionFalse;
 
   protected availabilityButton(): void {
     if (this.uidForm.valid) {

@@ -159,8 +159,9 @@ const routes: Routes = [
   },
   {
     path:'**',
-    component:NotFoundComponent,
-    title:'Tracker | Page Not Found | 404 Error'
+    // component:NotFoundComponent,
+    title:'Tracker | Page Not Found | 404 Error',
+    loadComponent : ()=> import('./components/NotFound/NotFound.component').then(m=>m.NotFoundComponent)
   }
 ];
 
