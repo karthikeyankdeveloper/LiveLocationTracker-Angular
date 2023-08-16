@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/Header/Header.component';
 import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsLoginGuard } from './guards/is-login.guard';
@@ -64,8 +64,8 @@ const routes: Routes = [
   },
   {
     path:'user',
-    component:UserNavigationComponent,
     canActivate:[IsUserGuard],
+    component:UserNavigationComponent,
     children:[
       {
         path:'',
@@ -102,7 +102,6 @@ const routes: Routes = [
         component:UserManageComponent,
         title:'User | Manage Kit'
       }
-
     ]
   },
   {
