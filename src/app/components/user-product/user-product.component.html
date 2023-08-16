@@ -1,7 +1,5 @@
 <div class="product" *ngIf="view">
-
   <button class="backbtn" routerLink="/user/buy"><i class="fa-solid fa-arrow-left"></i> Back</button>
-
   <div class="row1">
 
     <div class="section1">
@@ -93,14 +91,10 @@
 
 </div>
 
-
 <div class="extraspace"></div>
 
-
 <div class="payment" *ngIf="paymentView" >
-
   <div class="payment_box">
-
     <div class="payment_top">
       <i class="fa-brands fa-amazon-pay"></i>
       <p>{{userData.name}}</p>
@@ -108,21 +102,18 @@
     </div>
 
     <div class="payment_content">
-
       <p style="margin-left: 10px; color: blue;">Pay With UPI QR</p>
       <div class="qr">
-        <img src="assets/qr.png" alt="img">
+        <img [src]="'assets/qr.webp'" alt="Image of qr" width="141" height="141">
         <div>
           <p>Scan the QR using any UPI app on your phone.</p>
           <div class="provider">
-            <img src="assets/paytm.svg" alt="paytm">
-            <img src="assets/phonepe.svg" alt="phonepe">
-            <img src="assets/googlepay.svg" alt="googlepay">
+            <img [src]="'assets/paytm.svg'" alt="Image of paytm">
+            <img [src]="'assets/phonepe.svg'" alt="Image of phonepe">
+            <img [src]="'assets/googlepay.svg'" alt="Image of googlepay">
           </div>
-
         </div>
       </div>
-
 
       <p style="margin-left: 10px; color: blue;">Personal Info</p>
       <div class="user_info">
@@ -130,10 +121,8 @@
         <p><i class="fa-solid fa-location-dot"></i> {{userData.address}} - {{userData.pincode}}, {{userData.phone}}</p>
       </div>
 
-
       <p style="margin-left: 10px; color: blue;">Cards, UPI & More</p>
       <div class="card_upi">
-
         <div class="items">
           <div>
             <p><i class="fa-brands fa-gg"></i> UPI / QR</p>
@@ -163,33 +152,23 @@
           <button (click)="makePaymentSuccess()">Pay</button>
         </div>
       </div>
-
     </div>
-
     <div class="payment_bottom">
       <p> {{kitData.discountprice|currency:'INR'}}</p>
       <button (click)="disablePaymentView()"><i class="fa-solid fa-xmark"></i> Cancel</button>
     </div>
   </div>
-
-
-
 </div>
 
 
 <div class="payment_success" *ngIf="paymentSuccessView">
-
   <div class="payment_content1">
-      <img src="assets/payment_success.jpg" alt="payment">
+      <img [src]="'assets/payment_success.webp'" alt="Image of payment success" width="3000" height="2000">
       <h2>Order Placed Successfully</h2>
       <p style="font-size: 1.2rem;"> {{kitData.discountprice|currency:'INR'}}</p>
       <p>Payment ID :  {{paymentID}}</p>
-
-
       <div class="payment_btn">
           <button routerLink="/user/orders"><i class="fa-solid fa-list-check"></i> Go to Order</button>
       </div>
-
   </div>
-
 </div>

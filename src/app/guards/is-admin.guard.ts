@@ -14,8 +14,9 @@ export class IsAdminGuard implements CanActivate {
     if(this.accessService.isAdmin()==false){
       this.router.navigate([''],{replaceUrl:environment.conditionTrue});
       return false;
+    }else{
+      return true;
     }
-    return true;
   }
 
 }

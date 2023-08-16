@@ -2,11 +2,10 @@
 
   <div class="login-total">
     <div class="login-left">
-      <img src="assets/login.jpg" alt="img">
+      <img [src]="'assets/login.webp'" alt="Image of Login" width="2000" height="2000">
     </div>
 
     <div class="login-right">
-
       <div class="right-content">
         <h1>LOGIN</h1>
         <p style="margin: 25px 13%;">Welcome Back :) To keep connected with us.</p>
@@ -23,7 +22,6 @@
             <small *ngIf="loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched">Enter Password</small>
             <small *ngIf="loginForm.controls['password'].errors?.['minlength'] && loginForm.controls['password'].dirty">Password Min length is 8.</small>
           </div>
-
           <div class="static">
             <div class="static-left">
               <input type="checkbox" name="showpass" id="showpass" (click)="togglePassword()">
@@ -33,19 +31,13 @@
               <a routerLink="/forgot">Forgot password ?</a>
             </div>
           </div>
-
           <div class="btn">
             <button [disabled]="loginForm.invalid || disableButton" type="submit">LOGIN</button>
           </div>
-
         </form>
         <p>Don't have an account ? <a routerLink="/signup" [style]="'text-decoration:none;'">Create now</a></p>
-
       </div>
-
     </div>
   </div>
-
-
 </div>
 

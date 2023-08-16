@@ -25,7 +25,7 @@
           </div>
           <p *ngIf="lastOrder==null||lastOrder==''" style="color: rgb(11, 11, 90);">- <i class="fa-regular fa-folder-open"></i> No Order available.<br><br></p>
         </div>
-        <img [src]="'/assets/user-lastorder.png'" alt="images">
+        <img [src]="'assets/user-lastorder.webp'" alt="Last Order Image of dashboard" width="512" height="512">
       </div>
 
       <div style="margin-top: auto; border-top: 1px solid rgb(215, 218, 215);">
@@ -42,7 +42,7 @@
           <li>We recommend you to continously change your device password for security purpose.</li>
           <li>Use below navigation to manage or buy kit.</li>
         </div>
-        <img src="assets/user-processor.png" alt="images">
+        <img [src]="'assets/user-processor.webp'" alt="Device Image of dashboard" width="512" height="512">
       </div>
       <div style="margin-top: auto; border-top: 1px solid rgb(215, 218, 215);">
         <a routerLink="/user/manage">Manage Device</a> | <a routerLink="/user/buy">buy device</a>
@@ -60,18 +60,14 @@
           <li>We recommend you to continously change your account password for security purpose.</li>
           <li>Use below navigation to manage or buy kit.</li>
         </div>
-        <img src="assets/user-server.png" alt="images">
+        <img [src]="'assets/user-server.webp'" alt="Security Image of dashboard" width="512" height="512">
       </div>
-
     </div>
-
   </div>
 
   <div>
     <h3 style="text-align: center;">Frequently Asked Questions (FAQ)</h3>
-
     <div class="faq" style="text-align: center;">
-
       <div class="faq_main">
         <details>
           <summary>Can I customize the live location tracker app?</summary>
@@ -101,11 +97,7 @@
           <p>Find step-by-step instructions on setting up and configuring NodeMCU for the live location tracker app,
             including connecting the GPS module and configuring the Wi-Fi credentials.</p>
         </details>
-
       </div>
-
     </div>
-
   </div>
-
 </div>
