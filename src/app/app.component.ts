@@ -18,16 +18,11 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-
   public isUpdate:any = environment.conditionFalse;
-
   constructor(private databaseService:DatabaseService,private accessService:AccessService){
-
     this.databaseService.checkDatabase().subscribe((data)=>{
       this.isUpdate = data;
     });
-
-    console.log(environment);
 
     if(localStorage.getItem("llt-date")!=((new Date()).getDate()+"")){
       LoggerService.info("User session expired. Automatically logged out for security reasons.");
@@ -39,7 +34,5 @@ export class AppComponent{
         this.accessService.loadData(json);
       }
     }
-
   }
-
 }

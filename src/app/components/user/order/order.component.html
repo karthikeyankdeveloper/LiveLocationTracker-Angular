@@ -1,1 +1,31 @@
-<p>order works!</p>
+<div class="orders" *ngIf="view">
+  <h3 style="font-size: 1.5rem; letter-spacing: 1px;"><i class="fa-solid fa-list-check" style="color: blue;"></i> My
+    Orders</h3>
+  <p>Order cancellation will be enabled for 24 hours.</p>
+  <h3 *ngIf="finalOrderData==null || finalOrderData == ''" style="color: red;">No Order Available !</h3>
+  <div class="items">
+    <div class="item_data" *ngFor="let data of finalOrderData">
+      <div class="flex">
+        <div class="left_block">
+          <h2 style="color: rgb(2, 2, 119)"><i class="fa-solid fa-server"></i> {{data.kitname}}</h2>
+          <h3>Ordered Price : <i class="fa-solid fa-indian-rupee-sign"></i> {{data.kitprice}}</h3>
+          <p><i class="fa-solid fa-passport"></i> Requested uid : {{data.uid|uppercase}} <br>
+            <i class="fa-regular fa-id-badge"></i> Order Id : {{data.orderid|slice:1:99}}<br>
+            <i class="fa-solid fa-file-invoice-dollar"></i> Payment Id : #{{data.paymentid}}</p>
+        </div>
+        <div class="img_block">
+          <img [src]="data.kitimg" alt="img" routerLink="/user/product" [queryParams]="{id:data.kitid}">
+        </div>
+      </div>
+      <div class="item_bottom">
+        <p>Order placed on {{data.date | date:'MMM d, y, h:mm:ss a'}}</p>
+        <div class="btns">
+          <p><i class="fa-solid fa-circle-info"></i> Status : </p> &nbsp;
+          <button type="button" class="statusbtn" [ngStyle]="{'color': data.status!='Cancelled' ? 'green' : 'red'}">{{data.status}}</button>
+          <button (click)="cancelOrder(data.uid,data.orderid,data.kitid)" type="button" class="cancelbtn" *ngIf="data.cancel && data.status!='Cancelled'"><i class="fa-solid fa-xmark"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

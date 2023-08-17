@@ -1,4 +1,3 @@
-
 <div class="header" id="header">
   <header>
     <nav>
@@ -10,7 +9,6 @@
         <i class="fa-solid fa-bars" *ngIf="!headContent" (click)="toggle()"></i>
         <i class="fa-solid fa-xmark" *ngIf="headContent" (click)="toggle()"></i>
       </div>
-
       <div class="header_content" *ngIf="headContent">
         <ul>
           <li> <a routerLink="" (click)="this.onResize()">Home</a> </li>
@@ -26,6 +24,4 @@
   </header>
   <div class="loader" id="loader" *ngIf="loaderService.getLoader()"></div>
 </div>
-
-
 <router-outlet ></router-outlet>

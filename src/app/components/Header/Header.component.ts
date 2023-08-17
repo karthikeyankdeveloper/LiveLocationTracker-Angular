@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit,HostListener} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AccessService } from 'src/app/services/access.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { environment } from 'src/environments/environment';
@@ -7,7 +8,9 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-Header',
   templateUrl: './Header.component.html',
-  styleUrls: ['./Header.component.css']
+  styleUrls: ['./Header.component.css'],
+  standalone:true,
+  imports:[CommonModule,RouterModule]
 })
 export class HeaderComponent implements OnInit {
 

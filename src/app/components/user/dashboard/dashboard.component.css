@@ -1,0 +1,152 @@
+.dashboard {
+  font-family: 'Josefin Sans', sans-serif;
+  width: 85%;
+}
+.profilepic {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.centerit {
+  cursor: pointer;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.centerit i {
+  color: rgb(4, 53, 72);
+  margin: 0px;
+  padding: 0px;
+  font-size: 40px;
+}
+.centerit:hover {
+  transition: .5s;
+  background-color: rgb(4, 53, 72);
+}
+.centerit:hover i {
+  color: white;
+}
+.welcome {
+  margin-top: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.welcome p {
+  color: rgb(64, 65, 67);
+}
+.shortinfo {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.shortinfo .child {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border: 1px solid rgb(215, 218, 215);
+  margin: 10px;
+  border-radius: 10px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.child h3,
+.sec_main h3 {
+  margin: 0px;
+  padding: 15px;
+  letter-spacing: 1px;
+}
+.child a {
+  text-decoration: none;
+  color: rgb(26, 115, 232);
+  padding: 10px;
+  display: inline-block;
+}
+.shortcontent {
+  color: rgb(64, 65, 67);
+  font-size: .9rem;
+  padding: 0px 15px;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 10px;
+}
+.shortcontent .bref {
+  width: 70%;
+}
+.shortcontent .bref p {
+  margin: 0px;
+  margin-bottom: 15px;
+}
+.shortcontent .bref li {
+  margin-bottom: 8px;
+}
+.shortcontent img {
+  width: 30%;
+  height: auto;
+}
+.security,
+.faq {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.sec_main,
+.faq_main {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border: 1px solid rgb(215, 218, 215);
+  border-radius: 10px;
+  margin: 10px;
+}
+.sec_content {
+  color: rgb(64, 65, 67);
+  padding: 0px 15px;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 10px;
+
+}
+.sec_content .bref {
+  flex-grow: 1;
+}
+.sec_content .bref li {
+  margin-bottom: 10px;
+}
+.faq_main {
+  margin-bottom: 50px;
+}
+.faq_main details {
+  padding: 10px 0px;
+  border-bottom: 1px solid rgb(215, 218, 215);
+}
+.faq_main details summary {
+  cursor: pointer;
+}
+.faq_main details p {
+  color: rgb(83, 86, 91);
+}
+@media screen and (max-width:1134px) {
+  .sec_main,
+  .faq_main {
+    width: 400px;
+  }
+  .sec_content img {
+    width: 30%;
+    height: auto;
+  }
+}
+@media screen and (min-width:1134px) {
+  .sec_main,
+  .faq_main {
+    width: 820px;
+  }
+  .sec_content img {
+    width: 15%;
+    height: auto;
+  }
+}
+@media screen and (max-width:750px) {
+  .dashboard{
+    width: 100%;
+  }
+}

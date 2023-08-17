@@ -1,0 +1,79 @@
+.profile {
+  margin-left: 40px;
+  margin-top: 30px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.profile_logo {
+  display: flex;
+  align-items: center;
+}
+.profile_logo img {
+  width: 50px;
+  height: auto;
+}
+.profile_logo h3 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.5rem;
+}
+.profile_main {
+  margin-top: 10px;
+  padding: 15px;
+  padding-bottom: 100px;
+  border-radius: 10px;
+}
+.profile_main label {
+  display: block;
+}
+.profile_main input {
+  outline: none;
+  border: 2px solid rgb(114, 114, 114);
+  border-radius: 5px;
+  margin: 10px 0px;
+  width: 320px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(70, 69, 69);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.profile_main input:hover{
+  border: 2px solid rgb(5, 88, 5);
+}
+.profile_main input:focus {
+  border: 2px solid rgb(8, 8, 117);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.profile_main input:disabled {
+  border: 2px solid rgb(162, 159, 159);
+  color: rgb(162, 159, 159);
+}
+.profile_main form button {
+  background-color: blue;
+  color: white;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+.profile_main form button:hover {
+  background-color: rgb(3, 3, 154);
+}
+.profile_main form button:disabled {
+  background-color: rgb(126, 126, 252)
+}
+@media screen and (max-width:430px) {
+  .profile_main {
+    padding-left: 0px;
+  }
+  .profile_main input {
+    width: 270px;
+  }
+  .profile {
+    margin-left: 20px;
+  }
+}
+small{
+  color: red;
+}

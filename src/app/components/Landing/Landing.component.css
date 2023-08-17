@@ -1,65 +1,46 @@
 .landing-total {
   font-family: 'Josefin Sans', sans-serif;
 }
-
-
 @media screen and (max-width:1000px) {
-
   .first {
-    /* border: 2px solid red; */
     margin-top: 20px;
     display: flex;
     flex-direction: column-reverse;
-    /* border-bottom: 1px solid rgb(91, 90, 90); */
   }
-
   .first-left {
-    /* border: 2px solid red; */
-    /* width: 60%; */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
   }
-
   .first-right {
-    /* border: 2px solid rgb(255, 0, 0); */
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
   .first-right img {
     width: 45%;
     height: auto;
-    /* border: 2px solid green; */
   }
-
   .first-left div {
-    /* border: 2px solid green; */
     width: 75%;
     margin-bottom: 10px;
   }
-
   .first-left div h1 {
     color: #076559;
     font-size: 1.4rem;
   }
-
   .first-left div h1 span {
     font-size: 2.5rem;
   }
-
   .first-left div p {
     color: black;
     text-align: justify;
     font-size: .9rem;
   }
-
   .first-left div form div {
     width: 100%;
   }
-
   .first-left div input {
     text-align: center;
     font-size: 1rem;
@@ -72,15 +53,12 @@
     border: 1.6px solid rgb(9, 121, 95);
     text-transform: uppercase;
   }
-
   .first-left div input:focus {
     border: 1.6px solid rgb(24, 114, 223);
   }
-
   small {
     font-size: 1rem;
   }
-
   .first-left div form button {
     margin-top: 5px;
     border: none;
@@ -92,15 +70,12 @@
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     cursor: pointer;
   }
-
   .first-left div form button:hover {
     background-color: rgb(8, 8, 168);
   }
-
   .first-left div form button:disabled {
     background-color: rgba(17, 17, 239, 0.733);
   }
-
   .howit-h1 {
     margin-top: 20px;
     text-align: center;
@@ -109,7 +84,6 @@
     letter-spacing: 2px;
     text-transform: uppercase;
   }
-
   .learn-p {
     text-align: center;
     letter-spacing: 1px;
@@ -118,38 +92,28 @@
   /* --------second---- */
   .second,
   .third {
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: column-reverse;
-    /* border-bottom: 1px solid black; */
     margin-bottom: 10px;
   }
-
   .second-left,
   .third-left {
-    /* width: 60%; */
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
   .second-left div,
   .third-left div {
     width: 70%;
-    /* border: 2px solid green; */
   }
-
   .second-left div h2,
   .third-left div h2 {
     text-align: center;
   }
-
   .second-left div ul,
   .third-left div ul {
-    /* border: 2px solid red; */
     padding: 0px;
   }
-
   .second-left div ul li,
   .third-left div ul li {
     margin: 0px;
@@ -157,82 +121,59 @@
     margin-top: 10px;
     text-align: justify;
   }
-
   .second-right,
   .third-right {
-    /* border: 2px solid green; */
-    /* width: 40%; */
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
   .second-right img,
   .third-right img {
     width: 45%;
     height: auto;
   }
-
-
 }
 
-
 @media screen and (min-width:1001px) {
-
   .first {
     margin-top: 20px;
-    /* border: 2px solid red; */
     display: flex;
-    /* border-bottom: 1px solid rgb(91, 90, 90); */
   }
-
   .first-left {
-    /* border: 2px solid red; */
     width: 60%;
     display: flex;
     justify-content: right;
     align-items: center;
   }
-
   .first-right {
-    /* border: 2px solid red; */
     width: 40%;
     display: flex;
     align-items: center;
     justify-content: left;
   }
-
   .first-right img {
     width: 63%;
     height: auto;
-    /* border: 2px solid green; */
   }
-
   .first-left div {
-    /* border: 2px solid green; */
     width: 65%;
     margin-right: 20px;
     margin-bottom: 10px;
   }
-
   .first-left div h1 {
     color: #076559;
   }
-
   .first-left div h1 span {
     font-size: 3.5rem;
   }
-
   .first-left div p {
     color: black;
     text-align: justify;
   }
-
   .first-left div input {
     font-size: 1.1rem;
     width: 90%;
     height: 35px;
-    /* margin-bottom: 10px; */
     padding: 5px 10px;
     outline: none;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
@@ -240,16 +181,13 @@
     border: 1.6px solid rgb(9, 121, 95);
     text-transform: uppercase;
   }
-
   .first-left div input:focus {
     border: 1.6px solid rgb(24, 114, 223);
   }
-
   small {
     margin-left: 10px;
     font-size: 1rem;
   }
-
   .first-left div form button {
     margin-top: 5px;
     border: none;
@@ -261,15 +199,12 @@
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
     cursor: pointer;
   }
-
   .first-left div form button:hover {
     background-color: rgb(8, 8, 168);
   }
-
   .first-left div form button:disabled {
     background-color: rgba(17, 17, 239, 0.733);
   }
-
   .howit-h1 {
     margin-top: 20px;
     text-align: center;
@@ -278,104 +213,137 @@
     letter-spacing: 2px;
     text-transform: uppercase;
   }
-
   .learn-p {
     text-align: center;
     letter-spacing: 1px;
   }
 
   /* --------second---------- */
-
   .second {
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: row-reverse;
-    /* border-bottom: 1px solid black; */
     margin-bottom: 10px;
   }
-
   .second-left {
     width: 60%;
     display: flex;
     align-items: center;
   }
-
   .second-left div {
     margin-left: 20px;
     width: 70%;
-    /* border: 2px solid green; */
   }
-
   .second-left div h2 {
     margin-left: 30px;
   }
-
   .second-left div ul li {
     margin-top: 10px;
     text-align: justify;
   }
-
   .second-right {
-    /* border: 2px solid green; */
     width: 40%;
     display: flex;
     justify-content: right;
     align-items: center;
   }
-
   .second-right img {
     width: 55%;
     height: auto;
   }
-
   .topadd{
     margin-top: 100px;
   }
-
   .third {
-    /* border: 2px solid red; */
-    /* z-index: 5; */
     display: flex;
     flex-direction: row;
-    /* border-bottom: 1px solid black; */
     margin-bottom: 10px;
     margin-top: 100px;
   }
-
   .third-left {
     width: 60%;
     display: flex;
     align-items: center;
     justify-content: right;
   }
-
   .third-left div {
     margin-left: 20px;
     width: 70%;
-    /* border: 2px solid green; */
   }
-
   .third-left div h2 {
     margin-left: 30px;
   }
-
   .third-left div ul li {
     margin-top: 10px;
     text-align: justify;
   }
-
   .third-right {
-    /* border: 2px solid green; */
     width: 40%;
     display: flex;
     justify-content: left;
     align-items: center;
   }
-
   .third-right img {
     margin-left: 5%;
     width: 55%;
     height: auto;
   }
+}
+
+/* Footer style */
+footer {
+  margin-top: 100px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: rgb(62, 59, 59);
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.footer-logo {
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-logo img {
+  width: 55px;
+  height: auto;
+  margin: 5px 5px;
+}
+.footer-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-navigation ul {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+}
+.footer-navigation ul li {
+  margin: 0px 15px;
+}
+.footer-navigation ul li a {
+  text-decoration: none;
+  color: white;
+}
+.footer-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+}
+.footer-media a {
+  text-decoration: none;
+  color: white;
+  margin: 0px 15px;
+}
+.footer-media a i {
+  font-size: 1.5rem;
+}
+.footer-year {
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
+

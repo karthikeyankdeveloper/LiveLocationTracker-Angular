@@ -1,0 +1,91 @@
+.orders {
+  margin-left: 40px;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-bottom: 100px;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+}
+.item_data {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border: 1px solid rgb(193, 191, 191);
+  border-radius: 10px;
+  width: fit-content;
+  margin: 10px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  border-bottom: 1px solid rgb(193, 191, 191);
+}
+.left_block {
+  padding-right: 20px;
+}
+.left_block h3 {
+  font-size: 1rem;
+  margin: 0px;
+  padding: 0px;
+  margin: 10px 0px;
+}
+.left_block p {
+  margin: 0px;
+  padding: 0px;
+  font-size: .85rem;
+  margin: 8px 0px;
+  line-height: 22px;
+  color: rgb(4, 68, 27);
+}
+.left_block p i{
+  color: blue;
+}
+.img_block {
+  margin-left: auto;
+}
+.img_block img {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+}
+.item_bottom {
+  padding: 0px 10px;
+}
+.item_bottom p {
+  margin: 0px;
+  padding: 0px;
+  font-size: .8rem;
+  margin: 8px 0px;
+}
+.btns {
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+}
+.btns button {
+  margin-right: 10px;
+}
+.statusbtn {
+  border: none;
+  background-color: white;
+  color: white;
+  font-weight: 600;
+}
+.cancelbtn {
+  margin-left: auto;
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2px 8px;
+}
+.cancelbtn:hover {
+  background-color: rgb(158, 4, 4);
+}
+@media screen and (max-width:430px) {
+  .orders {
+    margin-left: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+}

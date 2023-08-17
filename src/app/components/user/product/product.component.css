@@ -1,0 +1,346 @@
+.product {
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+.backbtn {
+  padding: 7px 15px;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.row1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row1 .section1 {
+  border: 1px solid rgb(137, 133, 133);
+  border-radius: 10px;
+  width: 250px;
+  height: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.row1 .section1 img {
+  width: 80%;
+  height: auto;
+}
+.price {
+  margin-top: 15px;
+  display: flex;
+  align-items: flex-end;
+}
+.price h4,
+.price strike,
+.price p {
+  margin: 0px;
+  padding: 0px;
+}
+.price h4 {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+.price strike {
+  color: rgb(60, 58, 58);
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+.price p {
+  color: green;
+}
+.p {
+  width: 461px;
+  line-height: 25px;
+}
+.row2 {
+  display: flex;
+  flex-direction: column;
+}
+.first {
+  padding-left: 10px;
+  width: fit-content;
+  padding-bottom: 25px;
+  border-radius: 10px;
+  background-color: rgba(203, 200, 200, 0.41);
+}
+.changebtn {
+  display: flex;
+  align-items: center;
+}
+.changebtn button {
+  margin-left: 150px;
+  background-color: rgba(255, 255, 255, 0.047);
+  position: relative;
+  padding: 5px 9px;
+  border: 1px solid rgb(98, 94, 94);
+  border-radius: 5px;
+  color: blue;
+  font-weight: 550;
+  cursor: pointer;
+}
+.changebtn button:hover {
+  color: rgb(3, 3, 164);
+}
+.address p {
+  padding: 0px;
+  margin: 0px;
+  color: rgb(66, 64, 64);
+  font-weight: 100;
+  letter-spacing: .5px;
+}
+.second {
+  padding: 0px 10px;
+  width: fit-content;
+}
+.form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.form input {
+  text-transform: uppercase;
+  padding: 7px 8px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-weight: 600;
+  border: 1.6px solid rgb(5, 60, 77);
+}
+.form input:focus {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border: 1.6px solid rgb(7, 101, 130);
+}
+.form button {
+  margin-left: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.form button:disabled {
+  cursor: not-allowed;
+}
+.placeorderbtn {
+  padding: 10px 25px;
+  background-color: blue;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.placeorderbtn:hover {
+  background-color: rgb(4, 4, 146);
+}
+.placeorderbtn:disabled {
+  background-color: rgba(47, 47, 249, 0.725);
+  cursor: not-allowed;
+
+}
+@media screen and (max-width:1080px) {
+  .row2 {
+    flex-direction: column;
+  }
+  .first,
+  .second {
+    border: none;
+    width: fit-content;
+  }
+}
+@media screen and (max-width:550px) {
+  .p {
+    width: fit-content;
+  }
+}
+.extraspace {
+  margin-top: 150px;
+}
+/* --------Payment---------- */
+.payment {
+  font-family: 'Josefin Sans', sans-serif;
+  position: fixed;
+  z-index: 12;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(208, 205, 205, 0.729);
+}
+.payment_box {
+  height: 80%;
+  width: 320px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  display: flex;
+  flex-direction: column;
+}
+.payment_top {
+  background-color: blue;
+  height: 60px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  color: white;
+  text-transform: uppercase;
+}
+.payment_top i {
+  font-size: 1.6rem;
+  padding-right: 8px;
+  color: white;
+}
+.cancel {
+  position: absolute;
+  margin-left: 270px;
+  cursor: pointer;
+  color: white;
+}
+.payment_bottom {
+  font-size: 1.2rem;
+  height: 60px;
+  margin-top: auto;
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  border-top: 1px solid rgb(188, 185, 185);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+.payment_bottom button {
+  margin-left: auto;
+  padding: 10px 45px;
+  color: white;
+  background-color: blue;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.payment_content {
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+.qr {
+  border: 1px solid rgb(161, 158, 158);
+  padding: 7px;
+  margin: 3px;
+  display: flex;
+}
+.provider {
+  display: flex;
+}
+.provider img {
+  width: 20px;
+  height: auto;
+  margin: 0px 5px;
+}
+.user_info {
+  padding: 0px 7px;
+  margin: 3px;
+}
+.user_info p {
+  font-size: 0.9rem;
+}
+.card_upi {
+  border: 1px solid rgb(161, 158, 158);
+  margin: 3px;
+  margin-bottom: 50px;
+}
+.items {
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(192, 188, 188);
+}
+.items:hover {
+  transition: .3s;
+  background-color: blue;
+  color: white;
+}
+.items:hover button {
+  visibility: visible;
+}
+.items button {
+  margin-left: auto;
+  margin-right: 15px;
+  padding: 3px 15px;
+  color: blue;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  visibility: hidden;
+  font-weight: 600;
+}
+.pp {
+  font-size: 0.8rem;
+  padding-left: 10px;
+}
+/* -------Payment Success -------- */
+.payment_success {
+  font-family: 'Josefin Sans', sans-serif;
+  position: fixed;
+  background-color: white;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+}
+.payment_content1 {
+  text-align: center;
+}
+.payment_content1 img {
+  width: 400px;
+  height: auto;
+}
+.payment_content1 h2 {
+  text-align: center;
+  font-size: 1.3rem;
+}
+.payment_content1 p {
+  text-align: center;
+  font-size: .9rem;
+}
+.payment_btn {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.payment_btn button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #2acc86;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.payment_btn button:hover {
+  background-color: #14aa69;
+}
+@media screen and (max-width:450px) {
+  .payment_content1 img {
+    width: 80%;
+    height: auto;
+  }
+}

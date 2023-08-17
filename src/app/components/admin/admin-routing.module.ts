@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
 
 const routes: Routes = [
   {
     path:'',
-    component:AdminComponent,
+    loadComponent:()=>import('./admin.component').then(component=>component.AdminComponent),
     children:[
       {
         path:'',
-        component:AnalyticsComponent,
+        loadComponent:()=>import('./analytics/analytics.component').then(component=>component.AnalyticsComponent),
         title:'Admin | Analytics'
       },
       {

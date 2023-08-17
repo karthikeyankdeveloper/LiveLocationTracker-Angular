@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone:true,
-  imports:[CommonModule,ReactiveFormsModule,RouterModule]
+  imports:[CommonModule,RouterModule,ReactiveFormsModule]
 })
 export class LoginComponent{
 

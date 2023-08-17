@@ -6,29 +6,23 @@
     top: 0px;
     z-index: 10;
   }
-
   header {
     background-color: white;
-    /* border: 2px solid red; */
     padding: 10px 10px;
   }
-
   .header_icon {
     display: flex;
     align-items: center;
   }
-
   .header_icon a {
     text-decoration: none;
     display: flex;
     align-items: center;
   }
-
   .header_icon img {
     width: 40px;
     height: 40px;
   }
-
   .header_icon_name {
     margin: 0px;
     margin-left: 10px;
@@ -38,7 +32,6 @@
     font-weight: 900;
     font-size: 1.5rem;
   }
-
   .header_icon i {
     position: absolute;
     right: 15px;
@@ -46,8 +39,6 @@
     padding: 2px 7px;
     z-index: 5;
   }
-
-
   .header_content {
     position: fixed;
     left: 0px;
@@ -56,19 +47,15 @@
     bottom: 0px;
     background-color: whitesmoke;
   }
-
   .header_content ul {
-    /* border: 2px solid red; */
     margin: 0px;
     list-style: none;
     padding: 0px;
   }
-
   .header_content ul li {
     padding: 10px;
     margin: 15px 0px;
   }
-
   .header_content ul li a {
     text-decoration: none;
     color: black;
@@ -77,17 +64,14 @@
     margin: 0px 10px;
     padding: 5px;
   }
-
   .header_content ul li a:hover {
     transition: .5s;
     text-decoration: underline;
     color: rgb(15, 72, 119);
   }
-
 }
 
 @media screen and (min-width:701px) {
-
   .header {
     font-family: 'Josefin Sans', sans-serif;
     border-bottom: 1px solid rgb(183, 181, 181);
@@ -95,17 +79,13 @@
     top: 0px;
     z-index: 10;
   }
-
   header {
     background-color: white;
     padding: 10px 10px;
-    /* border: 2px solid red; */
   }
-
   header nav {
     display: flex;
   }
-
   .header_icon {
     display: flex;
     align-items: center;
@@ -115,12 +95,10 @@
     display: flex;
     align-items: center;
   }
-
   .header_icon img {
     width: 45px;
     height: 45px;
   }
-
   .header_icon_name {
     margin: 0px;
     margin-left: 10px;
@@ -130,29 +108,23 @@
     font-weight: 900;
     font-size: 1.9rem;
   }
-
   .header_icon i {
     display: none;
   }
-
   .header_content {
     position: absolute;
-    /* right: 0px; */
     top: 15px;
     right: 5px;
   }
-
   .header_content ul {
     margin: 0px;
     display: flex;
     list-style: none;
     padding: 0px;
   }
-
   .header_content ul li {
     padding: 10px;
   }
-
   .header_content ul li a {
     text-decoration: none;
     color: black;
@@ -161,16 +133,12 @@
     margin: 0px 10px;
     padding: 5px;
   }
-
   .header_content ul li a:hover {
     transition: .5s;
     text-decoration: underline;
     color: rgb(15, 72, 119);
   }
-
 }
-
-
 
 .loader {
   border-bottom: 2px solid blue;
@@ -178,13 +146,10 @@
   animation-name: load;
   animation-iteration-count: infinite;
 }
-
-
 @keyframes load {
   0% {
     width: 0%;
   }
-
   100% {
     width: 100%;
   }

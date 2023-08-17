@@ -1,0 +1,112 @@
+.managekit {
+  margin-left: 40px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.items {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item_data {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border: 1px solid rgb(133, 131, 131);
+  border-radius: 10px;
+  width: fit-content;
+  margin: 10px;
+  display: flex;
+}
+.left_block {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left_block img {
+  width: 80%;
+  height: auto;
+}
+.right_block {
+  flex-grow: 1;
+  padding: 20px 20px;
+}
+.right_block i {
+  color: blue;
+}
+.right_block h3 {
+  margin: 0px;
+  padding: 0px;
+  margin-top: 7px;
+  font-size: .9rem;
+  color: rgb(4, 4, 112);
+}
+.right_block p {
+  margin: 0px;
+  margin-top: 7px;
+  font-size: .8rem;
+}
+.right_status p {
+  margin-top: 6px;
+}
+.right_btn {
+  display: flex;
+  margin-top: 10px;
+}
+.right_btn button {
+  border: none;
+  color: white;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  cursor: pointer;
+  margin: 0px 2px;
+}
+.changepassbtn {
+  background-color: blue;
+}
+.disablebtn {
+  background-color: red;
+}
+.enablebtn {
+  background-color: green;
+}
+
+/* -------password---------- */
+.changepass{
+  position: fixed;
+  margin: auto;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+}
+.changepass form{
+  text-align: center;
+}
+.changepass form input{
+  text-align: center;
+  padding:4px ;
+  border-radius: 5px;
+  border: 2px solid rgb(120, 119, 119);
+}
+.changepass form button{
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+.green{
+  background-color: green;
+}
+.red{
+  background-color: red;
+}
+@media screen and (max-width:430px) {
+  .managekit {
+    margin-left: 20px;
+  }
+}

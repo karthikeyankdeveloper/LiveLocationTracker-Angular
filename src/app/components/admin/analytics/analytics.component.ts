@@ -1,11 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.css']
+  styleUrls: ['./analytics.component.css'],
+  standalone:true,
+  imports:[CommonModule,RouterModule]
 })
 export class AnalyticsComponent implements OnDestroy{
   protected totalUser:number = 0;

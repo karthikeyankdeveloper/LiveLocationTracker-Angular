@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AppModule } from 'src/app/app.module';
 import { LoggerService } from 'src/app/services/logger.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-Landing',
   templateUrl: './Landing.component.html',
-  styleUrls: ['./Landing.component.css']
+  styleUrls: ['./Landing.component.css'],
+  standalone:true,
+  imports:[CommonModule,RouterModule,ReactiveFormsModule]
 })
 export class LandingComponent{
 
