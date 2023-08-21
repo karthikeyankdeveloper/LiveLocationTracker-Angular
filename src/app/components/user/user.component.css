@@ -11,6 +11,7 @@
     top: 0px;
     width: 270px;
     height: fit-content;
+    background-color: white;
   }
   .navigator_right {
     border-left: 1px solid rgb(202, 197, 197);
@@ -25,7 +26,6 @@
   }
   .navigator_left ul li {
     margin: 10px 0px;
-
   }
   .navigator_left ul li a {
     white-space: nowrap;
@@ -37,10 +37,11 @@
     padding-left: 15px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    transition: .2s;
   }
   .navigator_left ul li a:hover {
-    transition: .2s;
-    padding-left: 17px;
+    transform: translateY(-3px);
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   }
   .selected_navigator {
     background-color: rgb(232, 240, 254);

@@ -50,8 +50,7 @@ const routes: Routes = [
       {
         path:'admin',
         canActivate:[IsAdminGuard],
-        loadChildren:()=>import('./components/admin/admin.module').then(module=>module.AdminModule),
-        data:{preload:true}
+        loadChildren:()=>import('./components/admin/admin.module').then(module=>module.AdminModule)
       }
     ]
   },

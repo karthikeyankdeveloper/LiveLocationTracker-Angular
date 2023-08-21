@@ -30,13 +30,14 @@
   border-radius: 10px;
   cursor: pointer;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  transition: .3s;
 }
 .item:hover .item_img img {
-  transition: .3s;
-  height: 70%;
+  height: 65%;
 }
 .item:hover {
-  border: 1px solid black;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  transform: translateY(-5px);
 }
 .item:hover .hidden {
   visibility: visible;
@@ -49,6 +50,7 @@
   justify-content: center;
 }
 .item_img img {
+  transition: .3s;
   height: 60%;
   width: auto;
 }
