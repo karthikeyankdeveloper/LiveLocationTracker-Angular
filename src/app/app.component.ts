@@ -11,6 +11,7 @@ import { AccessService } from './services/access.service';
 import { DatabaseService } from './services/database.service';
 import { LoggerService } from './services/logger.service';
 import { environment } from 'src/environments/environment';
+import { UpdateService } from './SwUpdate/update.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent{
   public isUpdate:any = environment.conditionFalse;
-  constructor(private databaseService:DatabaseService,private accessService:AccessService){
+  constructor(private databaseService:DatabaseService,private accessService:AccessService,private updateService:UpdateService){
+    this.updateService.checkForUpdate();
     this.databaseService.checkDatabase().subscribe((data)=>{
       this.isUpdate = data;
     });
