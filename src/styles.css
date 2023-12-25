@@ -1,13 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
-@import 'ngx-toastr/toastr';
-/* @import 'ngx-toastr/toastr-bs4-alert'; */
 
-/* @import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins';
-@import 'ngx-toastr/toastr-bs4-alert';
-@import 'ngx-toastr/toastr-bs5-alert'; */
 html,body {
   margin: 0px;
   padding: 0px;

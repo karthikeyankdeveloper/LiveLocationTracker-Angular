@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
   selector: 'app-Header',
   templateUrl: './Header.component.html',
   styleUrls: ['./Header.component.css'],
-  // standalone:true,
-  // imports:[CommonModule,RouterModule]
+  standalone:true,
+  imports:[CommonModule,RouterModule]
 })
 export class HeaderComponent implements OnInit {
 
