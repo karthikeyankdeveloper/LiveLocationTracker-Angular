@@ -1,23 +1,27 @@
-import { NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { IsAdminGuard } from './guards/is-admin.guard';
 import { IsLoginGuard } from './guards/is-login.guard';
 import { IsUserGuard } from './guards/is-user.guard';
+import { HeaderComponent } from './components/Header/Header.component';
+import { LandingComponent } from './components/Landing/Landing.component';
 
 
 const routes: Routes = [
   {
     path:'',
-    loadComponent:()=>import('./components/Header/Header.component').then(component=>component.HeaderComponent),
+    // loadComponent:()=>import('./components/Header/Header.component').then(component=>component.HeaderComponent),
+    component:HeaderComponent,
     children:[
+      // {
+      //   path:'',
+      //   redirectTo:'/home',
+      //   pathMatch:'full'
+      // },
       {
         path:'',
-        redirectTo:'/home',
-        pathMatch:'full'
-      },
-      {
-        path:'home',
-        loadComponent:()=>import('./components/Landing/Landing.component').then(component=>component.LandingComponent),
+        // loadComponent:()=>import('./components/Landing/Landing.component').then(component=>component.LandingComponent),
+        component:LandingComponent,
         title:'Tracker | Quality Solution',
       },
       {
