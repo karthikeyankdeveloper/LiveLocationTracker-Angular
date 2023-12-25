@@ -95,13 +95,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "LocationTracker:build:development"
+              "buildTarget": "LocationTracker:build:development"
             },
             "staging": {
-              "browserTarget": "LocationTracker:build:staging"
+              "buildTarget": "LocationTracker:build:staging"
             },
             "production": {
-              "browserTarget": "LocationTracker:build:production"
+              "buildTarget": "LocationTracker:build:production"
             }
           },
           "defaultConfiguration": "development"
@@ -109,7 +109,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "LocationTracker:build"
+            "buildTarget": "LocationTracker:build"
           }
         },
         "test": {
