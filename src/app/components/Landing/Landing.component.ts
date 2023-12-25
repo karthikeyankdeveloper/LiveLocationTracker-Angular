@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
   selector: 'app-Landing',
   templateUrl: './Landing.component.html',
   styleUrls: ['./Landing.component.css'],
-  standalone:true,
-  imports:[CommonModule,RouterModule,ReactiveFormsModule]
+  // standalone:true,
+  // imports:[CommonModule,RouterModule,ReactiveFormsModule]
 })
 export class LandingComponent{
 

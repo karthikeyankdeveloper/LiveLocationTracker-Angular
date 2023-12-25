@@ -14,10 +14,16 @@ import { CryptographyService } from './services/cryptography.service';
 import { RouterModule } from '@angular/router';
 import { DatabaseService } from './services/database.service';
 import { LoggerService } from './services/logger.service';
+import { HeaderComponent } from './components/Header/Header.component';
+import { LandingComponent } from './components/Landing/Landing.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,9 @@ import { LoggerService } from './services/logger.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [AccessService,LoaderService,CryptographyService,IsLoginGuard,IsAdminGuard,IsUserGuard,DatabaseService,LoggerService],
   bootstrap: [AppComponent]

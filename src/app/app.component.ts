@@ -2,7 +2,7 @@
 Title: Live Location Tracker
 Author: Karthikeyan
 Created at: 06/03/2023
-Updated at: 08/08/2023
+Updated at: 25/12/2023
 Reviewed by: --
 Reviewed at: --
 */
